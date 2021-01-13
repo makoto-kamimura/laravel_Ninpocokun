@@ -8,14 +8,14 @@ class CreateDrLevelsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 『日報利用レベル』テーブル
      * @return void
      */
     public function up()
     {
         Schema::create('dr_levels', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->tinyInteger('level');
+            $table->string('name', 10);
         });
     }
 

@@ -8,14 +8,18 @@ class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 『部門』テーブル
      * @return void
      */
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            // $table->bigIncrements('id');
+            // $table->timestamps();
+            $table->tinyInteger('cd');
+            $table->string('name', 10);
+            $table->smallInteger('chief');
+
         });
     }
 

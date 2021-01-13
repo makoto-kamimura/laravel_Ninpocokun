@@ -19,6 +19,10 @@ class CreateDrFlowsTable extends Migration
             $table->smallInteger('user_cd');
             $table->tinyInteger('f_lv');
             $table->dateTime('changed_at');
+
+            $table->primary(['dr_no','f_order'],'PRI_NAME');
+            $table->index('dr_no','INDEX_NAME');
+
         });
     }
 

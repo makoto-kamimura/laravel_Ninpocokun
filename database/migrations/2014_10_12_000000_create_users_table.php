@@ -33,6 +33,9 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->tinyInteger('yaku_lv');
             $table->tinyInteger('sys_admin');
+            
+            $table->primary('cd','PRI_NAME');
+            $table->index('cd','INDEX_NAME');
         });
     }
 

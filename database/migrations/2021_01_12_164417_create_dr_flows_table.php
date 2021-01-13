@@ -8,17 +8,14 @@ class CreateDrFlowsTable extends Migration
 {
     /**
      * Run the migrations.
-     * 『日報フロー』テーブル
+     *
      * @return void
      */
     public function up()
     {
         Schema::create('dr_flows', function (Blueprint $table) {
-            $table->integer('dr_no');
-            $table->tinyInteger('f_order');
-            $table->smallInteger('user_cd');
-            $table->tinyInteger('f_lv');
-            $table->dateTime('changed_at');
+            $table->bigIncrements('id');
+            $table->timestamps();
         });
     }
 

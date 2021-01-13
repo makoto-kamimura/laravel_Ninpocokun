@@ -8,15 +8,14 @@ class CreatePositionsTable extends Migration
 {
     /**
      * Run the migrations.
-     * 『役職』テーブル
+     *
      * @return void
      */
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->tinyInteger('cd');
-            $table->string('name', 10);
-            $table->tinyInteger('lv');
+            $table->bigIncrements('id');
+            $table->timestamps();
         });
     }
 

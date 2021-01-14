@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 // // <<日報管理関係ルーティング>>
+Route::resource('reports', 'DailyReportController');
 // // 一覧を表示
 // Route::get();
 
@@ -37,4 +38,11 @@ Route::get('/', function () {
 // // 個別の記事を表示
 // Route::get();
 
+<<<<<<< Updated upstream
 // <<ユーザー管理関係ルーティング>>
+=======
+// <<ユーザー管理関係ルーティング>>
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> Stashed changes

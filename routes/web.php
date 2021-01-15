@@ -31,3 +31,6 @@ Route::post('report/confirm', 'DailyReportController@confirm')->name('confirm');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+@import url("base.css");
+@import url("usertouroku.css");
+
+label {
+	width: 70px;
+}
+
+textarea {
+	width:100%;
+	box-sizing:border-box;
+	margin-bottom: 0.5em;
+}
+
+@media screen and (min-width:892px){
+	label {
+		padding-bottom: 5px;
+	]
+}

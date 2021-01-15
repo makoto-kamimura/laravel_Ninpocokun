@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@import url("base.css");
+
+h1 {
+	width: 80%;
+	color: #007aac;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 40px 0 5px;
+	margin: 0 auto 30px !important;
+	border-bottom: 2px solid #007aac;
+}
+
+section {
+	padding-bottom: 20px;
+}
+
+form {
+	width: 462px;
+}
+
+label {
+	width: 150px;
+	text-align: right;
+}
+
+input {
+	width: 150px;
+	padding: 5px 0;
+}
+
+input.email {
+	width: 66%;
+}
+
+.department select, .division select, .position select {
+	padding: 5px 0;
+}
+
+@media screen and (max-width:892px){
+	section {
+		padding: 20px;
+	}
+
+	form {
+		width: 100%;
+	}
+
+	div.name input:first-of-type {
+		margin-bottom: 5px;
+	}
+
+	input.email {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width:500px){
+	form {
+		width: 76%;
+	}
+}

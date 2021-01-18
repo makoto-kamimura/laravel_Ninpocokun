@@ -17,7 +17,7 @@ class CreateDivisionsTable extends Migration
             $table->tinyInteger('cd');
             $table->string('name', 10);
             $table->tinyInteger('dep_cd');
-            $table->smallInteger('chief');
+            // $table->smallInteger('chief');
             
             $table->primary('cd','PRI_NAME');
             $table->index('cd','INDEX_NAME');

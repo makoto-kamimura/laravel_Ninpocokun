@@ -30,7 +30,7 @@
 
 @section('body')
 	<section>
-        <h1>■@yield('title')</h1>
+        <h1>@yield('title')</h1>
         <form action="dailyreport_complete.php" method="post">
             <table border="1" class="m0a">
                 @if (isset($err_msgs1, $err_msgs2, $err_msgs3, $err_msgs4, $err_msgs5))

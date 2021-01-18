@@ -16,7 +16,7 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->tinyInteger('cd');
             $table->string('name', 10);
-            // $table->smallInteger('chief');
+            $table->smallInteger('chief');
 
             $table->primary('cd','PRI_NAME');
             $table->index('cd','INDEX_NAME');

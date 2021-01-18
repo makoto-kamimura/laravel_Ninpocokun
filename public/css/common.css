@@ -30,13 +30,14 @@ header p span:last-of-type {
 }
 
 section {
-    width: 70%;
+	width: 75%;
     padding: 0 0 120px 0;
     margin: 0 auto;
     background-color: #fff;
 }
 
 section.main {
+	width: 70%;
 	border: 3px solid #b0c4de;
     border-top: none;
 }
@@ -48,6 +49,10 @@ footer {
  
 .tac {
 	text-align: center;
+}
+
+.m0a {
+	margin: 0 auto;
 }
 
 @media screen and (max-width:500px){

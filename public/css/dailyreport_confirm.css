@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import url("base.css");
+@import url("usertouroku.css");
+
+table {
+	width: 100%;
+}
+
+table tr th {
+	width: 30%;
+	padding: 8px 0;
+	text-align: center;
+	background-color: #ddd;
+}
+
+table tr td {
+	padding: 5px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+@media screen and (min-width:892px){
+
+}

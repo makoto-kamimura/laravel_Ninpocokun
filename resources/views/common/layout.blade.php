@@ -15,16 +15,16 @@
   </head>
   <body>
     <header>
-      <p><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTEDASBURO</span></p>
+      <p class="homelink"><a href="home"><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESBURO</span></a></p>
     </header>
     <section class="main">
         @yield('body')
     </section>
     <footer class='tac'>
-          <small>Presentation by scratch</small>
+          <small>scratch</small>
     </footer>
- 
-    <script type="text/javascript" src="js/{{$js}}"></script>
 
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/{{$js}}"></script>
   </body>
 </html>

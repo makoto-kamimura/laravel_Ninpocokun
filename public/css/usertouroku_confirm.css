@@ -1,0 +1,47 @@
+@charset "UTF-8";
+@import url("base.css");
+@import url("usertouroku.css");
+
+table {
+	width: 100%;
+}
+
+table tr th {
+	width: 47%;
+	text-align: right;
+	padding: 8px 18px 8px 0;
+}
+
+table tr td {
+	text-align: left;
+	padding: 5px 5px;
+	vertical-align: middle;
+}
+
+table tr td.name_td {
+	width: 20%
+}
+
+div.btn_box input.btn {
+	width: 45%;
+	margin-left: 5px;
+	background-color: #f29214;
+}
+
+div.btn_box a.btn_return {
+	width: 45%;
+	color: #fff;
+	padding: 13px 0;
+	font-size: 0.85em;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #f29214;
+}
+
+div.btn_box a.btn_return:hover {
+	opacity: 0.8;
+}
+
+@media screen and (min-width:892px){
+
+}

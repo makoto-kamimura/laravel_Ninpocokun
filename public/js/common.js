@@ -1,4 +1,4 @@
-
+//プルダウンメニュー
 const divisionMenu = 
       {
         "総務部": ["人事課１", "人事課２"],
@@ -50,3 +50,42 @@ function createMenu02(selectName){
     nameList.appendChild(option);  
   });
 }
+
+
+
+//パスワード表示・非表示
+const pwd = document.getElementById('password');
+const pwdCheck = document.getElementById('password-check');
+pwdCheck.addEventListener('change', function() {
+  if(pwdCheck.checked) {
+    pwd.setAttribute('type', 'text');
+  } else {
+    pwd.setAttribute('type', 'password');
+  }
+}, false);
+
+
+
+//ログインページaタグ削除
+$(window).on('load',function() {
+  // パスの取得
+  var path = location.pathname
+
+  if (path == "/"){
+    $('p.homelink').children().contents().unwrap();
+  }
+});
+
+
+
+//自動遷移
+$(window).on('load',function() {
+  // パスの取得
+  var path = location.pathname
+
+  if (path == "/dailyreport_complete" || path == "usertouroku_complete") {
+    setTimeout(function(){
+      window.location.href = 'home';
+    }, 2000);
+  }
+});

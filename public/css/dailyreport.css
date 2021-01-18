@@ -3,7 +3,7 @@
 @import url("usertouroku.css");
 
 label {
-	width: 70px;
+	width: 85px;
 }
 
 textarea {
@@ -12,8 +12,12 @@ textarea {
 	margin-bottom: 0.5em;
 }
 
+.dailytitle input {
+	width: 100%;
+}
+
 @media screen and (min-width:892px){
 	label {
 		padding-bottom: 5px;
-	]
+	}
 }

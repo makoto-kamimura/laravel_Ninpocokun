@@ -5,9 +5,9 @@
 @endsection
 
 @section('body')
-	<h1>■@yield('title')</h1>
 	<section>
-        <form action="" method="post">
+        <h1>@yield('title')</h1>
+        <form action="usertouroku_confirm" method="post">
         	<div class="department">
                 <label for="department">所属部門</label>
                 <select name="department" id="department" onchange="createMenu01(this.value)">
@@ -31,14 +31,14 @@
                 </select>
             </div>
         	<div class="name">
-                <label for="employeecode">名前</label>
-                <input type="text" name="sei1" ipattern="" placeholder="姓" required>
-                <input type="text" name="mei1" ipattern="" placeholder="名" required>
+                <label for="employeecode">名前（漢字）</label>
+                <input type="text" name="sei1" class="name" pattern="" placeholder="姓">
+                <input type="text" name="mei1" class="name" pattern="" placeholder="名">
             </div>
             <div class="name">
                 <label for="employeecode">名前（カナ）</label>
-                <input type="text" name="sei2" ipattern="" placeholder="セイ" required>
-                <input type="text" name="mei2" ipattern="" placeholder="メイ" required>
+                <input type="text" name="sei2" pattern="[\u30A1-\u30F6]*" placeholder="セイ" required>
+                <input type="text" name="mei2" pattern="[\u30A1-\u30F6]*" placeholder="メイ" required>
             </div>
             <div>
             	<label>メールアドレス</label>
@@ -48,18 +48,23 @@
 				<label>メールアドレス確認</label>
   				<input class="email" type="email" name="email" autocomplete="email" required>
 			</div>
-			<div>
+			<div id="password_box">
                 <label for="password">パスワード</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
             </div>
-            <div>
+            <div id="password_subbox">
+                <input type="checkbox" id="password-check">パスワードを表示する
+            </div>
+            <div id="password_box">
                 <label for="password">パスワード確認</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
+            </div>
+            <div id="password_subbox">
+                <input type="checkbox" id="password-check">パスワードを表示する
             </div>
 			<div class='btn_box tac'>
-            	<input class='btn' type="submit" value="登録する">
+            	<input class='btn' type="submit" value="確認する">
             </div>
         </form>
 	</section>
-
 @endsection

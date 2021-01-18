@@ -19,3 +19,8 @@ class LoginController extends Controller
         return view('login', compact('title', 'err_msgs', 'css', 'js'));
     }
 }
+
+
+Route::get('/', function () {
+    return view('welcome');
+});

@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import url("base.css");
+
+p.btn01, p.btn02 {
+	width: 203px;
+	margin: 0 auto;
+}
+
+p.btn01 {
+	margin-bottom: 1.2em;
+}
+
+p.btn01 a {
+	background-image: url(../img/btn01.png);
+}
+
+p.btn02 a {
+	background-image: url(../img/btn02.png);
+}
+
+p.btn01 a, p.btn02 a {
+	width: 203px;
+	height: 56px;
+	display: block;
+	background-size: cover;
+}
+
+p.btn01 a:hover, p.btn02 a:hover {
+	background-position: left bottom;
+}
+
+@media screen and (min-width:892px){
+
+}

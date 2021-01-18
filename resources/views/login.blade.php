@@ -5,16 +5,16 @@
 @endsection
 
 @section('body')
-      <div>
+      <div class="pw-form">
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
         @if (isset($err_msgs))
-          <ul>
+          <ul id="error_box">
             @foreach ($err_msgs as $err_msg)
               <li>{{$err_msg}}</li>
             @endforeach
           </ul>
         @endif
-        <form action="" method="post" class="tac">
+        <form action="home" method="post" class="tac pw-form-container">
             <div class="bumon">
                 <label for="bumon">所属部門</label>
                 <select name="bumon" id="bumon" onchange="createMenu01(this.value)">
@@ -34,7 +34,10 @@
             </div>
             <div>
                 <label for="password">パスワード</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false">
+            </div>
+            <div id="password_subbox">
+                <input type="checkbox" id="password-check">パスワードを表示する
             </div>
             <div class='btn_box tac'>
                 <input class="btn btn-primary" type="submit" value="ログイン">

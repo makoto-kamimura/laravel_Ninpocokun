@@ -1,0 +1,70 @@
+@charset "UTF-8";
+@import url("base.css");
+@import url("usertouroku.css");
+
+.btn01 {
+	width: 203px;
+	margin: 0 auto;
+}
+
+p.btn01 {
+	margin-bottom: 1.2em;
+}
+
+p.btn01 a {
+	background-image: url(../img/btn01.png);
+}
+
+p.btn01 a {
+	width: 203px;
+	height: 56px;
+	display: block;
+	background-size: cover;
+}
+
+p.btn01 a:hover {
+	background-position: left bottom;
+}
+
+table {
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+/*
+table tr:nth-of-type(odd) {
+	background-color: #ebf5e5;
+}
+*/
+
+table tr th {
+	padding: 8px 0;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #e8ffd1;
+}
+
+table.approval tr th{
+	background-color: #ffe0ef;
+}
+
+table tr td {
+	padding: 5px;
+	vertical-align: middle;
+}
+
+table tr td:first-of-type {
+	width: 25%;
+}
+
+table tr td:nth-of-type(2) {
+	text-align: left;
+}
+
+table tr td:last-of-type {
+	width: 15%;
+}
+
+@media screen and (min-width:892px){
+
+}

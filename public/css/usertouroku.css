@@ -2,13 +2,16 @@
 @import url("base.css");
 
 h1 {
-	width: 80%;
+	width: 100%;
 	color: #007aac;
-	font-size: 1.2em;
+	font-size: 1.3em;
 	font-weight: bold;
-	padding: 40px 0 5px;
+	padding: 40px 0 5px 23px;
 	margin: 0 auto 30px !important;
 	border-bottom: 2px solid #007aac;
+	background: url(../img/mark.png) no-repeat;
+	background-size: 18px;
+	background-position: 0% 85%; 
 }
 
 section {
@@ -25,12 +28,24 @@ label {
 }
 
 input {
-	width: 150px;
 	padding: 5px 0;
+}
+
+input.name {
+	width: 150px;
 }
 
 input.email {
 	width: 66%;
+}
+
+#password_box {
+	display: inline-block;;
+}
+
+#password_subbox {
+	display: inline-block;
+	vertical-align: bottom;
 }
 
 .department select, .division select, .position select {
@@ -53,6 +68,14 @@ input.email {
 	input.email {
 		width: 100%;
 	}
+}
+
+p.complete {
+	width: 40%;
+	padding: 20px 0;
+	margin: 150px 0;
+	display: inline-block;
+	border: 2px solid #ddd;
 }
 
 @media screen and (max-width:500px){

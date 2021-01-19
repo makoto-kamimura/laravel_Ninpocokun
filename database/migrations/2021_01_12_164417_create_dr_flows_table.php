@@ -18,6 +18,7 @@ class CreateDrFlowsTable extends Migration
             $table->tinyInteger('f_order');
             $table->smallInteger('user_cd');
             $table->tinyInteger('f_lv');
+            $table->string('comment', 360);
             $table->dateTime('changed_at');
 
             $table->primary(['dr_no','f_order'],'PRI_NAME');

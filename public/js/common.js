@@ -83,7 +83,7 @@ $(window).on('load',function() {
   // パスの取得
   var path = location.pathname
 
-  if (path == "/dailyreport_complete" || path == "usertouroku_complete") {
+  if (path == "/dailyreport_complete") {
     setTimeout(function(){
       window.location.href = 'home';
     }, 2000);

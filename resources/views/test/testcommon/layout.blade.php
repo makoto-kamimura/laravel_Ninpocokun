@@ -15,7 +15,7 @@
   </head>
   <body>
     <header>
-      <p class="homelink"><a href="home"><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESBURO</span></a></p>
+      <p class="homelink"><a href="home"><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
     </header>
     <section class="main">
         @yield('body')

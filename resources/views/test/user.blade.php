@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('test.testcommon.layout')
 
 @section('tagu')
   {{$tagu}}

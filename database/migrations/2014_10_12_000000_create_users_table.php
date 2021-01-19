@@ -28,10 +28,10 @@ class CreateUsersTable extends Migration
             $table->string('mei_kana', 20);
             $table->tinyInteger('dep_cd');
             $table->tinyInteger('div_cd');
-            $table->date('nyusha_date');
+            // $table->date('nyusha_date');
             $table->date('taishoku_date');
             $table->string('password', 60);
-            $table->tinyInteger('yaku_cd');
+            $table->tinyInteger('pos_cd');
             $table->tinyInteger('sys_admin');
             $table->rememberToken();
             

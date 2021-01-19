@@ -49,8 +49,8 @@
             </div>
             <div class="name">
                 <label>名前（カナ）</label>
-                <input type="text" name="sei2" pattern="[\u30A1-\u30F6]*" placeholder="セイ" required>
-                <input type="text" name="mei2" pattern="[\u30A1-\u30F6]*" placeholder="メイ" required>
+                <input type="text" name="sei2" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ" required>
+                <input type="text" name="mei2" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" required>
             </div>
             <div>
             	<label>メールアドレス</label>

@@ -8,6 +8,7 @@ label {
 
 textarea {
 	width:100%;
+ 	resize: vertical;
 	box-sizing:border-box;
 	margin-bottom: 0.5em;
 }

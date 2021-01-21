@@ -34,7 +34,7 @@ label {
 	text-justify: inter-ideograph;
 }
 
-input#password {
+input#password, #password_check {
 	font-size: 1em;
 	padding: 6px 0 3px 1px;
 }

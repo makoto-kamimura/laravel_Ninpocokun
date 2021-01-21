@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('dep_cd');
             $table->tinyInteger('div_cd');
             // $table->date('nyusha_date');
-            $table->date('taishoku_date');
+            $table->date('taishoku_date')->nullable()->default(null);
             $table->string('password', 60);
             $table->tinyInteger('pos_cd');
             $table->tinyInteger('sys_admin');

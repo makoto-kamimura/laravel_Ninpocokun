@@ -21,7 +21,7 @@ form div {
 	margin-bottom: 20px;
 }
 
-#password, select {
+#password, #password_check, select {
     width: 150px;
     padding: 8px 0;
 }

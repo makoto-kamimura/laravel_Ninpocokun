@@ -11,13 +11,13 @@
 
     <link rel="stylesheet" href="css/{{$css}}">
 
-    <!--<script src="/js/jquery-3.5.1.min.js"></script>-->
+    <script src="/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/{{$js}}"></script>
 
     <!--jQuery・bootstrapライブラリ読み込み-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">-->
     <!--/jQuery・bootstrapライブラリ読み込み-->
 
     <!--独自ライブラリ読み込み-->

@@ -56,6 +56,10 @@
                     </tr>
                 @endif
             </table>
+             <div class="comment">
+                <label for="">コメント</label>
+                <textarea cols="70" rows="5" name="comment" id="comment" maxlength="360"></textarea>
+            </div>
             <div class='btn_box tac'>
                 <input class='btn' type="submit" value="登録する">
             </div>

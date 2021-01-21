@@ -19,6 +19,25 @@ table tr td {
 	vertical-align: middle;
 }
 
+div.comment {
+	margin-top: 2em;
+}
+
+div.comment label {
+	width: 90px;
+	padding-bottom: 2px;
+}
+
+div.comment textarea {
+	width:100%;
+ 	resize: vertical;
+ 	font-size: 1.2em;
+ 	line-height: 1.3;
+ 	padding: 3px 7px;
+ 	margin-bottom: 0.5em;
+	box-sizing:border-box;
+}
+
 @media screen and (min-width:892px){
 
 }

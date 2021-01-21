@@ -57,12 +57,17 @@ table tr td:first-of-type {
 	width: 25%;
 }
 
-table tr td:nth-of-type(2) {
+table tr td.daurylist:nth-of-type(2) {
 	text-align: left;
 }
 
 table tr td:last-of-type {
 	width: 15%;
+}
+
+tbody tr.clickable:hover td {
+	cursor: pointer;
+    background: #f9fffc;
 }
 
 @media screen and (min-width:892px){

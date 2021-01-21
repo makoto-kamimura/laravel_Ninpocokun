@@ -1,4 +1,4 @@
-@extends('test.testcommon.layout')
+@extends('common.layout')
 
 @section('tagu')
   {{$tagu}}
@@ -19,29 +19,120 @@
     </section>
 	<section>
         <h1>@yield('title2')</h1>
-        <table border="1" class="m0a tac">
-            <tr> 
-                <th>報告日</th>
-                <th>件名</th>
-                <th>ステータス</th>
-            </tr>
-            @if (isset($err_msgs1, $err_msgs2, $err_msgs3))
+        <table id="grid-basic" class="table table-condensed table-hover table-striped m0a tac" border="1">
+        <!--<table class="m0a tac" border="1">-->
+            <thead>
                 <tr> 
+                    <th>報告日</th>
+                    <th>件名</th>
+                    <th>ステータス</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (isset($err_msgs1, $err_msgs2, $err_msgs3))
+                <tr class="clickable-row" data-href="dailyreport_confirm">
                 @foreach ($err_msgs1 as $err_msg1)
                     <td>{{$err_msg1}}</td>
                 @endforeach
                 </tr> 
-                <tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs3 as $err_msg3)
+                    <td>{{$err_msg3}}</td>
+                @endforeach
+                </tr>
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs1 as $err_msg1)
+                    <td>{{$err_msg1}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs2 as $err_msg2)
+                    <td>{{$err_msg2}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs3 as $err_msg3)
+                    <td>{{$err_msg3}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs1 as $err_msg1)
+                    <td>{{$err_msg1}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs2 as $err_msg2)
+                    <td>{{$err_msg2}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs3 as $err_msg3)
+                    <td>{{$err_msg3}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs1 as $err_msg1)
+                    <td>{{$err_msg1}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs2 as $err_msg2)
+                    <td>{{$err_msg2}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs3 as $err_msg3)
+                    <td>{{$err_msg3}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs1 as $err_msg1)
+                    <td>{{$err_msg1}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs2 as $err_msg2)
+                    <td>{{$err_msg2}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs3 as $err_msg3)
+                    <td>{{$err_msg3}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs1 as $err_msg1)
+                    <td>{{$err_msg1}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs2 as $err_msg2)
+                    <td>{{$err_msg2}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs3 as $err_msg3)
+                    <td>{{$err_msg3}}</td>
+                @endforeach
+                </tr>
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                @foreach ($err_msgs2 as $err_msg2)
+                    <td>{{$err_msg2}}</td>
+                @endforeach
+                </tr> 
+                <tr class="clickable-row" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr> 
             @endif
+            </tbody>
         </table>
 	</section>
 @endsection
+

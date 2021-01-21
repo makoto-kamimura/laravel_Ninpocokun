@@ -1,4 +1,4 @@
-@extends('test.testcommon.layout')
+@extends('common.layout')
 
 @section('title')
   {{$title}}
@@ -15,9 +15,9 @@
           </ul>
         @endif
         <form action="home" method="post" class="tac pw-form-container">
-            <div class="bumon">
-                <label for="bumon">所属部門</label>
-                <select name="bumon" id="bumon" onchange="createMenu01(this.value)">
+            <div class="departments">
+                <label for="departments">所属部門</label>
+                <select name="departments" id="departments" onchange="createMenu01(this.value)">
                     <option disabled selected>選択してください</option>
                     <option value="総務部">総務部</option>
                     <option value="営業部">営業部</option>
@@ -25,8 +25,8 @@
                 </select>
             </div>
             <div>
-                <label for="ka">所属課</label>
-                <select name="ka" id="ka" disabled onchange="createMenu02(this.value)"></select>
+                <label for="divisions">所属課</label>
+                <select name="divisions" id="division" disabled onchange="createMenu02(this.value)"></select>
             </div>
             <div>
                 <label for="name">名前</label>
@@ -37,7 +37,7 @@
                 <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false">
             </div>
             <div id="password_subbox">
-                <input type="checkbox" id="password-check">パスワードを表示する
+                <input type="checkbox" id="password_disp">パスワードを表示する
             </div>
             <div class='btn_box tac'>
                 <input class="btn btn-primary" type="submit" value="ログイン">

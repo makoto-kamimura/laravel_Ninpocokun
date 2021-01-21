@@ -36,14 +36,13 @@ label {
 
 input#password {
 	font-size: 1em;
-	padding: 6px 0 3px 2px;
+	padding: 6px 0 3px 1px;
 }
 
-#password_subbox {
+.password_subbox {
 	font-size: 0.8em;
 	margin-top: -17px;
 	text-align: right;
-	padding-right: 3px;
 }
 
 div.btn_box {
@@ -51,7 +50,7 @@ div.btn_box {
 }
 
 div.btn_box input.btn {
-	width: 32.5%;
+	width: 50%;
 	color: #fff;
 	padding: 10px 0;
 	background-color: #007aac;

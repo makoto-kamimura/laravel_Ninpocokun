@@ -1,4 +1,4 @@
-@extends('test.testcommon.layout')
+@extends('common.layout')
 
 @section('title')
   {{$title}}
@@ -51,29 +51,29 @@
             <table>
                 <tr>
                     <th>社員番号</th>
-                    <td SPAN="2">@yield('id')</td>
+                    <td SPAN="2">@yield('cd')</td>
                 </tr>
                 <tr>
                     <th>所属部</th>
-                    <td colspan="2">@yield('department')</td>
+                    <td colspan="2">@yield('departments')</td>
                 </tr>
                 <tr>
                     <th>所属課</th>
-                    <td colspan="2">@yield('division')</td>
+                    <td colspan="2">@yield('divisions')</td>
                 </tr>
                 <tr>
                     <th>役職</th>
-                    <td colspan="2">@yield('position')</td>
+                    <td colspan="2">@yield('positions')</td>
                 </tr>
                 <tr>
                     <th>氏名（漢字）</th>
-                    <td class="name_td">@yield('sei1')</td>
-                    <td>@yield('mei1')</td>
+                    <td class="name_td">@yield('sei')</td>
+                    <td>@yield('mei')</td>
                 </tr>                
                 <tr>
                     <th>氏名（カナ）</th>
-                    <td class="name_td">@yield('sei2')</td>
-                    <td>@yield('mei2')</td>
+                    <td class="name_td">@yield('sei_kana')</td>
+                    <td>@yield('mei_kana')</td>
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
@@ -81,7 +81,7 @@
                 </tr>
                 <tr>
                     <th>パスワード</th>
-                    <td colspan="2"@yield('password')</td>
+                    <td colspan="2">@yield('password')</td>
                 </tr>
             </table>
 

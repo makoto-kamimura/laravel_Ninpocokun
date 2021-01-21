@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -49,10 +50,33 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // cd            | smallint(6) | NO   | PRI | NULL    |       |
+        // | sei           | varchar(6)  | NO   |     | NULL    |       |
+        // | mei           | varchar(10) | NO   |     | NULL    |       |
+        // | sei_kana      | varchar(10) | NO   |     | NULL    |       |
+        // | mei_kana      | varchar(20) | NO   |     | NULL    |       |
+        // | dep_cd        | tinyint(4)  | NO   |     | NULL    |       |
+        // | div_cd        | tinyint(4)  | NO   |     | NULL    |       |
+        // | nyusha_date   | date        | NO   |     | NULL    |       |
+        // | taishoku_date | date        | NO   |     | NULL    |       |
+        // | password      | varchar(60) | NO   |     | NULL    |       |
+        // | yaku_lv       | tinyint(4)  | NO   |     | NULL    |       |
+        // | sys_admin     | tinyint(4)  | NO   |     | NULL    |       |
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            // バリデーションの内容は要確認
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cd' => ['required'],
+            'sei' => ['required'],
+            'mei' => ['required'],
+            'sei_kana' => ['required'],
+            'mei_kana' => ['required'],
+            'dep_cd' => ['required'],
+            'div_cd' => ['required'],
+            'nyusha_date' => ['required'],
+            'taishoku_date' => ['required'],
+            'password' => ['required'],
+            'yaku_lv' => ['required'],
+            'sys_admin' => ['required'],
         ]);
     }
 
@@ -62,8 +86,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
+        $data = $request->session()->all();
+        $request->session()->forget('user');
+        dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

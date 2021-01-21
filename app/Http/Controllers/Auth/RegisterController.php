@@ -97,4 +97,17 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function confirm(Request $request)
+    {
+
+        $user = $_POST;
+        validator($user);
+        $request->session()->push('user', $user);
+        $title = 'ユーザー登録';
+        $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
+        $css = 'usertouroku.css';
+        $js = 'common.js';
+        return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css', 'js'));
+    }
 }

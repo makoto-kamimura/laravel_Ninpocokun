@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    //ビューの動作確認用サンプルデータ作成
+    // //ビューの動作確認用サンプルデータ作成
     $title = 'ログインページ';
     // $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
     $css = 'base.css';
@@ -37,7 +37,7 @@ Route::post('report/confirm', 'DailyReportController@confirm')->name('confirm');
 
 // <<ユーザー管理関係ルーティング>>
 Auth::routes();
-Route::post('auth/confirm', 'UsertourokuController@userConfirm')->name('auth_confirm');
+Route::post('auth/confirm', 'RegisterController@confirm')->name('auth_confirm');
 Route::post('auth/register', 'Auth\RegisterController@create')->name('create');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -30,6 +30,6 @@ class UsertourokuController extends Controller
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
         $js = 'common.js';
-        return view('user_confirm', compact('user', 'title', 'err_msgs', 'css', 'js'));
+        return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css', 'js'));
     }
 }

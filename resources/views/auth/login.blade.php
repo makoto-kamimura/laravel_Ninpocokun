@@ -1,73 +1,48 @@
-@extends('layouts.app')
+@extends('test.testcommon.layout')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@section('title')
+  {{$title}}
+@endsection
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+@section('body')
+      <div class="pw-form">
+        <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
+        @if (isset($err_msgs))
+          <ul id="error_box">
+            @foreach ($err_msgs as $err_msg)
+              <li>{{$err_msg}}</li>
+            @endforeach
+          </ul>
+        @endif
+        <form action="{{route('login')}}" method="post" class="tac pw-form-container">
+        @csrf
+            <div class="bumon">
+                <label for="bumon">所属部門</label>
+                <select name="bumon" id="bumon" onchange="createMenu01(this.value)">
+                    <option disabled selected>選択してください</option>
+                    <option value="総務部">総務部</option>
+                    <option value="営業部">営業部</option>
+                    <option value="工務部">工務部</option>
+                </select>
             </div>
-        </div>
-    </div>
-</div>
+            <div>
+                <label for="ka">所属課</label>
+                <select name="ka" id="ka" disabled onchange="createMenu02(this.value)"></select>
+            </div>
+            <div>
+                <label for="name">名前</label>
+                <select name="name" id="name" disabled></select>
+            </div>
+            <div>
+                <label for="password">パスワード</label>
+                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false">
+            </div>
+            <div id="password_subbox">
+                <input type="checkbox" id="password-check">パスワードを表示する
+            </div>
+            <div class='btn_box tac'>
+                <input class="btn btn-primary" type="submit" value="ログイン">
+            </div>
+        </form>
+      </div>
 @endsection

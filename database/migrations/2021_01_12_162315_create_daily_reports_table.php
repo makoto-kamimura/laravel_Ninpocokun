@@ -28,7 +28,7 @@ class CreateDailyReportsTable extends Migration
 
 
             $table->primary('no','PRI_NAME');
-            $table->index(['no','user_cd','target_date'],'INDEX_NAME');
+            $table->index(['no','post_user_cd','target_date'],'INDEX_NAME');
 
         });
     }

@@ -61,6 +61,34 @@ div.btn_box input.btn:hover {
 	opacity: 0.8;
 }
 
+.pagenation {
+	margin: 25px 0;
+	text-align: center;
+}
+
+.pagenation div {
+	display: inline-flex;
+}
+
+.pagenation div ul li:hover, .pagenation button:hover {
+	color: blue;
+}
+
+.pagenation div ul {
+	display: flex;
+}
+
+.pagenation div ul li {
+	padding: 2px 8px 0;
+}
+
+.pagenation div button {
+	border: none;
+	background: none;
+	line-height: 1.3;
+	font-size: 0.95em;
+}
+
 .tablesorter th{
     position: relative;
     cursor: pointer;

@@ -14,6 +14,8 @@
     <script src="/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/{{$js}}"></script>
 
+    <script type="text/javascript" src="js/jquery.pagination.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
 
     <title>@yield('title')</title>

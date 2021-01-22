@@ -19,7 +19,7 @@
     </section>
 	<section>
         <h1>@yield('title2')</h1>
-        <table class="sort-table m0a tac" border="1">
+        <table id="" class="items sort-table m0a tac" border="1">
         <!--<table class="m0a tac" border="1">-->
             <thead>
                 <tr> 
@@ -29,53 +29,127 @@
                 </tr>
             </thead>
             <tbody>
-            @if (isset($err_msgs1, $err_msgs2, $err_msgs3))
-                <tr class="clickable-row" data-href="dailyreport_confirm">
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
                     <td class="dailylist_td1">2021-01-07 10:00</td>
                     <td class="dailylist_td2 dailylist"></td>
                     <td class="dailylist_td3">未承認</td>
-                </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <tr class="clickable-row item" data-href="dailyreport_confirm">
+                    <td class="dailylist_td1">2021-01-07 10:00</td>
+                    <td class="dailylist_td2 dailylist"></td>
+                    <td class="dailylist_td3">未承認</td>
+                </tr>
+                <!--<tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr>
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs1 as $err_msg1)
                     <td>{{$err_msg1}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs1 as $err_msg1)
                     <td>{{$err_msg1}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs1 as $err_msg1)
                     <td>{{$err_msg1}}</td>
                 @endforeach
@@ -85,55 +159,62 @@
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs1 as $err_msg1)
                     <td>{{$err_msg1}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs1 as $err_msg1)
                     <td>{{$err_msg1}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
                 </tr>
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs2 as $err_msg2)
                     <td>{{$err_msg2}}</td>
                 @endforeach
                 </tr> 
-                <tr class="clickable-row" data-href="dailyreport_confirm"> 
+                <tr class="clickable-row item" data-href="dailyreport_confirm"> 
                 @foreach ($err_msgs3 as $err_msg3)
                     <td>{{$err_msg3}}</td>
                 @endforeach
-                </tr> 
-            @endif
+                </tr>-->
+            
             </tbody>
         </table>
 	</section>
+
+    <script>
+        $('table.items').pagination({
+            itemElement : '> > tr.item' // アイテムの要素
+        });
+    </script>
+
     <script>
         $(function(){
             $('.sort-table').tablesorter({

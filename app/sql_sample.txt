@@ -1,0 +1,31 @@
+// 画面の構成から、使いそうなSQLとlaravelのクエリ(https://sql2builder.github.io/ を使用して変換)
+// を書き出していきます。そのまま使えるかはわかりません。
+// また、状況次第では使わないクエリもあるかも知れないですが、一応書いておきます。
+
+// 部コードと部名の一覧を取得
+【SQL】
+SELECT cd, name FROM departments;
+
+【laravelクエリ】
+DB::table('departments')->select('cd','name')->get();
+
+// 部コードから課コードと課名を取得
+【SQL】
+SELECT cd, name FROM divisions WHERE dep_cd = :dep_cd;
+
+【laravelクエリ】
+DB::table('divisions')->where('dep_cd',$dep_cd)->select('cd','name')->get();
+
+//　ユーザーの社員コードからパスワードを取得
+【SQL】
+SELECT password FROM users WHERE cd = :cd;
+
+【laravelクエリ】
+DB::table('users')->where('cd',$cd)->select('password')->get();
+
+
+// ユーザー一覧画面用情報を取得
+
+
+
+//　ユーザー情報を取得(ユーザー情報変更画面用)

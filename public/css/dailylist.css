@@ -37,7 +37,7 @@ table tr:nth-of-type(odd) {
 }
 */
 
-table tr th {
+table thead tr th {
 	padding: 8px 0;
 	text-align: center;
 	vertical-align: middle;
@@ -48,21 +48,53 @@ table.approval tr th{
 	background-color: #ffe0ef;
 }
 
+table tr th.dailylist_th3, table tr th:nth-of-type(5) {
+	font-size: 0.7em;
+}
+
+table tr th:last-of-type {
+	padding-right: 14px;
+}
+
 table tr td {
-	padding: 5px;
+	padding: 15px 5px;
 	vertical-align: middle;
 }
 
 table tr td:first-of-type {
-	width: 25%;
+	width: 20%;
 }
 
-table tr td.daurylist:nth-of-type(2) {
+table tr td:nth-of-type(2) {
+	width: 18%;
+}
+
+table tr td:nth-of-type(3) {
+	width: 18%;
+}
+
+table tr td:nth-of-type(4) {
 	text-align: left;
 }
 
 table tr td:last-of-type {
-	width: 15%;
+	width: 11%;
+}
+
+table.general tr td, table.approval tr td {
+	padding: 5px;
+}
+
+table tr td.dailylist {
+	text-align: left;
+}
+
+table tr td.dailylist_td1 {
+	width: 25%;
+}
+
+table tr td.dailylist_td2 {
+	width: 55%;
 }
 
 tbody tr.clickable:hover td {

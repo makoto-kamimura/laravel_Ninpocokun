@@ -7,23 +7,14 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/destyle.css">
-    <link rel="stylesheet" href="css/common.css">
 
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/{{$css}}">
 
     <script src="/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/{{$js}}"></script>
 
-    <!--jQuery・bootstrapライブラリ読み込み-->
-    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <!--<link  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">-->
-    <!--/jQuery・bootstrapライブラリ読み込み-->
-
-    <!--独自ライブラリ読み込み-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js" ></script>
-    <!--/独自ライブラリ読み込み-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
 
     <title>@yield('title')</title>
   </head>

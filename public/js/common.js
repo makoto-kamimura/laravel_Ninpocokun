@@ -117,7 +117,6 @@ $(window).on('load',function() {
       $('td:contains("未承認")').css('color', 'red');
       $('td:contains("未承認")').wrapInner('<a />');
     });
-
   }
 });
 
@@ -127,13 +126,25 @@ $(window).on('load',function() {
 $(function($) {
   //data-hrefの属性を持つtrを選択しclassにclickableを付加
   $('tr[data-href]').addClass('clickable')
-    //クリックイベント
     .click(function(e) {
       //e.targetはクリックした要素自体、それがa要素以外であれば
       if(!$(e.target).is('a')){
-        //その要素の先祖要素で一番近いtrの
-        //data-href属性の値に書かれているURLに遷移する
+        //その要素の先祖要素で一番近いtrのdata-href属性の値に書かれているURLに遷移する
         window.location = $(e.target).closest('tr').data('href');}
   });
 });
 
+
+
+//文字列の先頭20文字を取得し...を付与
+$(window).on('load',function() {
+  // パスの取得
+  var path = location.pathname
+
+  if (path == "/dailylist"){
+    $(function() {
+        var str = $('td.dailylist_td1').text().slice(0, 20);
+        $('td.dailylist_td2').text(str).append("...");
+    });
+  }
+});

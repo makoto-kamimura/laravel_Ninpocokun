@@ -1,6 +1,6 @@
 {{-- usertouroku.blade.phpよりタイトル変更 --}}
 
-@extends('test.testcommon.layout')
+@extends('common.layout')
 
 @section('title')
   {{$title}}
@@ -9,7 +9,7 @@
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
-        <form action="{{route('auth_confirm')}}" method="post">
+        <form action="{{route('user.confirm')}}" method="post">
         @csrf
         	<div class="department">
                 <label for="department">所属部門</label>

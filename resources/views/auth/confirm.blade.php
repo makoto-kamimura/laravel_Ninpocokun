@@ -1,6 +1,6 @@
 {{-- usertouroku_confirm.blade.phpからファイル名変更 --}}
 
-@extends('test.testcommon.layout')
+@extends('common.layout')
 
 @section('title')
   {{$title}}
@@ -11,7 +11,7 @@
 @endsection
 
 @section('department')
-  {{$department}}
+  {{$user['department']}}
 @endsection
 
 @section('division')
@@ -53,7 +53,7 @@
             <table>
                 <tr>
                     <th>社員番号</th>
-                    <td SPAN="2">@yield('id')</td>
+                    {{-- <td SPAN="2">@yield('id')</td> --}}
                 </tr>
                 <tr>
                     <th>所属部</th>

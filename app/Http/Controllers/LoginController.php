@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function login () 
+    public function login()
     {
         //ビューの動作確認用サンプルデータ作成
-        $title = 'ログインページ';
+        $title = 'ログイン';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'base.css';
         $js = 'common.js';

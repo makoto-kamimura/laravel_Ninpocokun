@@ -50,18 +50,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // cd            | smallint(6) | NO   | PRI | NULL    |       |
-        // | sei           | varchar(6)  | NO   |     | NULL    |       |
-        // | mei           | varchar(10) | NO   |     | NULL    |       |
-        // | sei_kana      | varchar(10) | NO   |     | NULL    |       |
-        // | mei_kana      | varchar(20) | NO   |     | NULL    |       |
-        // | dep_cd        | tinyint(4)  | NO   |     | NULL    |       |
-        // | div_cd        | tinyint(4)  | NO   |     | NULL    |       |
-        // | nyusha_date   | date        | NO   |     | NULL    |       |
-        // | taishoku_date | date        | NO   |     | NULL    |       |
-        // | password      | varchar(60) | NO   |     | NULL    |       |
-        // | yaku_lv       | tinyint(4)  | NO   |     | NULL    |       |
-        // | sys_admin     | tinyint(4)  | NO   |     | NULL    |       |
         return Validator::make($data, [
             // バリデーションの内容は要確認
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -81,12 +69,12 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     *　ユーザー登録画面を表示する
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(Request $request)
+    protected function store(Request $request)
     {
         $data = $request->session()->all();
         $request->session()->forget('user');
@@ -98,9 +86,30 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * ユーザー登録画面を表示する
+     * @return view
+     */
+    public function create()
+    {
+        //ビューの動作確認用サンプルデータ作成
+        $title = 'ユーザー登録';
+        $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
+        $css = 'usertouroku.css';
+        $js = 'common.js';
+
+        //ビューを呼び出す
+        return view('auth.register', compact('title', 'err_msgs', 'css', 'js'));
+    }
+
+    /**
+     * ユーザー登録確認画面を表示する
+     * @param
+     * @return view
+     */
+
     public function confirm(Request $request)
     {
-
         $user = $_POST;
         validator($user);
         $request->session()->push('user', $user);
@@ -109,5 +118,59 @@ class RegisterController extends Controller
         $css = 'usertouroku.css';
         $js = 'common.js';
         return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css', 'js'));
+    }
+
+    /**
+     * ユーザー編集画面を表示する
+     * @param
+     * @return view
+     */
+    public function edit($id)
+    {
+        $title = 'メインメニュー';
+        $css = 'base.css';
+        $js = 'common.js';
+        return view('auth.register', compact('title', 'css', 'js'));
+    }
+    /**
+     * ユーザー編集を実行する
+     * 
+     */
+    public function update()
+    {
+        return redirect('complete');
+    }
+
+    /**
+     * ユーザー登録完了画面を表示する
+     * 
+     * @return view
+     */
+
+    public function complete()
+    {
+        return view('auth.complete');
+    }
+
+    /**
+     * ユーザー管理画面を表示する
+     */
+
+    public function admin()
+    {
+        //ビューの動作確認用サンプルデータ作成
+        $tagu = 'ユーザー管理';
+        //$title1 = 'ユーザー登録';
+        $title2 = 'ユーザーリスト';
+        $msgs1 = ['0001', '営業部一課', '山田太郎', '20-01-01', '○'];
+        $msgs2 = ['0002', '営業部二課', '田中治郎', '20-01-01', '×'];
+        $msgs3 = ['0003', '総務部一課', '佐藤浩一', '20-01-01', '×'];
+        $msgs4 = ['0004', '総務部二課', '丸山幸子', '20-01-01', '×'];
+        $msgs5 = ['0005', '総務部三課', '武田哲也', '20-01-01', '×'];
+        $css = 'user.css';
+        $js = 'common.js';
+
+        //ビューを呼び出す
+        return view('auth.admin', compact('tagu', 'title2', 'msgs1', 'msgs2', 'msgs3', 'msgs4', 'msgs5', 'css', 'js'));
     }
 }

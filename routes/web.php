@@ -12,7 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // //ビューの動作確認用サンプルデータ作成
+    $title = 'ログインページ';
+    // $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
+    $css = 'base.css';
+    $js = 'common.js';
+
+
+    //ビューを呼び出す
+    return view('Auth.login', compact('title', 'css', 'js'));
 });
 
 // // <<日報管理関係ルーティング>>
@@ -29,8 +37,7 @@ Route::post('report/confirm', 'DailyReportController@confirm')->name('confirm');
 
 // <<ユーザー管理関係ルーティング>>
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
+Route::post('auth/confirm', 'RegisterController@confirm')->name('auth_confirm');
+Route::post('auth/register', 'Auth\RegisterController@create')->name('create');
 
 Route::get('/home', 'HomeController@index')->name('home');

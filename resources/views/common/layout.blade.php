@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="css/{{$css}}">
 
     <script src="/js/jquery-3.5.1.min.js"></script>
+    @if (isset( $js ))
     <script type="text/javascript" src="js/{{$js}}"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
-
+    @endif
+    @if (isset( $js2 ))
+    <script type="text/javascript" src="js/{{$js2}}"></script>
+    @endif
+    @if (isset( $js3 ))
+    <script type="text/javascript" src="js/{{$js3}}"></script>
+    @endif
     <title>@yield('title')</title>
   </head>
   <body>
@@ -34,8 +39,12 @@
         <label class="nav-unshown" id="nav-close" for="nav-input"></label>
         <div id="nav-content">
           <ul id="splist">
+            @if (isset( $sys_admin ) && $sys_admin == 1)
             <li><a href="user">ユーザー管理</a></li>
+            @endif
+            @if (isset( $pos_cd ) && $pos_cd < 30)
             <li><a href="dailylist_superior">日報承認・確認</a></li>
+            @endif
             <li><a href="dailylist">日報一覧</a></li>
             <li><a href="dailyreport">日報登録</a></li>
             <li><a href="login">ログアウト</a></li>

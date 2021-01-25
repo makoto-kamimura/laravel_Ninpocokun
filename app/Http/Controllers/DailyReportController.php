@@ -34,7 +34,7 @@ class DailyReportController extends Controller
         // return -> 未承認の日報一覧
         //ビューの動作確認用サンプルデータ作成
         $tagu = '日報';
-        $title1 = '日報登録';
+        $title1 = '日報承認・確認';
         $title2 = '日報一覧';
         $err_msgs1 = ['2021-01-07 10:00', '作業報告', '未承認'];
         $err_msgs2 = ['2021-01-06 10:00', '作業報告', '承認'];

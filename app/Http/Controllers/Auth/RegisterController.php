@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class RegisterController extends Controller
 {
@@ -50,22 +51,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            // バリデーションの内容は要確認
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'cd' => ['required'],
-            'sei' => ['required'],
-            'mei' => ['required'],
-            'sei_kana' => ['required'],
-            'mei_kana' => ['required'],
-            'dep_cd' => ['required'],
-            'div_cd' => ['required'],
-            'nyusha_date' => ['required'],
-            'taishoku_date' => ['required'],
-            'password' => ['required'],
-            'yaku_lv' => ['required'],
-            'sys_admin' => ['required'],
-        ]);
+        //
     }
 
     /**
@@ -74,16 +60,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function store(Request $request)
+    protected function store()
     {
-        $data = $request->session()->all();
-        $request->session()->forget('user');
-        dd($data);
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        $data = \Session::get('user', 'データが存在しない');;
+        // $request->session()->forget('user');
+        User::create([
+            // 固定値を直すこと
+            'cd' => 100 + random_int(1, 100),
+            'sei' => $data['sei'],
+            'mei' => $data['mei'],
+            'sei_kana' => $data['sei_kana'],
+            'mei_kana' => $data['mei_kana'],
+            'dep_cd' => 20,
+            'div_cd' => 10,
+            'taishoku_date' => $data['taishoku_date'],
             'password' => Hash::make($data['password']),
+            'pos_cd' => 20,
+            'sys_admin' => 0,
         ]);
+        return redirect(route('user.complete'));
     }
 
     /**
@@ -97,6 +92,9 @@ class RegisterController extends Controller
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
         $js = 'common.js';
+        if (!empty($errors)) {
+            dd($errors);
+        }
 
         //ビューを呼び出す
         return view('auth.register', compact('title', 'err_msgs', 'css', 'js'));
@@ -108,11 +106,10 @@ class RegisterController extends Controller
      * @return view
      */
 
-    public function confirm(Request $request)
+    public function confirm(UserRequest $request)
     {
-        $user = $_POST;
-        validator($user);
-        $request->session()->push('user', $user);
+        $user = $request->input();
+        \Session::put('user', $user);
         $title = 'ユーザー登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
@@ -147,9 +144,15 @@ class RegisterController extends Controller
      * @return view
      */
 
-    public function complete()
+    public function complete(Request $request)
     {
-        return view('auth.complete');
+        //ビューの動作確認用サンプルデータ作成
+        $tagu = 'ユーザー登録完了';
+        $css = 'usertouroku.css';
+        $js = 'common.js';
+
+        //ビューを呼び出す
+        return view('auth.complete', compact('tagu', 'css', 'js'));
     }
 
     /**

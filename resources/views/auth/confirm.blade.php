@@ -6,50 +6,11 @@
   {{$title}}
 @endsection
 
-@section('id')
-  {{$id}}
-@endsection
-
-@section('department')
-  {{$user['department']}}
-@endsection
-
-@section('division')
-  {{$division}}
-@endsection
-
-@section('position')
-  {{$position}}
-@endsection
-
-@section('sei1')
-  {{$sei1}}
-@endsection
-
-@section('mei1')
-  {{$mei1}}
-@endsection
-
-@section('sei2')
-  {{$sei2}}
-@endsection
-
-@section('mei2')
-  {{$mei2}}
-@endsection
-
-@section('email')
-  {{$email}}
-@endsection
-
-@section('password')
-  {{$password}}
-@endsection
-
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
-        <form action="usertouroku_complete" method="post">
+        <form action="{{route('user.store')}}" method="post">
+          @csrf
             <table>
                 <tr>
                     <th>社員番号</th>
@@ -57,33 +18,33 @@
                 </tr>
                 <tr>
                     <th>所属部</th>
-                    <td colspan="2">@yield('department')</td>
+                    <td colspan="2">{{$_POST['department']}}</td>
                 </tr>
                 <tr>
                     <th>所属課</th>
-                    <td colspan="2">@yield('division')</td>
+                    <td colspan="2"></td>
                 </tr>
                 <tr>
                     <th>役職</th>
-                    <td colspan="2">@yield('position')</td>
+                    <td colspan="2">{{$_POST['position']}}</td>
                 </tr>
                 <tr>
                     <th>氏名（漢字）</th>
-                    <td class="name_td">@yield('sei1')</td>
-                    <td>@yield('mei1')</td>
+                    <td class="name_td">{{$_POST['sei']}}</td>
+                    <td>{{$_POST['mei']}}</td>
                 </tr>                
                 <tr>
                     <th>氏名（カナ）</th>
-                    <td class="name_td">@yield('sei2')</td>
-                    <td>@yield('mei2')</td>
+                    <td class="name_td">{{$_POST['sei_kana']}}</td>
+                    <td>{{$_POST['mei_kana']}}</td>
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
-                    <td colspan="2">@yield('email')</td>
+                    <td colspan="2">{{$_POST['email']}}</td>
                 </tr>
                 <tr>
                     <th>パスワード</th>
-                    <td colspan="2"@yield('password')</td>
+                    <td colspan="2">{{$_POST['password']}}</td>
                 </tr>
             </table>
 

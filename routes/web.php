@@ -32,8 +32,10 @@ Route::resource('report', 'DailyReportController');
 
 // <<ユーザー管理関係ルーティング>>
 Auth::routes();
-Route::get('auth/confirm', 'Auth\RegisterController@confirm')->name('user.confirm');
+Route::post('auth/confirm', 'Auth\RegisterController@confirm')->name('user.confirm');
 Route::get('register', 'Auth\RegisterController@create')->name('user.create');
+Route::get('auth/logout', 'Auth\LoginController@logout')->name('user.logout');
+Route::post('store', 'Auth\RegisterController@store')->name('user.store');
 Route::get('auth/edit/{id}', 'Auth\RegisterController@edit')->name('user.edit');
-Route::post('auth/complete', 'Auth\RegisterController@complete')->name('user.complete');
+Route::get('auth/complete', 'Auth\RegisterController@complete')->name('user.complete');
 Route::get('auth/admin', 'Auth\RegisterController@admin')->name('user.admin');

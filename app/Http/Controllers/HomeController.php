@@ -13,8 +13,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // ログイン外してます
-        //$this->middleware('auth');
+        // ログイン後でないと見れないように
+        $this->middleware('auth');
     }
 
     /**

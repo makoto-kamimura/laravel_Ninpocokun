@@ -43,4 +43,24 @@ class LoginController extends Controller
         // ユーザーIDを取得
         return 'cd';
     }
+
+    // showLoginControllerをオーバーライドする
+    public function showLoginForm()
+    {
+        //ビューの動作確認用サンプルデータ作成
+        $title = 'ログインページ';
+        // $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
+        $css = 'base.css';
+        $js = 'common.js';
+
+
+        //ビューを呼び出す
+        return view('Auth.login', compact('title', 'css', 'js'));
+    }
+
+    // ログイン後の遷移先を指定
+    public function redirectPath()
+    {
+        return view(route('main'));
+    }
 }

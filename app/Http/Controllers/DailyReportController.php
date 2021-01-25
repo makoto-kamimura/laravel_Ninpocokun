@@ -11,12 +11,12 @@ class DailyReportController extends Controller
     {
         // 日報表示の画面は基本的にLaravel標準の
         // Authを通すのが一番簡単だと思います
-        // $this->middleware('auth');
+        //$this->middleware('auth');
     }
     // <<とりあえず日報作成でやりたい事を書いていきます>>
     /**
      * 日報一覧を表示する
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */

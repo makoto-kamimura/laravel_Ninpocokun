@@ -9,6 +9,7 @@
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
+        <p>バリデーションエラー確認用{{ $errors }}</p>
         <form action="{{route('user.confirm')}}" method="post">
         @csrf
         	<div class="department">
@@ -25,12 +26,12 @@
                 <select name="division" id="division" disabled onchange="createMenu02(this.value)"></select>
             </div>
             <div>
-                <label for="info">情報システム課</label>
-                <input type="checkbox" name="info" id="info">
+                <label for="sys_admin">情報システム課</label>
+                <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin') }}">
             </div>
             <div class="position">
                 <label for="position">役職</label>
-                <select name="position" id="position">
+                <select name="position" id="position">2
                 	<option disabled selected>選択してください</option>
                     <option value="役員">役員</option>
                     <option value="上長">上長</option>
@@ -43,25 +44,25 @@
             </div>
             <div>
                 <label>退社日</label>
-                <input type="date" name="leave">
+                <input type="date" name="taishoku_date" value="{{ old('taishoku_date') }}">
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>
-                <input type="text" name="sei1" class="name" placeholder="姓">
-                <input type="text" name="mei1" class="name" placeholder="名">
+                <input type="text" name="sei" class="name" placeholder="姓" value="{{ old('sei') }}">
+                <input type="text" name="mei" class="name" placeholder="名" value="{{ old('mei') }}">
             </div>
             <div class="name">
                 <label>名前（カナ）</label>
-                <input type="text" name="sei2" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ" required>
-                <input type="text" name="mei2" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" required>
+                <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana') }}"required>
+                <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana') }}" required>
             </div>
             <div>
             	<label>メールアドレス</label>
-  				<input class="email" type="email" name="email" autocomplete="email" required>
+  				<input class="email" type="email" name="email" autocomplete="email"  value="{{ old('email') }}" required>
 			</div>
 			<div>
 				<label>メールアドレス確認</label>
-  				<input class="email" type="email" name="email" autocomplete="email" required>
+  				<input class="email" type="email" name="email" autocomplete="email" value="{{ old('email') }}" required>
 			</div>
 			<div id="password_box">
                 <label for="password">パスワード</label>

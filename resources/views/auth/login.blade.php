@@ -7,6 +7,7 @@
 @section('body')
       <div class="pw-form">
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
+        {{$errors}}
         @if (isset($err_msgs))
           <ul id="error_box">
             @foreach ($err_msgs as $err_msg)
@@ -32,6 +33,10 @@
             <div>
                 <label for="name">名前</label>
                 <select name="name" id="name" disabled></select>
+            </div>
+            <div>
+              <label for="cd">社員コード</label>
+              <input type="text" class="field" name="cd">
             </div>
             <div>
                 <label for="password">パスワード</label>

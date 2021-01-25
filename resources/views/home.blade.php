@@ -10,4 +10,5 @@
     <p class="btn01"><a href="{{route('report.create')}}"></a></p>
     <p class="btn02"><a href="{{route('report.index')}}"></a></p>
     <p class="btn03"><a href="{{route('report.approve')}}"></a></p>
+    <p class="btn04"><a href="user"></a></p>
 @endsection

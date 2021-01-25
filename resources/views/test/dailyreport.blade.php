@@ -40,8 +40,12 @@
             </div>
             -->
 			<div class='btn_box tac'>
-            	<input class='btn' type="submit" value="確認する">
+            	<input type="submit" class='btn' id="push" onclick="return push()" value="確認する">
             </div>
         </form>
 	</section>
+
+
+
+
 @endsection

@@ -35,6 +35,7 @@ p.btn01 a, p.btn02 a, p.btn03 a, p.btn04 a {
 	width: 203px;
 	height: 56px;
 	display: block;
+	border-radius: 3px;
 	background-size: cover;
 }
 

@@ -72,7 +72,7 @@ footer {
 	margin: 0 auto;
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width:892px){
 	section {
 		width: 100% !important;
 	}

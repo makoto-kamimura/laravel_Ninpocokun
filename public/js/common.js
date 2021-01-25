@@ -83,7 +83,7 @@ $(window).on('load',function() {
   // パスの取得
   var path = location.pathname
 
-  if (path == "/"){
+  if (path == "/login"){
     $('ul#pclist').remove();
     $('div#nav-drawer').remove();
     $('p.homelink').children().contents().unwrap();

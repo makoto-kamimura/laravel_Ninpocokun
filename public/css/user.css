@@ -70,6 +70,11 @@ table tr td:last-of-type {
 	font-size: 80%;
 }
 
+tbody tr.clickable:hover td {
+	cursor: pointer;
+    background: #f9fffc;
+}
+
 @media screen and (min-width:892px){
 
 }

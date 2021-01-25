@@ -39,3 +39,8 @@ Route::post('store', 'Auth\RegisterController@store')->name('user.store');
 Route::get('auth/edit/{id}', 'Auth\RegisterController@edit')->name('user.edit');
 Route::get('auth/complete', 'Auth\RegisterController@complete')->name('user.complete');
 Route::get('auth/admin', 'Auth\RegisterController@admin')->name('user.admin');
+
+// <<ユーザー情報取得ルーティング>>
+Route::get('get_div/{dep_cd}', 'Auth\GetinfoContoroller@getDiv');
+Route::get('get_user/dep/{dep_cd}', 'Auth\GetinfoContoroller@getUserByDep');
+Route::get('get_user/dep/{div_cd}', 'Auth\GetinfoContoroller@getUserByDiv');

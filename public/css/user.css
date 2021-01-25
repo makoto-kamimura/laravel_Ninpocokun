@@ -14,6 +14,7 @@ p.btn04 a {
 	display: block;
 	background-size: cover;
 	background-image: url(../img/btn04.png);
+	border-radius: 3px;
 }
 
 p.btn04 a:hover {
@@ -42,6 +43,11 @@ table tr th {
 	background-color: #ffefe0;
 }
 
+table tr th:last-of-type {
+	font-size: 80%;
+	padding-right: 12px;
+}
+
 table tr td {
 	padding: 10px 5px;
 	vertical-align: middle;
@@ -62,6 +68,11 @@ table tr td:nth-of-type(3) {
 table tr td:last-of-type {
 	width: 10%;
 	font-size: 80%;
+}
+
+tbody tr.clickable:hover td {
+	cursor: pointer;
+    background: #f9fffc;
 }
 
 @media screen and (min-width:892px){

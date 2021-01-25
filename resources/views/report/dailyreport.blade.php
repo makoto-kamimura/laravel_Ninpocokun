@@ -6,7 +6,8 @@
 
 @section('body')
 	<section>
-        <h1>@yield('title')</h1>
+        <!-- <h1>@yield('title')</h1> -->
+        <h1>日報報告</h1>
         <form action="dailyreport_confirm" method="post">
             <!--<div class="dailytitle">
                 <label for="">タイトル</label><br>
@@ -33,6 +34,11 @@
                 <label for="">引継ぎ事項</label>
                 <textarea cols="70" rows="5" name="hikitsugi" maxlength="360"></textarea>
             </div>
+            <div class="">
+            <!-- 差し戻し時のみ上長のコメント表示を想定_20210125_kamimura-->
+                <label for="">コメント</label>
+                <textarea cols="70" rows="5" name="comment" maxlength="360"></textarea>
+            </div>
             <!--
             <div class="">
                 <label for="">添付ファイル</label>
@@ -40,12 +46,8 @@
             </div>
             -->
 			<div class='btn_box tac'>
-            	<input type="submit" class='btn' id="push" onclick="return push()" value="確認する">
+            	<input class='btn' type="submit" value="確認する">
             </div>
         </form>
 	</section>
-
-
-
-
 @endsection

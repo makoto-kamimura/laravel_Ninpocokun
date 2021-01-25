@@ -1,18 +1,15 @@
 Option Explicit
 
-
-
 '// INIT
-Dim FSO, TSO, args
+Dim fso, tso, args
 Dim DB_DATABASE, DB_USERNAME, DB_PASSWORD
-Set FSO = WScript.CreateObject("Scripting.FileSystemObject")
+Set fso = WScript.CreateObject("Scripting.FileSystemObject")
 
 '引数の取得とDB接続用変数への代入
 Set args = WScript.Arguments
 DB_DATABASE = args.item(0)
 DB_USERNAME = args.item(1)
 DB_PASSWORD = args.item(2)
-
 
 'シェルオブジェクト作成
 Dim objShell
@@ -22,27 +19,26 @@ Set objShell = CreateObject("WScript.Shell")
 Dim ary
 Set ary = CreateObject("System.Collections.ArrayList")
 
-'コマンド文字列作成
-dim cmd
-cmd = ""
+'tmp.batが残っている場合は削除
+IF fso.FileExists("tmp.bat") THEN
+    fso.DeleteFile "tmp.bat"
+    WScript.Sleep 1500
+END IF
 
 '// メイン処理開始
-FindFolder FSO.GetFolder(".")
+FindFolder fso.GetFolder(".")
 
 Set tso = fso.OpenTextFile("tmp.bat", 2, true)
 tso.Write("cd c:\xampp\mysql\bin" & vbCrLf)
 
-
-
 ' For Each文によるループ処理
 Dim item
 For Each item In ary
-    IF FSO.GetExtensionName(item) = "sql" THEN
+    IF fso.GetExtensionName(item) = "sql" THEN
     	 tso.Write("mysql -u " & DB_USERNAME & " -p " & DB_PASSWORD & " " & DB_DATABASE & " < " & item & vbCrlf)
     END IF
 Next
 
-tso.Write("cmd /k")
 tso.close
 WScript.Sleep 2500
 objShell.Run  "tmp.bat",1,True
@@ -50,7 +46,7 @@ WScript.Sleep 3000
 fso.DeleteFile "tmp.bat"
 
 '// 後処理
-Set FSO = Nothing
+Set fso = Nothing
 Set objShell = Nothing
 Set ary = Nothing
 
@@ -59,7 +55,6 @@ Set ary = Nothing
 Sub FindFolder(ByVal objMainFolder)
     Dim objSubFolder
     Dim objFile
-
 
     '// フォルダがあれば再帰
     For Each objSubFolder In objMainFolder.SubFolders
@@ -72,8 +67,5 @@ Sub FindFolder(ByVal objMainFolder)
     Next
 End Sub
 
-Sub CMDExec(ByVAl comStr)
-	objShell.Run  comStr,1,True 
-End Sub
 
 

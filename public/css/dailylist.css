@@ -13,6 +13,7 @@ p.btn01 {
 
 p.btn01 a {
 	background-image: url(../img/btn01.png);
+	border-radius: 3px;
 }
 
 p.btn01 a {
@@ -24,6 +25,38 @@ p.btn01 a {
 
 p.btn01 a:hover {
 	background-position: left bottom;
+}
+
+body {
+	position: relative;
+}
+
+aside {
+	position: absolute;
+	top: 5.1%;
+	left: 50%;
+	margin: 0 1% 0 18%;
+	z-index: 10;
+}
+
+aside p.notice {
+	color: #fff;
+	padding: 10px 10px;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+aside p.notice:nth-of-type(even) {
+	margin: 10px 0;
+}
+
+aside p.notice a:hover {
+	opacity: 0.8;
+}
+
+aside p.notice span {
+	display: block;
+	text-align: right;
 }
 
 table {

@@ -13,7 +13,7 @@ class DivisionsTableSeeder extends Seeder
     {
         $param = [
             'cd' => 10,
-            'name' => '営業1課',
+            'name' => '第1課',
             'dep_cd' => 20,
             // 'chief' => 33,
         ];
@@ -21,7 +21,7 @@ class DivisionsTableSeeder extends Seeder
 
         $param = [
             'cd' => 20,
-            'name' => '営業2課',
+            'name' => '第2課',
             'dep_cd' => 20,
             // 'chief' => 41,
         ];

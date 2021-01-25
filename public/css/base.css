@@ -55,6 +55,7 @@ div.btn_box input.btn {
 	padding: 10px 0;
 	background-color: #007aac;
 	border: none;
+	border-radius: 3px;
 }
 
 div.btn_box input.btn:hover {
@@ -159,7 +160,7 @@ div.btn_box input.btn:hover {
 		text-align-last: left;
 	}
 
-	div.btn_box input.btn {
-		pointer-events: none;
+	div.btn_box input.btn:hover {
+		opacity: 1.0;
 	}
 }

@@ -6,32 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/destyle.css">
+    <link rel="stylesheet" href="/css/destyle.css">
 
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/{{$css}}">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/{{$css}}">
 
     <script src="/js/jquery-3.5.1.min.js"></script>
     @if (isset( $js ))
-    <script type="text/javascript" src="js/{{$js}}"></script>
+    <script type="text/javascript" src="/js/{{$js}}"></script>
     @endif
     @if (isset( $js2 ))
-    <script type="text/javascript" src="js/{{$js2}}"></script>
+    <script type="text/javascript" src="/js/{{$js2}}"></script>
     @endif
     @if (isset( $js3 ))
-    <script type="text/javascript" src="js/{{$js3}}"></script>
+    <script type="text/javascript" src="/js/{{$js3}}"></script>
     @endif
     <title>@yield('title')</title>
   </head>
   <body>
     <header>
-      <p class="homelink"><a href="home"><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
+      <p class="homelink"><a href="{{route('main')}}"><span><img src="/img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
       <ul id="pclist">
-        <li><a href="user"><img src="img/menu01.png" alt="ユーザー管理"></a></li>
-        <li><a href="dailylist_superior"><img src="img/menu02.png" alt="日報承認"></a></li>
-        <li><a href="dailylist"><img src="img/menu03.png" alt="日報一覧"></a></li>
-        <li><a href="dailyreport"><img src="img/menu04.png" alt="日報登録"></a></li>
-        <li><a href="/"><img src="img/logout.png" alt="ログアウト"></a></li>
+        <li><a href="{{route('user.admin')}}"><img src="/img/menu01.png" alt="ユーザー管理"></a></li>
+        <li><a href="{{route('report.approve')}}"><img src="/img/menu02.png" alt="日報承認"></a></li>
+        <li><a href="{{route('report.index')}}"><img src="/img/menu03.png" alt="日報一覧"></a></li>
+        <li><a href="{{route('report.create')}}"><img src="/img/menu04.png" alt="日報登録"></a></li>
+        <li><a href="{{route('user.logout')}}"><img src="/img/logout.png" alt="ログアウト"></a></li>
       </ul>
       <div id="nav-drawer">
         <input id="nav-input" type="checkbox" class="nav-unshown">
@@ -45,8 +45,8 @@
             @if (isset( $pos_cd ) && $pos_cd < 30)
             <li><a href="dailylist_superior">日報承認・確認</a></li>
             @endif
-            <li><a href="dailylist">日報一覧</a></li>
-            <li><a href="dailyreport">日報登録</a></li>
+            <li><a href="{{route('report.index')}}">日報一覧</a></li>
+            <li><a href="{{route('report.create')}}">日報登録</a></li>
             <li><a href="login">ログアウト</a></li>
           </ul>
         </div>

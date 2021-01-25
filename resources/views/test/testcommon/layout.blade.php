@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="css/{{$css}}">
 
     <script src="/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="js/{{$js}}"></script>
+    <script src="js/{{$js}}"></script>
 
-    <script type="text/javascript" src="js/jquery.pagination.js"></script>
+    <script src="js/jquery.pagination.js"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>-->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
 

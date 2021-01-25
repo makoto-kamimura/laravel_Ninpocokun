@@ -83,7 +83,7 @@ $(window).on('load',function() {
   // パスの取得
   var path = location.pathname
 
-  if (path == "/"){
+  if (path == "/login"){
     $('ul#pclist').remove();
     $('div#nav-drawer').remove();
     $('p.homelink').children().contents().unwrap();
@@ -123,7 +123,6 @@ $(window).on('load',function() {
 
 
 
-
 //行全体にリンクを付与
 $(function($) {
   //data-hrefの属性を持つtrを選択しclassにclickableを付加
@@ -140,10 +139,11 @@ $(function($) {
 
 
 
+//ページネーション設定
 $(function(){
   $("div:has(p.prev-page)").addClass("pagenation");
   $("div.pagenation").wrapInner("<div>");
-  $(".pagenation p.prev-page button").append("< 前の５件");
-  $(".pagenation p.next-page button").prepend("次の５件 >");
+  $(".pagenation p.prev-page button").append("< 前の１０件");
+  $(".pagenation p.next-page button").prepend("次の１０件 >");
 });
 

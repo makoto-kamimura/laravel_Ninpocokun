@@ -1,6 +1,6 @@
 {{-- usertouroku.blade.phpよりタイトル変更 --}}
 
-@extends('test.testcommon.layout')
+@extends('common.layout')
 
 @section('title')
   {{$title}}
@@ -9,8 +9,15 @@
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
-        <form action="{{route('auth_confirm')}}" method="post">
+        <p>バリデーションエラー確認用{{ $errors }}</p>
+        <form action="{{route('user.confirm')}}" method="post">
         @csrf
+
+        <div class="employeecode">
+                <label>社員コード</label>
+                <label>自動採番</label>
+            </div>
+
         	<div class="department">
                 <label for="department">所属部門</label>
                 <select name="department" id="department" onchange="createMenu01(this.value)">
@@ -25,43 +32,45 @@
                 <select name="division" id="division" disabled onchange="createMenu02(this.value)"></select>
             </div>
             <div>
-                <label for="info">情報システム課</label>
-                <input type="checkbox" name="info" id="info">
+                <label for="sys_admin">システム管理者</label>
+                <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin') }}">
             </div>
             <div class="position">
                 <label for="position">役職</label>
-                <select name="position" id="position">
+                <select name="position" id="position">2
                 	<option disabled selected>選択してください</option>
                     <option value="役員">役員</option>
                     <option value="上長">上長</option>
                     <option value="社員">社員</option>
                 </select>
             </div>
-            <div>
+            <!-- 0119_ToDo起票_要件等箇所_20210125_kamimura -->
+            <!-- <div>
                 <label>入社日</label>
                 <input type="date" name="enter">
-            </div>
+            </div> -->
+            <!-- ユーザー情報変更時のみ項目表示を想定_20210125_kamimura -->
             <div>
                 <label>退社日</label>
-                <input type="date" name="leave">
+                <input type="date" name="taishoku_date" value="{{ old('taishoku_date') }}">
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>
-                <input type="text" name="sei1" class="name" placeholder="姓">
-                <input type="text" name="mei1" class="name" placeholder="名">
+                <input type="text" name="sei" class="name" placeholder="姓" value="{{ old('sei') }}">
+                <input type="text" name="mei" class="name" placeholder="名" value="{{ old('mei') }}">
             </div>
             <div class="name">
                 <label>名前（カナ）</label>
-                <input type="text" name="sei2" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ" required>
-                <input type="text" name="mei2" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" required>
+                <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana') }}"required>
+                <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana') }}" required>
             </div>
             <div>
             	<label>メールアドレス</label>
-  				<input class="email" type="email" name="email" autocomplete="email" required>
+  				<input class="email" type="email" name="email" autocomplete="email"  value="{{ old('email') }}" required>
 			</div>
 			<div>
 				<label>メールアドレス確認</label>
-  				<input class="email" type="email" name="email" autocomplete="email" required>
+  				<input class="email" type="email" name="email" autocomplete="email" value="{{ old('email') }}" required>
 			</div>
 			<div id="password_box">
                 <label for="password">パスワード</label>

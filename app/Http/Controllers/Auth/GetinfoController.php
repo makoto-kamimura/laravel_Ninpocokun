@@ -11,26 +11,27 @@ class GetinfoController extends Controller
     // 部コードから課コードを取得
     public function getDiv($dep_cd)
     {
-        $div_cd = ''; //DBから取得
-
-        return $div_cd;
+        return DB::table('divisions')
+                ->where('dep_cd',$dep_cd)
+                ->select('cd','name')
+                ->get(); 
     }
 
     // 部コードから社員番号、社員名を取得
     public function getUserByDep($dep_cd)
     {
-        $cd = ''; // DBから取得
-        $name = ''; // DBから取得
-
-        return compact('cd', 'name');
+        return DB::table('v_user_info')
+                ->where('dep_cd',$dep_cd)
+                ->select('user_cd','user_name')
+                ->get();
     }
 
     // 課コードから社員番号、社員名を取得
     public function getUserByDiv($div_cd)
     {
-        $cd = ''; // DBから取得
-        $name = ''; // DBから取得
-
-        return compact('cd', 'name');
+        return DB::table('v_user_info')
+                ->where('div_cd',$div_cd)
+                ->select('user_cd','user_name')
+                ->get();
     }
 }

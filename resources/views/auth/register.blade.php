@@ -12,6 +12,12 @@
         <p>バリデーションエラー確認用{{ $errors }}</p>
         <form action="{{route('user.confirm')}}" method="post">
         @csrf
+
+        <div class="employeecode">
+                <label>社員コード</label>
+                <label>自動採番</label>
+            </div>
+
         	<div class="department">
                 <label for="department">所属部門</label>
                 <select name="department" id="department" onchange="createMenu01(this.value)">
@@ -26,7 +32,7 @@
                 <select name="division" id="division" disabled onchange="createMenu02(this.value)"></select>
             </div>
             <div>
-                <label for="sys_admin">情報システム課</label>
+                <label for="sys_admin">システム管理者</label>
                 <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin') }}">
             </div>
             <div class="position">
@@ -38,10 +44,12 @@
                     <option value="社員">社員</option>
                 </select>
             </div>
-            <div>
+            <!-- 0119_ToDo起票_要件等箇所_20210125_kamimura -->
+            <!-- <div>
                 <label>入社日</label>
                 <input type="date" name="enter">
-            </div>
+            </div> -->
+            <!-- ユーザー情報変更時のみ項目表示を想定_20210125_kamimura -->
             <div>
                 <label>退社日</label>
                 <input type="date" name="taishoku_date" value="{{ old('taishoku_date') }}">

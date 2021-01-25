@@ -35,7 +35,7 @@
                 <textarea cols="70" rows="5" name="hikitsugi" maxlength="360"></textarea>
             </div>
             <div class="">
-            <!-- 差し戻し時のみ上長のコメント表示を想定-->
+            <!-- 差し戻し時のみ上長のコメント表示を想定_20210125_kamimura-->
                 <label for="">コメント</label>
                 <textarea cols="70" rows="5" name="comment" maxlength="360"></textarea>
             </div>

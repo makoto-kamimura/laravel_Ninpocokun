@@ -10,13 +10,18 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    // タイムスタンプを無効化
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'cd', 'sei', 'mei', 'sei_kana', 'mei_kana',
+        'dep_cd', 'div_cd', 'taishoku_date',
+        'password', 'pos_cd', 'sys_admin',
     ];
 
     /**

@@ -26,6 +26,22 @@
 http://vdeep.net/laravel-git-clone
 ```
 
+```
+SQLファイルローダ(sql_file_exec.vbs)の使用方法・注意点等
+```
+【使用の前提】
+・mysqlをxamppで運用している事。
+・C:\xampp\mysql\binにmysql.exeが存在している事。
+・SQLファイルに同名の既存DBオブジェクト削除処理が記述されている事。(DROP (DB_OBJECT_TYPE) IF EXISTS (DB_OBJECT_NAME))
+
+【使用方法】
+コマンドプロンプトでscratchフォルダに移動して、以下のコマンドを実行。
+cscript sql_lib\sql_file_exec.vbs (データベース名) (DBユーザー名) (DBパスワード)
+
+【実行失敗時】
+「sql_lib」フォルダ内のtmp.batを削除する。
+
+
 # Usage
 
 ---------------------------------------------

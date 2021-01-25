@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // ログイン後でないと見れないように
         $this->middleware('auth');
     }
 
@@ -21,8 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function main()
     {
-        return view('home');
+        $title = 'メインメニュー';
+        $css = 'home.css';
+        $js = 'common.js';
+        return view('home', compact('title', 'css', 'js'));
     }
 }

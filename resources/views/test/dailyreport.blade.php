@@ -45,7 +45,4 @@
         </form>
 	</section>
 
-
-
-
 @endsection

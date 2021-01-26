@@ -98,7 +98,7 @@ footer {
   margin-right: 20px;
 }
 
-/*ハンバーガーアイコンをCSSだけで表現*/
+/*ハンバーガーアイコン*/
 #nav-open span, #nav-open span:before, #nav-open span:after {
   position: absolute;
   height: 3px;/*線の太さ*/

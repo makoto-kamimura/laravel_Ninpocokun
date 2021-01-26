@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@main')->name('main');
 Route::get('report/approve', 'DailyReportController@approve')->name('report.approve');
 // 登録確認画面を表示 -> confirm
 Route::post('report/confirm', 'DailyReportController@confirm')->name('report.confirm');
+Route::get('report/complete', 'DailyReportController@complete')->name('report.complete');
 Route::resource('report', 'DailyReportController');
 // 一覧を表示 => index
 // 登録画面を表示 => create
@@ -41,6 +42,6 @@ Route::get('auth/complete', 'Auth\RegisterController@complete')->name('user.comp
 Route::get('auth/admin', 'Auth\RegisterController@admin')->name('user.admin');
 
 // <<ユーザー情報取得ルーティング>>
-Route::get('get_div/{dep_cd}', 'Auth\GetinfoContoroller@getDiv');
-Route::get('get_user/dep/{dep_cd}', 'Auth\GetinfoContoroller@getUserByDep');
-Route::get('get_user/dep/{div_cd}', 'Auth\GetinfoContoroller@getUserByDiv');
+Route::get('get_div/{dep_cd}', 'Auth\GetinfoController@getDiv');
+Route::get('get_user/dep/{dep_cd}', 'Auth\GetinfoController@getUserByDep');
+Route::get('get_user/dep/{div_cd}', 'Auth\GetinfoController@getUserByDiv');

@@ -61,6 +61,6 @@ class LoginController extends Controller
     // ログイン後の遷移先を指定
     public function redirectPath()
     {
-        return view(route('main'));
+        return view('main');
     }
 }

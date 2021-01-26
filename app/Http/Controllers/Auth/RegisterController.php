@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -64,20 +65,32 @@ class RegisterController extends Controller
     {
         $data = \Session::get('user', 'データが存在しない');;
         // $request->session()->forget('user');
-        User::create([
-            // 固定値を直すこと
-            'cd' => 100 + random_int(1, 100),
-            'sei' => $data['sei'],
-            'mei' => $data['mei'],
-            'sei_kana' => $data['sei_kana'],
-            'mei_kana' => $data['mei_kana'],
-            'dep_cd' => 20,
-            'div_cd' => 10,
-            'taishoku_date' => $data['taishoku_date'],
-            'password' => Hash::make($data['password']),
-            'pos_cd' => 20,
-            'sys_admin' => 0,
-        ]);
+
+        // トランザクション処理
+        \DB::beginTransaction();
+        try {
+            $max_cd = DB::table('users')->max('cd');
+            User::create([
+                // 固定値を直すこと
+                'cd' => $max_cd + 1,
+                'sei' => $data['sei'],
+                'mei' => $data['mei'],
+                'sei_kana' => $data['sei_kana'],
+                'mei_kana' => $data['mei_kana'],
+                'dep_cd' => $data['dep_cd'],
+                'div_cd' => $data['div_cd'],
+                'taishoku_date' => $data['taishoku_date'],
+                'password' => Hash::make($data['password']),
+                'pos_cd' => $data['pos_cd'],
+                'sys_admin' => $data['sys_admin'],
+            ]);
+            \DB::commit();
+        } catch (\Throwable $th) {
+            // 登録失敗の場合はロールバック
+            \DB::rollback;
+            abort(500);
+        }
+        \Session::flash('err_msg', '登録しました');
         return redirect(route('user.complete'));
     }
 
@@ -114,7 +127,7 @@ class RegisterController extends Controller
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
         $js = 'common.js';
-        return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css', 'js'));
+        return view('auth.confirm', compact('report', 'title', 'err_msgs', 'css', 'js'));
     }
 
     /**

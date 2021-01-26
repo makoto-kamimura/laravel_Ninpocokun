@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
-                    <td colspan="2">@yield('email')</td>
+                    <td colspan="2" class="email_k"></td>
                 </tr>
                 <tr>
                     <th>パスワード</th>
@@ -86,9 +86,16 @@
             </table>
 
             <div class='btn_box tac'>
-                <a href="usertouroku" class="btn_return">戻る</a>
-            	<input class='btn' type="submit" value="登録する">
+              <a href="usertouroku" class="btn btn_return">戻る</a>
+            	<input id="submit" class='btn' type="submit" value="登録する">
             </div>
         </form>
 	</section>
+
+  <!--<script>
+    var email = $.cookie('email');    
+    if(email){
+        $('.email_k').text(email);
+    }
+  </script>--->
 @endsection

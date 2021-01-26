@@ -1,3 +1,5 @@
+$(function($) {
+
 //プルダウンメニュー
 const divisionMenu = 
       {
@@ -65,6 +67,8 @@ $('#password_disp')
     }
   )
 
+
+
   $('#password_disp2')
   .on('change',
     function() {
@@ -124,7 +128,6 @@ $(window).on('load',function() {
 
 
 //行全体にリンクを付与
-$(function($) {
   //data-hrefの属性を持つtrを選択しclassにclickableを付加
   $('tr[data-href]').addClass('clickable')
     //クリックイベント
@@ -135,15 +138,14 @@ $(function($) {
         //data-href属性の値に書かれているURLに遷移する
         window.location = $(e.target).closest('tr').data('href');}
   });
-});
 
 
 
 //ページネーション設定
-$(function(){
   $("div:has(p.prev-page)").addClass("pagenation");
   $("div.pagenation").wrapInner("<div>");
   $(".pagenation p.prev-page button").append("< 前の１０件");
   $(".pagenation p.next-page button").prepend("次の１０件 >");
+  
 });
 

@@ -7,7 +7,7 @@
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
-        <form action="usertouroku_confirm" method="post">
+        <form action="usertouroku_confirm" method="get">
         	<div class="departments">
                 <label for="departments">所属部門</label>
                 <select name="departments" id="departments" onchange="createMenu01(this.value)">
@@ -40,7 +40,7 @@
             </div>
             <div>
                 <label>退社日</label>
-                <input type="date" name="taishoku_date" id="nyusya_date">
+                <input type="date" name="taishoku_date" id="taishoku_date">
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>
@@ -54,7 +54,7 @@
             </div>
             <div>
             	<label>メールアドレス</label>
-  				<input class="email" type="email" name="email" autocomplete="email" required>
+  				<input id="email" class="email" type="email" name="email" autocomplete="email" required>
 			</div>
 			<div>
 				<label>メールアドレス確認</label>

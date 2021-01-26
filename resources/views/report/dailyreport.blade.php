@@ -8,7 +8,8 @@
 	<section>
         <!-- <h1>@yield('title')</h1> -->
         <h1>日報報告</h1>
-        <form action="dailyreport_confirm" method="post">
+        <form action="{{route('report.confirm')}}" method="post">
+            @csrf
             <!--<div class="dailytitle">
                 <label for="">タイトル</label><br>
                 <input type="search" list="list">

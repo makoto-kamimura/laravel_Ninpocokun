@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -27,6 +29,8 @@ class HomeController extends Controller
         $title = 'メインメニュー';
         $css = 'home.css';
         $js = 'common.js';
+        $user = Auth::user();
+        dd($user);
         return view('home', compact('title', 'css', 'js'));
     }
 }

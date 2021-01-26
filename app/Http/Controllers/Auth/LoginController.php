@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -54,6 +55,7 @@ class LoginController extends Controller
         $js = 'common.js';
 
 
+
         //ビューを呼び出す
         return view('Auth.login', compact('title', 'css', 'js'));
     }
@@ -61,6 +63,8 @@ class LoginController extends Controller
     // ログイン後の遷移先を指定
     public function redirectPath()
     {
-        return view('main');
+        $user = Auth::user();
+        dd($user);
+        return '/';
     }
 }

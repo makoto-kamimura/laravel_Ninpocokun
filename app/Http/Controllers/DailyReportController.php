@@ -6,6 +6,7 @@ use App\Daily_report;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReportRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class DailyReportController extends Controller
@@ -86,7 +87,7 @@ class DailyReportController extends Controller
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.confirm', compact('tagu', 'title', 'css', 'js'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js'));
     }
 
     /**
@@ -99,23 +100,30 @@ class DailyReportController extends Controller
 
     public function store()
     {
-        $data = \Session::get('report', 'データが存在しない');;
+        $data = \Session::get('report', 'データが存在しません');;
 
         \DB::beginTransaction();
+
         try {
             $max_no = DB::table('daily_reports')->max('no');
+            $current = Auth::user();
+            dd($current);
             Daily_report::create([
                 'no' => $max_no + 1,
-                'post_user_id' => 0,
-                'auth_user_id' => 0,
+                'post_user_cd' => 0,
+                'auth_user_cd' => 0,
                 'sagyou' => $data['sagyou'],
                 'shintyoku' => $data['shintyoku'],
                 'zansagyou' => $data['zansagyou'],
                 'hikitsugi' => $data['hikitsugi'],
+                'comment' => "これはコメント",
+                'status' => 0,
             ]);
             \DB::commit();
         } catch (\Throwable $e) {
-            \DB::rollback;
+            // 登録失敗の場合はロールバック
+            dd($e);
+            \DB::rollback();
             abort(500);
         }
         \Session::flash('err_msg', '日報を登録しました');

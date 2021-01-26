@@ -44,4 +44,4 @@ Route::get('auth/admin', 'Auth\RegisterController@admin')->name('user.admin');
 // <<ユーザー情報取得ルーティング>>
 Route::get('get_div/{dep_cd}', 'Auth\GetinfoController@getDiv');
 Route::get('get_user/dep/{dep_cd}', 'Auth\GetinfoController@getUserByDep');
-Route::get('get_user/dep/{div_cd}', 'Auth\GetinfoController@getUserByDiv');
+Route::get('get_user/div/{div_cd}', 'Auth\GetinfoController@getUserByDiv');

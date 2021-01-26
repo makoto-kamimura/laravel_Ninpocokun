@@ -32,6 +32,12 @@ class HomeController extends Controller
         $css = 'home.css';
         $js = 'common.js';
 
+
+        $sys_admin = Auth::user()->sys_admin;
+        $pos_cd = Auth::user()->pos_cd;
+
+
+
         if (!Auth::check()) {
             echo '未ログイン状態';
         }

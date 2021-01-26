@@ -8,6 +8,7 @@ use App\Http\Requests\ReportRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isNull;
 
 class DailyReportController extends Controller
 {
@@ -107,21 +108,23 @@ class DailyReportController extends Controller
         try {
             $max_no = DB::table('daily_reports')->max('no');
             $current = Auth::id();
-            $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => 200]);
+            $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => $current]);
             foreach ($joushi as $jo) {
-                $joushi = $jo->joushi;
+                $jocd = $jo->joushi;
             }
-
+            //上司のIDが存在しない場合
+            if (isNull($jocd)) {
+                $jocd = 0;
+            }
 
             Daily_report::create([
                 'no' => $max_no + 1,
-                'post_user_cd' => 200,
-                'auth_user_cd' => $joushi,
+                'post_user_cd' => $current,
+                'auth_user_cd' => $jocd,
                 'sagyou' => $data['sagyou'],
                 'shintyoku' => $data['shintyoku'],
                 'zansagyou' => $data['zansagyou'],
                 'hikitsugi' => $data['hikitsugi'],
-                'comment' => "これはコメント",
                 'status' => 0,
             ]);
             \DB::commit();

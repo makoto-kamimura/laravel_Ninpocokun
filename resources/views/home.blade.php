@@ -13,6 +13,6 @@
     <p class="btn03"><a href="{{route('report.approve')}}"></a></p>
     @endif
     @if (isset( Auth::user()->sys_admin ) && Auth::user()->sys_admin == 1)
-    <p class="btn04"><a href="user"></a></p>
+    <p class="btn04"><a href="{{route('user.admin')}}"></a></p>
     @endif
 @endsection

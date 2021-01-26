@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        // ユーザーIDを取得
+        // 社員コードを取得
         return 'cd';
     }
 
@@ -54,8 +54,6 @@ class LoginController extends Controller
         $css = 'base.css';
         $js = 'common.js';
 
-
-
         //ビューを呼び出す
         return view('Auth.login', compact('title', 'css', 'js'));
     }
@@ -63,8 +61,7 @@ class LoginController extends Controller
     // ログイン後の遷移先を指定
     public function redirectPath()
     {
-        $user = Auth::user();
-        dd($user);
+
         return '/';
     }
 }

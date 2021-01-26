@@ -106,12 +106,17 @@ class DailyReportController extends Controller
 
         try {
             $max_no = DB::table('daily_reports')->max('no');
-            $current = Auth::user();
-            dd($current);
+            $current = Auth::id();
+            $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => 200]);
+            foreach ($joushi as $jo) {
+                $joushi = $jo->joushi;
+            }
+
+
             Daily_report::create([
                 'no' => $max_no + 1,
-                'post_user_cd' => 0,
-                'auth_user_cd' => 0,
+                'post_user_cd' => 200,
+                'auth_user_cd' => $joushi,
                 'sagyou' => $data['sagyou'],
                 'shintyoku' => $data['shintyoku'],
                 'zansagyou' => $data['zansagyou'],
@@ -122,7 +127,6 @@ class DailyReportController extends Controller
             \DB::commit();
         } catch (\Throwable $e) {
             // 登録失敗の場合はロールバック
-            dd($e);
             \DB::rollback();
             abort(500);
         }

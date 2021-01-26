@@ -33,6 +33,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // プライマリキーを設定する
+    protected $primaryKey = 'cd';
+    // インクリメントを無効化
+    public $incrementing = false;
+
     /**
      * The attributes that should be cast to native types.
      *

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -24,13 +26,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function main()
+    public function main(Request $request)
     {
         $title = 'メインメニュー';
         $css = 'home.css';
         $js = 'common.js';
-        $user = Auth::user();
-        dd($user);
+
+        if (!Auth::check()) {
+            echo '未ログイン状態';
+        }
+
+
         return view('home', compact('title', 'css', 'js'));
     }
 }

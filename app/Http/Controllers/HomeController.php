@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function __construct()
     {
         // ログイン後でないと見れないように
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**

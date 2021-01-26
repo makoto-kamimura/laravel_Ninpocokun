@@ -14,9 +14,9 @@
             @endforeach
           </ul>
         @endif
-        <form action="home" method="post" class="tac pw-form-container">
+        <form action="home" method="get" class="tac pw-form-container">
             <div class="departments">
-                <label for="departments">所属部門</label>
+                <label for="departments">所属部</label>
                 <select name="departments" id="departments" onchange="createMenu01(this.value)">
                     <option disabled selected>選択してください</option>
                     <option value="総務部">総務部</option>
@@ -26,7 +26,7 @@
             </div>
             <div>
                 <label for="divisions">所属課</label>
-                <select name="divisions" id="division" disabled onchange="createMenu02(this.value)"></select>
+                <select name="divisions" id="divisions" disabled onchange="createMenu02(this.value)"></select>
             </div>
             <div>
                 <label for="name">名前</label>
@@ -40,8 +40,36 @@
                 <input type="checkbox" id="password_disp">パスワードを表示する
             </div>
             <div class='btn_box tac'>
-                <input class="btn btn-primary" type="submit" value="ログイン">
+                <input id="submit" class="btn btn-primary" type="submit" value="ログイン">
             </div>
         </form>
       </div>
+
+    <script>
+        $(function(){ 
+            //読み込んだクッキーをフォームのvalue値として代入  
+            $('#departments').val($.cookie("departments"));  
+            $('#divisions').val($.cookie("divisions"));
+            $('#name').val($.cookie("name"));
+
+            //submitを押したら、クッキーを保存  
+            $("#submit").click(function(){  
+                $.cookie("departments",$('#departments').val());  
+                $.cookie("divisions",$('#divisions').val());
+                $.cookie("name",$('#name').val());
+                location.href="login"  
+            })  
+
+            /*
+            var departments = $.cookie('departments');
+            var divisions = $.cookie('divisions'); 
+            var name = $.cookie('name');   
+            if(departments || divisions || name){
+                $(window).on('load',function() {
+                    alert(departments + "\n" + divisions + "\n" + name);
+                });
+            }
+            */
+        })
+    </script>
 @endsection

@@ -6,6 +6,9 @@
 
 @section('body')
       <div class="pw-form">
+        @auth
+        <p>ログイン中</p>
+        @endauth
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
         {{$errors}}
         @if (isset($err_msgs))
@@ -36,7 +39,7 @@
             </div>
             <div>
               <label for="cd">社員コード</label>
-              <input type="text" class="field" name="cd">
+              <input type="text" class="field" name="cd" id="cd">
             </div>
             <div>
                 <label for="password">パスワード</label>

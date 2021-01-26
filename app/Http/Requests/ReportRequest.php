@@ -13,7 +13,7 @@ class ReportRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,4 +27,25 @@ class ReportRequest extends FormRequest
             //
         ];
     }
+
+    //[ *3.追加：Validationメッセージを設定（省略可） ]
+    //function名は必ず「messages」となります。
+    public function messages()
+    {
+        return [
+            // 日本語バリデーションのエラーメッセージ
+
+        ];
+    }
+
+    //400エラーを返したい場合
+
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     $res = response()->json([
+    //         'status' => 400,
+    //         'errors' => $validator->errors(),
+    //     ], 400);
+    //     throw new HttpResponseException($res);
+    // }
 }

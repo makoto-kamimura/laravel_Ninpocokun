@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -63,21 +64,32 @@ class RegisterController extends Controller
     protected function store()
     {
         $data = \Session::get('user', 'データが存在しない');;
-        // $request->session()->forget('user');
-        User::create([
-            // 固定値を直すこと
-            'cd' => 100 + random_int(1, 100),
-            'sei' => $data['sei'],
-            'mei' => $data['mei'],
-            'sei_kana' => $data['sei_kana'],
-            'mei_kana' => $data['mei_kana'],
-            'dep_cd' => 20,
-            'div_cd' => 10,
-            'taishoku_date' => $data['taishoku_date'],
-            'password' => Hash::make($data['password']),
-            'pos_cd' => 20,
-            'sys_admin' => 0,
-        ]);
+
+        // トランザクション処理
+        \DB::beginTransaction();
+        try {
+            $max_cd = DB::table('users')->max('cd');
+            User::create([
+                'cd' => $max_cd + 1,
+                'sei' => $data['sei'],
+                'mei' => $data['mei'],
+                'sei_kana' => $data['sei_kana'],
+                'mei_kana' => $data['mei_kana'],
+                'dep_cd' => 10, // $data['dep_cd'],
+                'div_cd' => 20, // $data['div_cd'],
+                'taishoku_date' => $data['taishoku_date'],
+                'password' => Hash::make($data['password']),
+                'pos_cd' => 5, // $data['pos_cd'],
+                'sys_admin' => 1, // $data['sys_admin'],
+            ]);
+            \DB::commit();
+        } catch (\Throwable $e) {
+            dd($e);
+            // 登録失敗の場合はロールバック
+            \DB::rollback();
+            abort(500);
+        }
+        \Session::flash('err_msg', '登録しました');
         return redirect(route('user.complete'));
     }
 

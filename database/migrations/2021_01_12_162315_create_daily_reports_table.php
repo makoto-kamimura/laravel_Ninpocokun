@@ -21,14 +21,14 @@ class CreateDailyReportsTable extends Migration
             $table->string('shintyoku', 360);
             $table->string('zansagyou', 360);
             $table->string('hikitsugi', 360);
-            $table->string('comment', 360);
-            $table->tinyInteger('status');
-            $table->date('target_date');
+            $table->string('comment', 360)->nullable()->default(null);
+            $table->tinyInteger('status')->default(0);
+            // $table->date('target_date');
             $table->timestamps();
 
 
             $table->primary('no','PRI_NAME');
-            $table->index(['no','post_user_cd','target_date'],'INDEX_NAME');
+            $table->index(['no','post_user_cd'],'INDEX_NAME');
 
         });
     }

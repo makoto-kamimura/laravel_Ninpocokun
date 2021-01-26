@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Daily_report;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReportRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class DailyReportController extends Controller
 {
@@ -71,20 +75,19 @@ class DailyReportController extends Controller
      * @return view
      */
 
-    public function confirm(Request $request)
+    public function confirm(ReportRequest $request)
     {
+        $report = $request->input();
+        \Session::put('report', $report);
+
         $tagu = '日報登録確認';
         $title = '日報登録確認';
-        $err_msgs1 = 'エラー１-１';
-        $err_msgs2 = 'エラー２-１';
-        $err_msgs3 = 'エラー３-１';
-        $err_msgs4 = 'エラー４-１';
-        $err_msgs5 = 'エラー５-１';
+
         $css = 'dailyreport_confirm.css';
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.confirm', compact('tagu', 'title', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'err_msgs4', 'err_msgs5', 'css', 'js'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js'));
     }
 
     /**
@@ -95,22 +98,36 @@ class DailyReportController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store()
     {
-        // $inputs = $request->all();
-        // \DB::beginTransaction();
-        // try {
-        //     Daily_report::create($inputs);
-        //     \DB::commit();
+        $data = \Session::get('report', 'データが存在しません');;
 
-        //     //code...
-        // } catch (\Throwable $e) {
-        //     \DB::rollback;
-        //     abort(500);
-        // }
-        // \Session::flash('err_msg', '日報を登録しました');
-        // return redirect(route('reports'));
+        \DB::beginTransaction();
 
+        try {
+            $max_no = DB::table('daily_reports')->max('no');
+            $current = Auth::user();
+            dd($current);
+            Daily_report::create([
+                'no' => $max_no + 1,
+                'post_user_cd' => 0,
+                'auth_user_cd' => 0,
+                'sagyou' => $data['sagyou'],
+                'shintyoku' => $data['shintyoku'],
+                'zansagyou' => $data['zansagyou'],
+                'hikitsugi' => $data['hikitsugi'],
+                'comment' => "これはコメント",
+                'status' => 0,
+            ]);
+            \DB::commit();
+        } catch (\Throwable $e) {
+            // 登録失敗の場合はロールバック
+            dd($e);
+            \DB::rollback();
+            abort(500);
+        }
+        \Session::flash('err_msg', '日報を登録しました');
+        return redirect(route('report.complete'));
     }
 
     /**
@@ -201,10 +218,28 @@ class DailyReportController extends Controller
     }
 
     /**
+     * 日報登録完了画面を表示する
+     * 
+     * @return view
+     */
+
+    public function complete()
+    {
+        //ビューの動作確認用サンプルデータ作成
+        $tagu = '日報登録完了';
+        $css = 'usertouroku.css';
+        $js = 'common.js';
+
+        //ビューを呼び出す
+        return view('report.complete', compact('tagu', 'css', 'js'));
+    }
+
+
+    /**
      * 日報を削除する
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Respons
      */
     public function destroy($id)
     {

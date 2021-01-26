@@ -12,6 +12,20 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $param = [
+            'cd' => 1 ,
+            'sei' => '表' ,
+            'mei' => '三郎' ,
+            'sei_kana' => 'オモテ' ,
+            'mei_kana' => 'サブロウ' ,
+            'dep_cd' => 1 ,
+            'div_cd' => 0 ,
+            // 'taishoku_date' => '' ,
+            'password' => Hash::make('abcd1234') ,
+            'pos_cd' => 1 ,
+            'sys_admin' => 0 ,           
+        ];
+        DB::table('users')->insert($param);
+        $param = [
             'cd' => 8 ,
             'sei' => '工務' ,
             'mei' => '部長' ,

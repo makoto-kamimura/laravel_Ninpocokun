@@ -8,7 +8,8 @@
 	<section>
         <!-- <h1>@yield('title')</h1> -->
         <h1>日報報告</h1>
-        <form action="dailyreport_confirm" method="post">
+        <form action="{{route('report.confirm')}}" method="post">
+            @csrf
             <!--<div class="dailytitle">
                 <label for="">タイトル</label><br>
                 <input type="search" list="list">
@@ -19,25 +20,26 @@
                 </datalist>
             </div>-->
         	<div class="">
-                <label for="">作業内容</label>
-                <textarea cols="70" rows="10" name="sagyou" maxlength="360" required></textarea>
+                <label for="">本日の作業内容</label>
+                <textarea cols="70" rows="10" name="sagyou" maxlength="360" required placeholder="本日の作業内容"></textarea>
             </div>
             <div class="">
                 <label for="">進捗状況</label>
-                <textarea cols="70" rows="5" name="shintyoku" maxlength="360"></textarea>
+                <textarea cols="70" rows="5" name="shintyoku" maxlength="360" placeholder="進捗状況"></textarea>
             </div>
             <div class="">
                 <label for="">残作業</label>
-                <textarea cols="70" rows="5" name="zansagyou" maxlength="360"></textarea>
+                <textarea cols="70" rows="5" name="zansagyou" maxlength="360" placeholder="残作業"></textarea>
             </div>
             <div class="">
-                <label for="">引継ぎ事項</label>
-                <textarea cols="70" rows="5" name="hikitsugi" maxlength="360"></textarea>
+                <label for="">引き継ぎ事項</label>
+                <textarea cols="70" rows="5" name="hikitsugi" maxlength="360" placeholder="引き継ぎ事項"></textarea>
             </div>
             <div class="">
             <!-- 差し戻し時のみ上長のコメント表示を想定_20210125_kamimura-->
+            <div class="comment">
                 <label for="">コメント</label>
-                <textarea cols="70" rows="5" name="comment" maxlength="360"></textarea>
+                <p>ここに上長からの"ありがたいコメント"が表示されます</p>
             </div>
             <!--
             <div class="">

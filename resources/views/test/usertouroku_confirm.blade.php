@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <th>メールアドレス</th>
-                    <td colspan="2" class="email_k"></td>
+                    <td colspan="2" class="email_c"></td>
                 </tr>
                 <tr>
                     <th>パスワード</th>
@@ -92,10 +92,4 @@
         </form>
 	</section>
 
-  <!--<script>
-    var email = $.cookie('email');    
-    if(email){
-        $('.email_k').text(email);
-    }
-  </script>--->
 @endsection

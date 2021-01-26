@@ -1,3 +1,5 @@
+$(function($) {
+
 //プルダウンメニュー
 const divisionMenu = 
       {
@@ -7,7 +9,7 @@ const divisionMenu =
       };
 
 function createMenu01(selectDivision){
-  let divisionList = document.getElementById('divisions');
+  let divisionList = document.getElementById('division');
   divisionList.disabled = false;
   divisionList.innerHTML = '';
   let option = document.createElement('option');
@@ -53,7 +55,6 @@ function createMenu02(selectName){
 
 
 
-$(function($) {
 //パスワード表示・非表示
 $('#password_disp')
   .on('change',
@@ -128,35 +129,14 @@ $(window).on('load',function() {
 
 //行全体にリンクを付与
   //data-hrefの属性を持つtrを選択しclassにclickableを付加
-  $('tr[data-href]').addClass('clickable') 
+  $('tr[data-href]').addClass('clickable')
     //クリックイベント
     .click(function(e) {
       //e.targetはクリックした要素自体、それがa要素以外であれば
       if(!$(e.target).is('a')){
         //その要素の先祖要素で一番近いtrの
         //data-href属性の値に書かれているURLに遷移する
-        window.location = $(e.target).closest('tr').data('href')
-      }
-    });
-
-
-
-//ページネーション設定
-  $('table.items').pagination({
-    itemElement : '> > tr.item' // アイテムの要素
-  });
-
-
-
-//ソート設定
-  $('.sort-table').tablesorter({
-    textExtraction: function(node){
-      var attr = $(node).attr('data-value');
-      if(typeof attr !== 'undefined' && attr !== false){
-        return attr;
-      }
-      return $(node).text();
-    }
+        window.location = $(e.target).closest('tr').data('href');}
   });
 
 
@@ -166,8 +146,6 @@ $(window).on('load',function() {
   $("div.pagenation").wrapInner("<div>");
   $(".pagenation p.prev-page button").append("< 前の１０件");
   $(".pagenation p.next-page button").prepend("次の１０件 >");
-  
-
   
 });
 

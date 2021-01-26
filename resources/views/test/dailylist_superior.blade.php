@@ -249,4 +249,23 @@
         </table>
 	</section>
 
+    <script>
+        $('table.items').pagination({
+            itemElement : '> > tr.item' // アイテムの要素
+        });
+    </script>
+
+    <script>
+        $(function(){
+            $('.sort-table').tablesorter({
+                textExtraction: function(node){
+                    var attr = $(node).attr('data-value');
+                    if(typeof attr !== 'undefined' && attr !== false){
+                        return attr;
+                    }
+                    return $(node).text();
+                }
+            });
+        });
+    </script>
 @endsection

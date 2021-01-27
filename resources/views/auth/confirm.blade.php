@@ -13,11 +13,11 @@
           @csrf
             <table>
                 <tr>
-                    <th>社員番号</th>
-                    {{-- <td SPAN="2">@yield('id')</td> --}}
+                    <th>社員コード</th>
+                    <td SPAN="2">登録時に自動採番されます</td>
                 </tr>
                 <tr>
-                    <th>所属部</th>
+                    <th>所属部門</th>
                     <td colspan="2">{{$_POST['department']}}</td>
                 </tr>
                 <tr>
@@ -49,9 +49,14 @@
             </table>
 
             <div class='btn_box tac'>
-                <a href="usertouroku" class="btn_return">戻る</a>
-            	<input class='btn' type="submit" value="登録する">
-            </div>
+    <table class='btn'>
+      <tr>
+        <td><input class='btn' type="submit" value="登録する"></td>
+        <td><input class='btn' type="submit" value="修正する"></td>
+      </tr>
+    </table>
+    </div>
+
         </form>
 	</section>
 @endsection

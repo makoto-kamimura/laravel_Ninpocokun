@@ -131,6 +131,7 @@ class DailyReportController extends Controller
         } catch (\Throwable $e) {
             // 登録失敗の場合はロールバック
             \DB::rollback();
+            dd($e);
             abort(500);
         }
         \Session::flash('err_msg', '日報を登録しました');

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/{{$css}}">
 
     <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/jquery.pagination.js"></script>
     @if (isset( $js ))
     <script type="text/javascript" src="/js/{{$js}}"></script>
     @endif

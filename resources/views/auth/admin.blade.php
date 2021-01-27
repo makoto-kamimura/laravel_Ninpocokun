@@ -18,11 +18,11 @@
         <h1>@yield('title2')</h1>
         <table border="1" class="m0a tac approval">
             <tr> 
-                <th>社員番号</th>
-                <th>所属部署</th>
-                <th>氏名</th>
+                <th>社員コード</th>
+                <th>所属部門/所属課</th>
+                <th>名前</th>
                 <th>退職日</th>
-                <th>情シス</th>
+                <th>システム管理者</th>
             </tr>
             @if (isset($msgs1, $msgs2, $msgs3))
                 <tr> 

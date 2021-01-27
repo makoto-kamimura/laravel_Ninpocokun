@@ -144,8 +144,8 @@ $(window).on('load',function() {
 //ページネーション設定
   $("div:has(p.prev-page)").addClass("pagenation");
   $("div.pagenation").wrapInner("<div>");
-  $(".pagenation p.prev-page button").append("< 前の１０件");
-  $(".pagenation p.next-page button").prepend("次の１０件 >");
+  $(".pagenation p.prev-page button").append("< 前の５件");
+  $(".pagenation p.next-page button").prepend("次の５件 >");
   
 });
 

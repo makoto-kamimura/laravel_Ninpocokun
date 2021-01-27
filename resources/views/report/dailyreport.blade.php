@@ -37,7 +37,7 @@
             </div>
             <div class="">
             <!-- 差し戻し時のみ上長のコメント表示を想定_20210125_kamimura-->
-            @if(isset(old('comment' , $report -> comment ) ))
+            @if(old('comment' , $report -> comment ) == !NULL)
             <div class="comment">
                 <label for="">コメント</label>
                 <p name="comment"> old('comment' , $report -> comment ) </p>

@@ -65,9 +65,16 @@ class DailyReportController extends Controller
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'dailyreport.css';
         $js = 'common.js';
+        $report = (object)[
+            'sagyou' => '',
+            'shintyoku' => '',
+            'zansagyou' => '',
+            'hikitsugi' => '',
+            'comment' => '',
+        ];
 
         //ビューを呼び出す
-        return view('report.dailyreport', compact('title', 'err_msgs', 'css', 'js'));
+        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
     }
 
     /**
@@ -80,6 +87,7 @@ class DailyReportController extends Controller
     {
         $report = $request->input();
         \Session::put('report', $report);
+
 
         $tagu = '日報登録確認';
         $title = '日報登録確認';
@@ -103,36 +111,57 @@ class DailyReportController extends Controller
     {
         $data = \Session::get('report', 'データが存在しません');;
 
-        \DB::beginTransaction();
+        // 日報noの存在でinsert update分岐
+        if (!empty($data['no'])) {
+            //日報noが無ければ新規登録
+            \DB::beginTransaction();
 
-        try {
-            $max_no = DB::table('daily_reports')->max('no');
-            $current = Auth::id();
-            $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => $current]);
-            foreach ($joushi as $jo) {
-                $jocd = $jo->joushi;
-            }
-            //上司のIDが存在しない場合
-            if (isNull($jocd)) {
-                $jocd = 0;
-            }
+            try {
+                $max_no = DB::table('daily_reports')->max('no');
+                $current = Auth::id();
+                $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => $current]);
+                foreach ($joushi as $jo) {
+                    $jocd = $jo->joushi;
+                }
+                //上司のIDが存在しない場合
+                if (isNull($jocd)) {
+                    $jocd = 0;
+                }
 
-            Daily_report::create([
-                'no' => $max_no + 1,
-                'post_user_cd' => $current,
-                'auth_user_cd' => $jocd,
-                'sagyou' => $data['sagyou'],
-                'shintyoku' => $data['shintyoku'],
-                'zansagyou' => $data['zansagyou'],
-                'hikitsugi' => $data['hikitsugi'],
-                'status' => 0,
-            ]);
-            \DB::commit();
-        } catch (\Throwable $e) {
-            // 登録失敗の場合はロールバック
-            \DB::rollback();
-            dd($e);
-            abort(500);
+                Daily_report::create([
+                    'no' => $max_no + 1,
+                    'post_user_cd' => $current,
+                    'auth_user_cd' => $jocd,
+                    'sagyou' => $data['sagyou'],
+                    'shintyoku' => $data['shintyoku'],
+                    'zansagyou' => $data['zansagyou'],
+                    'hikitsugi' => $data['hikitsugi'],
+                    'status' => 0,
+                ]);
+                \DB::commit();
+            } catch (\Throwable $e) {
+                // 登録失敗の場合はロールバック
+                \DB::rollback();
+                abort(500);
+            }
+        } else {
+            //日報noがある場合は編集を実行
+            \DB::beginTransaction();
+            try {
+                $report = Report::find($data['no']);
+                $report->fill([
+                    'sagyou' => $data['sagyou'],
+                    'shintyoku' => $data['shintyoku'],
+                    'zansagyou' => $data['zansagyou'],
+                    'hikitsugi' => $data['hikitsugi'],
+                ]);
+                $report->save();
+                \DB::commit();
+            } catch (\Throwable $th) {
+                \DB::rollback();
+                dd($th);
+                abort(500);
+            }
         }
         \Session::flash('err_msg', '日報を登録しました');
         return redirect(route('report.complete'));
@@ -215,21 +244,24 @@ class DailyReportController extends Controller
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('report.index'));
         }
-        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js',));
+        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
     }
 
-    /**
-     * 日報差戻しの編集を実行
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // /**
+    //  * 日報差戻しの編集を実行
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update()
+    // {
+    //     // セッションから日報を取得
+    //     $data = \Session::get('report', 'データが存在しない');;
+
+    //     //　差戻し日報を編集する
+    // }
 
     /**
      * 日報登録完了画面を表示する

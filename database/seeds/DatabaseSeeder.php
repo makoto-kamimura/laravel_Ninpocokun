@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentsTableSeeder::class);
         $this->call(DivisionsTableSeeder::class);
         $this->call(PositionsTableSeeder::class);
-        $this->call(DrLevelsTableSeeder::class);
-        // $this->call(DailyReportsTableSeeder::class);
-        // $this->call(DrFlowsTableSeeder::class);
+        $this->call(StatusesTableSeeder::class);
 
     }
 }

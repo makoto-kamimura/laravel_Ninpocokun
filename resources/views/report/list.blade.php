@@ -20,53 +20,22 @@
         <!--<table class="m0a tac" border="1">-->
             <thead>
                 <tr> 
+                    <th style="display:none">no</th>
                     <th>報告日</th>
                     <th>件名</th>
                     <th class="dailylist_th3">ステータス</th>
                 </tr>
             </thead>
             <tbody>
-            @if (isset($err_msgs1, $err_msgs2, $err_msgs3))
+            @if (isset($reports))
+                @foreach($reports as $report)
                 <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-07 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
+                    <td style="display:none">$report -> no</td>
+                    <td class="dailylist_td1">$report -> created_at</td>
+                    <td class="dailylist_td2 dailylist">$report -> sagyou</td>
+                    <td class="dailylist_td3">$report -> status</td>
                 </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-08 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-09 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-10 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-11 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-12 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-13 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-14 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">未承認</td>
-                </tr>
+                @endforeach
             @endif
             </tbody>
         </table>
@@ -78,75 +47,26 @@
         <table class="items sort-table m0a tac" border="1">
         <!--<table class="m0a tac" border="1">-->
             <thead>
-                <tr> 
+                <tr>
+                    <th style="display:none">no</th> 
                     <th>報告日</th>
                     <th>件名</th>
                     <th class="dailylist_th3">ステータス</th>
                 </tr>
              </thead>
              <tbody>
-            @if (isset($err_msgs1, $err_msgs2, $err_msgs3))
+            @if (isset($reports2))
+                @foreach($reports2 as $report2)
                 <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-07 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
+                    <td style="display:none">$report2 -> no</td>
+                    <td class="dailylist_td1">$report2 -> created_at</td>
+                    <td class="dailylist_td2 dailylist">$report2 -> sagyou</td>
+                    <td class="dailylist_td3">$report2 -> status</td>
                 </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-08 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-09 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-10 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-11 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-12 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-13 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td class="dailylist_td1">2021-01-14 10:00</td>
-                    <td class="dailylist_td2 dailylist">作業内容が表示されます作業内容が表示されます作業内容が表示されます</td>
-                    <td class="dailylist_td3">完了</td>
-                </tr>
+                @endforeach
             @endif
             </tbody>
         </table>
 	</section>
-    <script>
-
-$('table.items').pagination({
-            itemElement : '> > tr.item' // アイテムの要素
-        });
-
-        $(function(){
-            $('.sort-table').tablesorter({
-                textExtraction: function(node){
-                    var attr = $(node).attr('data-value');
-                    if(typeof attr !== 'undefined' && attr !== false){
-                        return attr;
-                    }
-                    return $(node).text();
-                }
-            });
-        });
-    </script>
 @endsection
 

@@ -18,6 +18,24 @@ class DailyReportController extends Controller
         // Authを通すのが一番簡単だと思います
         $this->middleware('auth');
     }
+
+
+    // // 部下の投稿かどうかを判定する
+    // public function isBuka($data)
+    // {
+    //     //ログインIDを取得
+    //     $current = Auth::id();
+    //     // ログイン者と記事内IDを比較
+    //     if ($current == $data['post_user_cd'] || $current == $data['auth_user_cd']) {
+    //         if ($current == $data['auth_user_cd']) {
+    //             $is_auth = true; // 上司です
+    //         } else {
+    //             $current = true;　// 本人です
+    //         }
+    //     }
+    // }
+
+
     // <<とりあえず日報作成でやりたい事を書いていきます>>
     /**
      * 日報一覧を表示する
@@ -28,16 +46,33 @@ class DailyReportController extends Controller
 
     public function index()
     {
-        $reports = "";
-        // table-> daily_reports
-        // key-> 自分のID($id)
-        // return -> 未承認の日報一覧
+        //未承認の自分の日報を取得する
+        $current = Auth::id();
+        $table = DB::table('daily_reports');
+        $reports = DB::select(DB::raw("SELECT dr.no, dr.created_at,LEFT(dr.sagyou,12) sagyou, st.name
+            FROM daily_reports dr
+            LEFT JOIN v_user_info vui
+            ON dr.post_user_cd = vui.user_cd
+            LEFT JOIN statuses st
+            ON dr.status = st.cd
+            WHERE dr.status < 1
+            AND dr.post_user_cd = :cd
+            ORDER BY dr.no"), ['cd' => $current]);
 
-        $reports2 = "";
-        // table-> daily_reports
-        // key-> 自分のID($id)
-        // return -> 未承認の日報一覧
-        //ビューの動作確認用サンプルデータ作成
+        // 承認済みの自分の日報を取得する
+        $table = DB::table('daily_reports');
+        $reports2 = DB::select(DB::raw(
+            "SELECT dr.no, dr.created_at,LEFT(dr.sagyou,12) sagyou, st.name
+            FROM daily_reports dr
+            LEFT JOIN v_user_info vui
+            ON dr.post_user_cd = vui.user_cd
+            LEFT JOIN statuses st
+            ON dr.status = st.cd
+            WHERE dr.status = 1
+            AND dr.post_user_cd = :cd
+            ORDER BY dr.no"
+        ), ['cd' => $current]);
+
         $tagu = '日報';
         $title1 = '日報承認・確認';
         $title2 = '日報一覧';
@@ -48,7 +83,7 @@ class DailyReportController extends Controller
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.list', compact('tagu', 'title1', 'title2', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'css', 'js'));
+        return view('report.list', compact('reports', 'reports2', 'tagu', 'title1', 'title2', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'css', 'js'));
     }
 
     /**
@@ -88,15 +123,15 @@ class DailyReportController extends Controller
         $report = $request->input();
         \Session::put('report', $report);
 
-
         $tagu = '日報登録確認';
         $title = '日報登録確認';
+        $is_auth = false;
 
         $css = 'dailyreport_confirm.css';
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js', 'is_auth'));
     }
 
     /**
@@ -112,7 +147,7 @@ class DailyReportController extends Controller
         $data = \Session::get('report', 'データが存在しません');;
 
         // 日報noの存在でinsert update分岐
-        if (!empty($data['no'])) {
+        if (!isset($data['no'])) {
             //日報noが無ければ新規登録
             \DB::beginTransaction();
 
@@ -122,10 +157,6 @@ class DailyReportController extends Controller
                 $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => $current]);
                 foreach ($joushi as $jo) {
                     $jocd = $jo->joushi;
-                }
-                //上司のIDが存在しない場合
-                if (isNull($jocd)) {
-                    $jocd = 0;
                 }
 
                 Daily_report::create([

@@ -29,11 +29,11 @@
             <tbody>
             @if (isset($reports))
                 @foreach($reports as $report)
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td style="display:none">$report -> no</td>
-                    <td class="dailylist_td1">$report -> created_at</td>
-                    <td class="dailylist_td2 dailylist">$report -> sagyou</td>
-                    <td class="dailylist_td3">$report -> status</td>
+                <tr class="item clickable-row" data-href="/report/{{$report->no}}/edit">
+                    <td style="display:none">{{$report -> no}}</td>
+                    <td class="dailylist_td1">{{$report -> created_at}}</td>
+                    <td class="dailylist_td2 dailylist">{{$report -> sagyou}}</td>
+                    <td class="dailylist_td3">{{$report -> name}}</td>
                 </tr>
                 @endforeach
             @endif
@@ -58,10 +58,10 @@
             @if (isset($reports2))
                 @foreach($reports2 as $report2)
                 <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td style="display:none">$report2 -> no</td>
-                    <td class="dailylist_td1">$report2 -> created_at</td>
-                    <td class="dailylist_td2 dailylist">$report2 -> sagyou</td>
-                    <td class="dailylist_td3">$report2 -> status</td>
+                    <td style="display:none">{{$report2 -> no}}</td>
+                    <td class="dailylist_td1">{{$report2 -> created_at}}</td>
+                    <td class="dailylist_td2 dailylist">{{$report2 -> sagyou}}</td>
+                    <td class="dailylist_td3">{{$report2 -> name}}</td>
                 </tr>
                 @endforeach
             @endif

@@ -20,18 +20,19 @@
         @endif
         <form action="{{route('login')}}" method="post" class="tac pw-form-container">
         @csrf
-            <div class="bumon">
-                <label for="bumon">所属部門</label>
-                <select name="bumon" id="bumon" onchange="createMenu01(this.value)">
+            <div class="departments">
+                <label for="departments">所属部門</label>
+                <select name="departments" id="departments">
                     <option disabled selected>選択してください</option>
-                    <option value="総務部">総務部</option>
-                    <option value="営業部">営業部</option>
-                    <option value="工務部">工務部</option>
+                    <option value="1">社長</option>
+                    <option value="10">工務部</option>
+                    <option value="20">営業部</option>
+                    <option value="30">総務部</option>
                 </select>
             </div>
             <div>
-                <label for="ka">所属課</label>
-                <select name="ka" id="ka" disabled onchange="createMenu02(this.value)"></select>
+                <label for="divisions">所属課</label>
+                <select name="divisions" id="divisions" disabled></select>
             </div>
             <div>
                 <label for="name">名前</label>

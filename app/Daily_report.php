@@ -17,4 +17,9 @@ class Daily_report extends Model
     // ];
 
     protected $guarded = ["created_at", "updated_at"];
+
+    // プライマリキーを設定する
+    protected $primaryKey = 'no';
+    // インクリメントを無効化
+    public $incrementing = false;
 }

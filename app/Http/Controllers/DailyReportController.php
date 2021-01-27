@@ -147,12 +147,12 @@ class DailyReportController extends Controller
 
     public function show($id)
     {
-        // $report = Daily_report::find($id);
+        $report = Daily_report::find($id);
 
-        // // if (is_null($report)) {
-        //     \Session::flash('err_msg', 'データがありません');
-        //     return redirect(route('report.index'));
-        // }
+        if (is_null($report)) {
+            \Session::flash('err_msg', 'データがありません');
+            return redirect(route('report.index'));
+        }
         //ビューの動作確認用サンプルデータ作成
         $tagu = '日報登録確認';
         $title = '日報登録確認';
@@ -209,7 +209,13 @@ class DailyReportController extends Controller
         $css = 'dailyreport.css';
         $js = 'common.js';
 
-        return view('report.create', compact('title', 'err_msgs', 'css', 'js'));
+        $report = Daily_report::find($id);
+
+        if (is_null($report)) {
+            \Session::flash('err_msg', 'データがありません');
+            return redirect(route('report.index'));
+        }
+        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js',));
     }
 
     /**

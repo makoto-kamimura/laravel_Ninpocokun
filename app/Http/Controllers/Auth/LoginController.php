@@ -55,6 +55,10 @@ class LoginController extends Controller
         $css = 'base.css';
         $js = 'common.js';
 
+        // //部門とか部署の一覧を取得する
+        // $deps = DB::table('departments')->select('cd', 'name')->get();;
+        // $divs = DB::table('divisions')->select('cd', 'name')->get();
+        // $usrs = ;
 
         //cokkieがセットされていなければ値を取得
         if (isset($request->cookie)) {

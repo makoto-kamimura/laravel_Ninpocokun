@@ -7,7 +7,9 @@ dp.cd dep_cd,
 dp.name dep_name,
 di.cd div_cd,
 di.name div_name,
-concat(dp.name ,'　', di.name) dep_div_name
+concat(dp.name ,'　', di.name) dep_div_name,
+u.taishoku_date,
+u.sys_admin
 FROM users u
 LEFT JOIN departments dp
 ON u.dep_cd = dp.cd

@@ -23,7 +23,7 @@
             <div class="departments">
                 <label for="departments">所属部門</label>
                 <select name="departments" id="departments">
-                    <option disabled selected>選択してください</option>
+                    <option disabled=disabled selected>選択してください</option>
                     <option value="1">社長</option>
                     <option value="10">工務部</option>
                     <option value="20">営業部</option>
@@ -50,7 +50,7 @@
                 <input type="checkbox" id="password-check">パスワードを表示する
             </div>
             <div class='btn_box tac'>
-                <input class="btn btn-primary" type="submit" value="ログイン">
+                <input class="btn btn-primary" type="submit" id="login_submit" value="ログイン" disabled=disabled>
             </div>
         </form>
       </div>

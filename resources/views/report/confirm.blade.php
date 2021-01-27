@@ -48,25 +48,22 @@
       </tr>
       {{-- @endif --}}
     </table>
-
+    @if($is_auth)
     <div class="">
-                <label for="">コメント</label>
-                <textarea cols="70" rows="5" name="hikitsugi" maxlength="360" placeholder="ありがたいコメント入力"></textarea>
-            </div>
-
-    <div class='btn_box tac'>
-      <input class='btn' type="submit" value="登録する">
+      <label for="">コメント</label>
+      <textarea cols="70" rows="5" name="hikitsugi" maxlength="360" placeholder="コメントを入力"></textarea>
     </div>
-    
+    @endif
+
     <!-- 新規日報登録/編集は下記_20210125_kamimura -->
-    {{-- <div class='btn_box tac'>
+    <div class='btn_box tac'>
     <table class='btn'>
       <tr>
-        <td><input class='btn' type="submit" value="登録する"></td>
-        <td><input class='btn' type="submit" value="修正する"></td>
+        <td><input class='btn' type="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
+        <td><input class='btn' type="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
       </tr>
     </table>
-    </div> --}}
+    </div>
 
     <!-- 日報承認/否認は下記_20210125_kamimura -->
     <!-- <table class='btn'>

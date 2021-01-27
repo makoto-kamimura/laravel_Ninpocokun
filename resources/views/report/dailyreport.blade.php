@@ -10,7 +10,7 @@
         <h1>日報報告</h1>
         <form action="{{route('report.confirm')}}" method="post">
             @csrf
-            {{-- <div class="dailytitle">
+            <!-- <div class="dailytitle">
                 <label for="">タイトル</label><br>
                 <input type="search" list="list">
                 <datalist id="list">
@@ -18,7 +18,7 @@
                     <option value="日報確認お願い致します"></option>
                     <option value="日報確認お願い致します"></option>
                 </datalist>
-            </div> --}}
+            </div> -->
         	<div class="">
                 <label for="">本日の作業内容</label>
                 <textarea cols="70" rows="10" name="sagyou" maxlength="360" required placeholder="本日の作業内容">{{ old('sagyou' , $report -> sagyou ) }}</textarea>
@@ -37,10 +37,12 @@
             </div>
             <div class="">
             <!-- 差し戻し時のみ上長のコメント表示を想定_20210125_kamimura-->
+            @if(isset(old('comment' , $report -> comment ) ))
             <div class="comment">
                 <label for="">コメント</label>
-                <p>ここに上長からの"ありがたいコメント"が表示されます</p>
+                <p name="comment"> old('comment' , $report -> comment ) </p>
             </div>
+            @endif
             <!--
             <div class="">
                 <label for="">添付ファイル</label>

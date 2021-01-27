@@ -42,6 +42,10 @@ div.btn_box {
 	width: 50%;
 }
 
+div.btn_box input.btn {
+	background-color: #f29214;
+}
+
 .password_box {
 	display: inline-block;;
 }
@@ -55,7 +59,7 @@ div.btn_box {
 	padding: 5px 0;
 }
 
-@media screen and (max-width:892px){
+@media screen and (max-width:1024px){
 	section {
 		padding: 20px;
 	}

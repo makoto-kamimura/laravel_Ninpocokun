@@ -14,9 +14,9 @@
     <script src="/js/jquery-3.5.1.min.js"></script>
     <script src="js/{{$js}}"></script>
 
-    <script src="js/jquery.pagination.js"></script>
+    <script src="js/jquery.cookie.js"></script>  
 
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>-->
+    <script src="js/jquery.pagination.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
 
@@ -30,7 +30,7 @@
         <li><a href="dailylist_superior"><img src="img/menu02.png" alt="日報承認"></a></li>
         <li><a href="dailylist"><img src="img/menu03.png" alt="日報一覧"></a></li>
         <li><a href="dailyreport"><img src="img/menu04.png" alt="日報登録"></a></li>
-        <li><a href="/"><img src="img/logout.png" alt="ログアウト"></a></li>
+        <li><a href="/login"><img src="img/logout.png" alt="ログアウト"></a></li>
       </ul>
       <div id="nav-drawer">
         <input id="nav-input" type="checkbox" class="nav-unshown">

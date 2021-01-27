@@ -72,7 +72,7 @@ footer {
 	margin: 0 auto;
 }
 
-@media screen and (max-width:892px){
+@media screen and (max-width:1024px){
 	section {
 		width: 100% !important;
 	}
@@ -98,7 +98,7 @@ footer {
   margin-right: 20px;
 }
 
-/*ハンバーガーアイコンをCSSだけで表現*/
+/*ハンバーガーアイコン*/
 #nav-open span, #nav-open span:before, #nav-open span:after {
   position: absolute;
   height: 3px;/*線の太さ*/
@@ -158,13 +158,13 @@ footer {
   box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }
 
-@media screen and (min-width:850px) {
+@media screen and (min-width:1024px) {
   #nav-open {
     display:none;
   }
 }
 
-@media screen and (max-width:850px) {
+@media screen and (max-width:1024px) {
   header ul#pclist {
     display:none;
   }

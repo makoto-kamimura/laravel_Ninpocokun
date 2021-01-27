@@ -18,26 +18,26 @@ class PositionsTableSeeder extends Seeder
         ];
         DB::table('positions')->insert($param);
 
-        $param = [
-            'cd' => 5,
-            'name' => '専務',
-            // 'lv' => 90,
-        ];
-        DB::table('positions')->insert($param);
+        // $param = [
+        //     'cd' => 5,
+        //     'name' => '専務',
+        //     // 'lv' => 90,
+        // ];
+        // DB::table('positions')->insert($param);
 
-        $param = [
-            'cd' => 10,
-            'name' => '常務',
-            // 'lv' => 80,
-        ];
-        DB::table('positions')->insert($param);
+        // $param = [
+        //     'cd' => 10,
+        //     'name' => '常務',
+        //     // 'lv' => 80,
+        // ];
+        // DB::table('positions')->insert($param);
 
-        $param = [
-            'cd' => 15,
-            'name' => '役員',
-            // 'lv' => 70,
-        ];
-        DB::table('positions')->insert($param);
+        // $param = [
+        //     'cd' => 15,
+        //     'name' => '役員',
+        //     // 'lv' => 70,
+        // ];
+        // DB::table('positions')->insert($param);
 
         $param = [
             'cd' => 20,
@@ -61,28 +61,28 @@ class PositionsTableSeeder extends Seeder
         DB::table('positions')->insert($param);
 
         
-        $param = [
-            'cd' => 35,
-            'name' => '嘱託社員',
-            // 'lv' => 30,
-        ];
-        DB::table('positions')->insert($param);
+        // $param = [
+        //     'cd' => 35,
+        //     'name' => '嘱託社員',
+        //     // 'lv' => 30,
+        // ];
+        // DB::table('positions')->insert($param);
 
         
-        $param = [
-            'cd' => 45,
-            'name' => '契約社員',
-            // 'lv' => 20,
-        ];
-        DB::table('positions')->insert($param);
+        // $param = [
+        //     'cd' => 45,
+        //     'name' => '契約社員',
+        //     // 'lv' => 20,
+        // ];
+        // DB::table('positions')->insert($param);
 
         
-        $param = [
-            'cd' => 50,
-            'name' => '派遣社員',
-            // 'lv' => 10,
-        ];
-        DB::table('positions')->insert($param);
+        // $param = [
+        //     'cd' => 50,
+        //     'name' => '派遣社員',
+        //     // 'lv' => 10,
+        // ];
+        // DB::table('positions')->insert($param);
 
     }
 }

@@ -37,7 +37,7 @@
                     <td>$report -> dep_div_name</td>
                     <td>$report -> user_name</td>
                     <td class="dailylist">$report -> sagyou</td>
-                    <td>$report -> stat_cd </td>
+                    <td>$report -> stat_name </td>
                 </tr>
                 @endforeach 
             </tbody>
@@ -67,7 +67,7 @@
                     <td>$report2 -> dep_div_name</td>
                     <td>$report2 -> user_name</td>
                     <td class="dailylist">$report2 -> sagyou</td>
-                    <td>$report2 -> stat_cd </td>
+                    <td>$report2 -> stat_name </td>
                 </tr>
                 @endforeach 
             @endif

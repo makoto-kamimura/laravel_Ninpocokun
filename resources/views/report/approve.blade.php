@@ -49,8 +49,6 @@
         <table class="items sort-table m0a tac general" border="1">
             <thead>
                 <tr>
-                    <th style="display:none">no</th> 
-                    {{-- <th >報告日</th> --}}
                     <th>報告日</th>
                     <th>所属部署</th>
                     <th>申請者</th>
@@ -62,7 +60,6 @@
             <tbody>
                 @foreach($reports2 as $report2)
                 <tr class="item clickable-row" data-href="/report/{{$report2 -> no}}"> 
-                <td style="display:none">{{$report2 -> no}}</td>  
                     <td>{{$report2 -> created_at}}</td>
                     <td>{{$report2 -> dep_div_name}}</td>
                     <td>{{$report2 -> user_name}}</td>

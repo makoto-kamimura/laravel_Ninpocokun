@@ -20,7 +20,6 @@
         <!--<table class="m0a tac" border="1">-->
             <thead>
                 <tr> 
-                    <th style="display:none">no</th>
                     <th>報告日</th>
                     <th>件名</th>
                     <th class="dailylist_th3">ステータス</th>
@@ -30,7 +29,6 @@
             @if (isset($reports))
                 @foreach($reports as $report)
                 <tr class="item clickable-row" data-href="/report/{{$report->no}}/edit">
-                    <td style="display:none">{{$report -> no}}</td>
                     <td class="dailylist_td1">{{$report -> created_at}}</td>
                     <td class="dailylist_td2 dailylist">{{$report -> sagyou}}</td>
                     <td class="dailylist_td3">{{$report -> name}}</td>
@@ -48,7 +46,6 @@
         <!--<table class="m0a tac" border="1">-->
             <thead>
                 <tr>
-                    <th style="display:none">no</th> 
                     <th>報告日</th>
                     <th>件名</th>
                     <th class="dailylist_th3">ステータス</th>
@@ -58,7 +55,6 @@
             @if (isset($reports2))
                 @foreach($reports2 as $report2)
                 <tr class="item clickable-row" data-href="/report/{{$report2->no}}">
-                    <td style="display:none">{{$report2 -> no}}</td>
                     <td class="dailylist_td1">{{$report2 -> created_at}}</td>
                     <td class="dailylist_td2 dailylist">{{$report2 -> sagyou}}</td>
                     <td class="dailylist_td3">{{$report2 -> name}}</td>

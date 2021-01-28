@@ -50,7 +50,7 @@
                 <input type="checkbox" id="password-check">パスワードを表示する
             </div>
             <div class='btn_box tac'>
-                <input class="btn btn-primary" type="submit" id="login_submit" value="ログイン" disabled=disabled>
+                <input class="btn btn-primary" type="submit" id="login_submit" value="ログイン">
             </div>
         </form>
       </div>

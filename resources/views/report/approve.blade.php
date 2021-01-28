@@ -31,13 +31,13 @@
             @if (isset($reports))
             <tbody>
                 @foreach($reports as $report)
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
-                    <td style="display:none">$report -> no</td>  
-                    <td>$report -> created_at</td>
-                    <td>$report -> dep_div_name</td>
-                    <td>$report -> user_name</td>
-                    <td class="dailylist">$report -> sagyou</td>
-                    <td>$report -> stat_name </td>
+                <tr class="item clickable-row" data-href="/report/{{$report -> no}}">
+                    <td style="display:none">{{$report -> no}}</td>  
+                    <td>{{$report -> created_at}}</td>
+                    <td>{{$report -> dep_div_name}}</td>
+                    <td>{{$report -> user_name}}</td>
+                    <td class="dailylist">{{$report -> sagyou}}</td>
+                    <td>{{$report -> stat_name}} </td>
                 </tr>
                 @endforeach 
             </tbody>
@@ -50,7 +50,7 @@
             <thead>
                 <tr>
                     <th style="display:none">no</th> 
-                    <th >報告日</th>
+                    {{-- <th >報告日</th> --}}
                     <th>報告日</th>
                     <th>所属部署</th>
                     <th>申請者</th>
@@ -61,13 +61,13 @@
             @if (isset($reports2))
             <tbody>
                 @foreach($reports2 as $report2)
-                <tr class="item clickable-row" data-href="dailyreport_confirm"> 
-                <td style="display:none">$report2 -> no</td>  
-                    <td>$report2 -> created_at</td>
-                    <td>$report2 -> dep_div_name</td>
-                    <td>$report2 -> user_name</td>
-                    <td class="dailylist">$report2 -> sagyou</td>
-                    <td>$report2 -> stat_name </td>
+                <tr class="item clickable-row" data-href="/report/{{$report2 -> no}}"> 
+                <td style="display:none">{{$report2 -> no}}</td>  
+                    <td>{{$report2 -> created_at}}</td>
+                    <td>{{$report2 -> dep_div_name}}</td>
+                    <td>{{$report2 -> user_name}}</td>
+                    <td class="dailylist">{{$report2 -> sagyou}}</td>
+                    <td>{{$report2 -> stat_name}}</td>
                 </tr>
                 @endforeach 
             @endif

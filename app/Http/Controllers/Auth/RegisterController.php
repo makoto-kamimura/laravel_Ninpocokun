@@ -175,7 +175,7 @@ class RegisterController extends Controller
     {
         //社員の一覧を取得する
         $table = DB::table('users');
-        $reports = DB::select(DB::raw(
+        $users = DB::select(DB::raw(
             "SELECT vui.user_cd,
         lpad(vui.user_cd, 5, '0') user_disp_cd,
         vui.dep_div_name,
@@ -188,7 +188,6 @@ class RegisterController extends Controller
         FROM v_user_info vui
         ORDER BY vui.user_cd"
         ));
-        dd($reports);
         //ビュー
         $tagu = 'ユーザー管理';
         //$title1 = 'ユーザー登録';
@@ -197,6 +196,6 @@ class RegisterController extends Controller
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('auth.admin', compact('reports', 'tagu', 'title2', 'css', 'js'));
+        return view('auth.admin', compact('users', 'tagu', 'title2', 'css', 'js'));
     }
 }

@@ -27,13 +27,13 @@
             </tr>
             @if (isset($users))
             @foreach ($users as $user)
-            <tr>
-                <td style="display:none">$user->user_cd</td>
-                <td>$user->user_disp_cd</td>
-                <td>$user->dep_div_name</td>
-                <td>$user->user_name</td>
-                <td>$user->taishoku_date</td>
-                <td>$user->sys_admin</td>
+            <tr data-href="/auth/edit/{{$user->user_cd}}">
+                <td style="display:none">{{$user->user_cd}}</td>
+                <td>{{$user->user_disp_cd}}</td>
+                <td>{{$user->dep_div_name}}</td>
+                <td>{{$user->user_name}}</td>
+                <td>{{$user->taishoku_date}}</td>
+                <td>{{$user->sys_admin}}</td>
             </tr>
             @endforeach 
             @endif

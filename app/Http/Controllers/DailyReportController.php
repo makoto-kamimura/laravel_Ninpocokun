@@ -44,11 +44,6 @@ class DailyReportController extends Controller
             return null;
         }
     }
-    public static function test()
-    {
-        return "ぬるぽ";
-    }
-
 
     /**
      * 日報一覧を表示する
@@ -89,14 +84,11 @@ class DailyReportController extends Controller
         $tagu = '日報';
         $title1 = '日報承認・確認';
         $title2 = '日報一覧';
-        $err_msgs1 = ['2021-01-07 10:00', '作業報告', '未承認'];
-        $err_msgs2 = ['2021-01-06 10:00', '作業報告', '承認'];
-        $err_msgs3 = ['2021-01-05 10:00', '作業報告', '承認'];
         $css = 'dailylist.css';
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.list', compact('reports', 'reports2', 'tagu', 'title1', 'title2', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'css', 'js'));
+        return view('report.list', compact('reports', 'reports2', 'tagu', 'title1', 'title2',  'css', 'js'));
     }
 
     /**
@@ -244,17 +236,12 @@ class DailyReportController extends Controller
         //ビューの動作確認用サンプルデータ作成
         $tagu = '日報登録確認';
         $title = '日報登録確認';
-        $err_msgs1 = 'エラー１-１';
-        $err_msgs2 = 'エラー２-１';
-        $err_msgs3 = 'エラー３-１';
-        $err_msgs4 = 'エラー４-１';
-        $err_msgs5 = 'エラー５-１';
         $css = 'dailyreport_confirm.css';
         $js = 'common.js';
         $is_auth = DailyReportController::isBuka($report);
 
         //ビューを呼び出す
-        return view('report.confirm', compact('report', 'tagu', 'title', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'err_msgs4', 'err_msgs5', 'css', 'js', 'is_auth'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js', 'is_auth'));
     }
 
     /**
@@ -263,25 +250,43 @@ class DailyReportController extends Controller
      */
     public function approve()
     {
+        // 承認待機状態の部下の日報を取得する
+        $current = Auth::id();
+        $table = DB::table('daily_reports');
+        $reports = DB::select(DB::raw("SELECT dr.no, dr.created_at, vui.dep_div_name, vui.user_name, 
+        LEFT(dr.sagyou,12) sagyou, st.name stat_name
+        FROM daily_reports dr
+        LEFT JOIN v_user_info vui
+        ON dr.post_user_cd = vui.user_cd
+        LEFT JOIN statuses st
+        ON dr.status = st.cd
+        WHERE dr.status < 1
+        AND dr.auth_user_cd = :cd
+        ORDER BY dr.no"), ['cd' => $current]);
+
+
+        // 承認済の部下の日報を取得する
+        $table = DB::table('daily_reports');
+        $reports2 = DB::select(DB::raw("SELECT dr.no, dr.created_at, vui.dep_div_name, vui.user_name, 
+        LEFT(dr.sagyou,12) sagyou, st.name stat_name
+        FROM daily_reports dr
+        LEFT JOIN v_user_info vui
+        ON dr.post_user_cd = vui.user_cd
+        LEFT JOIN statuses st
+        ON dr.status = st.cd
+        WHERE dr.status = 1
+        AND dr.auth_user_cd = :cd
+        ORDER BY dr.no"), ['cd' => $current]);
+
         //ビューの動作確認用サンプルデータ作成
         $tagu = '日報承認';
         $title1 = '日報承認';
         $title2 = '日報一覧';
-        $msgs1 = ['2021-01-07 10:00', '営業部一課', '山田太郎', '作業報告', '未承認'];
-        $msgs2 = ['2021-01-06 10:00', '営業部二課', '田中治郎', '作業報告', '承認'];
-        $msgs3 = ['2021-01-05 10:00', '総務部一課', '佐藤浩一', '作業報告', '未承認'];
-        $msgs4 = ['2021-01-04 10:00', '総務部二課', '丸山幸子', '作業報告', '承認'];
-        $msgs5 = ['2021-01-03 10:00', '総務部三課', '武田哲也', '作業報告', '承認'];
-        $err_msgs1 = ['2021-01-07 10:00', '営業部一課', '山田太郎',  '作業報告', '未承認'];
-        $err_msgs2 = ['2021-01-06 10:00', '営業部二課', '田中治郎', '作業報告', '承認'];
-        $err_msgs3 = ['2021-01-05 10:00', '総務部一課', '佐藤浩一',  '作業報告', '承認'];
-        $err_msgs4 = ['2021-01-04 10:00', '総務部二課', '丸山幸子', '作業報告', '承認'];
-        $err_msgs5 = ['2021-01-03 10:00', '総務部三課', '武田哲也', '作業報告', '承認'];
         $css = 'dailylist.css';
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.approve', compact('tagu', 'title1', 'title2', 'msgs1', 'msgs2', 'msgs3', 'msgs4', 'msgs5', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'err_msgs4', 'err_msgs5', 'css', 'js'));
+        return view('report.approve', compact('reports', 'reports2', 'tagu', 'title1', 'title2', 'css', 'js'));
     }
 
     /**

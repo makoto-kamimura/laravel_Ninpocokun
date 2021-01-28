@@ -7,8 +7,10 @@
 
 @section('body')
     <!--<h1 class="text-info tac"><img src="img/logo_s.png" alt="skロゴ小"></h1>-->
-    <p class="btn01"><a href="{{route('report.create')}}"></a></p>
+    @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd != 1)
+    <p class="btn01"><a href="{{route('report.create')}}"></a></p>    
     <p class="btn02"><a href="{{route('report.index')}}"></a></p>
+    @endif
     @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd < 30)
     <p class="btn03"><a href="{{route('report.approve')}}"></a></p>
     @endif

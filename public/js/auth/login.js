@@ -64,7 +64,7 @@ $(function(){
         if(mode == 'dep'){
           params[0] = '/get_user/dep/' + $("#departments").val();
         } else if(mode == 'div'){
-          params[0] = '/get_user/div/' + $("#divisions").val();
+          params[0] = '/get_user/div/' + $("#departments").val() + '/' + $("#divisions").val();
         } 
         params[1] = 'GET';
         params[2] = '';

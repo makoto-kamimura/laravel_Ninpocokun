@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, max-age=0">
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/destyle.css">
@@ -37,9 +37,11 @@
           @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd < 30)
           <li><a href="{{route('report.approve')}}"><img src="/img/menu02.png" alt="日報承認"></a></li>
           @endif
-        <li><a href="{{route('report.index')}}"><img src="/img/menu03.png" alt="日報一覧"></a></li>
-        <li><a href="{{route('report.create')}}"><img src="/img/menu04.png" alt="日報登録"></a></li>
-        <li><a href="{{route('user.logout')}}"><img src="/img/logout.png" alt="ログアウト"></a></li>
+          @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd != 1)
+          <li><a href="{{route('report.index')}}"><img src="/img/menu03.png" alt="日報一覧"></a></li>
+          <li><a href="{{route('report.create')}}"><img src="/img/menu04.png" alt="日報登録"></a></li>
+          @endif
+          <li><a href="{{route('user.logout')}}"><img src="/img/logout.png" alt="ログアウト"></a></li>
         @endif
       </ul>
       <div id="nav-drawer">

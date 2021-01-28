@@ -12,11 +12,17 @@
 */
 
 //メイン画面を表示する
+
+use App\Http\Controllers\DailyReportController;
+
 Route::get('/', 'HomeController@main')->name('main');
 
 // // <<日報管理関係ルーティング>>
 // 日報の承認画面を確認 => apporove
 Route::get('report/approve', 'DailyReportController@approve')->name('report.approve');
+// 日報のの承認/差戻しを実行　=> remand
+Route::post('report/remand', 'DailyReportController@remand')->name('report.remand');
+
 // 登録確認画面を表示 -> confirm
 Route::post('report/confirm', 'DailyReportController@confirm')->name('report.confirm');
 Route::get('report/complete', 'DailyReportController@complete')->name('report.complete');

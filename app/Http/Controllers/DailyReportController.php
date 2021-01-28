@@ -112,6 +112,8 @@ class DailyReportController extends Controller
             'hikitsugi' => '',
             'comment' => '',
         ];
+        \Session::forget('post_cd');
+        \Session::forget('post_no');
 
         //ビューを呼び出す
         return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
@@ -162,7 +164,13 @@ class DailyReportController extends Controller
 
     public function store()
     {
-        $data = \Session::get('report', 'データが存在しません');;
+        $data = \Session::get('report', 'データが存在しません');
+        $data['post_cd'] = \Session::get('post_cd');
+        \Session::forget('post_cd');
+        if (isset($data['post_cd'])) {
+            $data['no'] =  \Session::get('post_no');
+            \Session::forget('post_no');
+        }
 
         // 日報noの存在でinsert update分岐
         if (!isset($data['no'])) {
@@ -188,16 +196,17 @@ class DailyReportController extends Controller
                     'status' => 0,
                 ]);
                 \DB::commit();
-            } catch (\Throwable $e) {
+            } catch (\Throwable $th) {
                 // 登録失敗の場合はロールバック
                 \DB::rollback();
+                dd($th);
                 abort(500);
             }
         } else {
             //日報noがある場合は編集を実行
             \DB::beginTransaction();
             try {
-                $report = Report::find($data['no']);
+                $report = Daily_report::find($data['no']);
                 $report->fill([
                     'sagyou' => $data['sagyou'],
                     'shintyoku' => $data['shintyoku'],
@@ -231,6 +240,8 @@ class DailyReportController extends Controller
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('report.index'));
         }
+
+        \Session::put('post_no', $report->no);
 
 
         //ビューの動作確認用サンプルデータ作成
@@ -290,6 +301,50 @@ class DailyReportController extends Controller
     }
 
     /**
+     * 日報の承認/差戻しを実行
+     */
+    public function remand(ReportRequest $request)
+    {
+        //コメントを取得
+        $input = $request->input();
+        $post_no =  \Session::get('post_no');
+        if ($input['submit'] == "承認する") {
+            \DB::beginTransaction();
+            try {
+                $report = Daily_report::find($post_no); ///記事番号);
+                $report->fill([
+                    'comment' => $input['comment'],
+                    // 承認ステータスへ変更　0=>1
+                    'status' => 1,
+                ]);
+                $report->save();
+                \DB::commit();
+            } catch (\Throwable $th) {
+                \DB::rollback();
+                dd($th);
+                abort(500);
+            }
+        } else {
+            \DB::beginTransaction();
+            try {
+                $report = Daily_report::find($post_no); ///記事番号);
+                $report->fill([
+                    'comment' => $input['comment'],
+                    // 差戻しステータスへ変更 0=>-1
+                    'status' => -1,
+                ]);
+                $report->save();
+                \DB::commit();
+            } catch (\Throwable $th) {
+                \DB::rollback();
+                abort(500);
+            }
+        }
+        \Session::flash('err_msg', '日報を登録しました');
+        return redirect(route('report.complete'));
+    }
+
+    /**
      * 日報差戻しの編集フォームを表示
      *
      * @param  int  $id
@@ -311,6 +366,7 @@ class DailyReportController extends Controller
         }
         \Session::put('auth_cd', $report->auth_user_cd);
         \Session::put('post_cd', $report->post_user_cd);
+        \Session::put('post_no', $report->no);
 
         return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
     }

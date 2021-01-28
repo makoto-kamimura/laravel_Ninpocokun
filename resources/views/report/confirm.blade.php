@@ -13,7 +13,11 @@
 <section>
   <!-- <h1>@yield('title')</h1> -->
   <h1>日報報告</h1>
+  @if ($is_auth)
+  <form action="{{route('report.remand')}}" method="post">
+  @else
   <form action="{{route('report.store')}}" method="post">
+  @endif
     @csrf
     <table border="1" class="m0a">
       {{-- @if (isset($err_msgs1, $err_msgs2, $err_msgs3, $err_msgs4, $err_msgs5)) --}}
@@ -51,7 +55,7 @@
     @if($is_auth)
     <div class="">
       <label for="">コメント</label>
-      <textarea cols="70" rows="5" name="hikitsugi" maxlength="360" placeholder="コメントを入力"></textarea>
+      <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力"></textarea>
     </div>
     @endif
 
@@ -61,8 +65,8 @@
     <div class='btn_box tac'>
     <table class='btn'>
       <tr>
-        <td><input class='btn' type="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
-        <td><input class='btn' type="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
+        <td><input class='btn' type="submit" name="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
+        <td><input class='btn' type="submit" name="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
       </tr>
     </table>
     </div>

@@ -40,7 +40,7 @@
             @if(old('comment' , $report -> comment ) == !NULL)
             <div class="comment">
                 <label for="">コメント</label>
-                <p name="comment"> old('comment' , $report -> comment ) </p>
+                <p name="comment"> {{$report -> comment}} </p>
             </div>
             @endif
             <!--

@@ -34,7 +34,6 @@ class UserRequest extends FormRequest
             'mei_kana' => ['required'],
             // 'dep_cd' => ['required'],
             // 'div_cd' => ['required'],
-            'taishoku_date' => ['required'],
             'password' => ['required'],
             //'pos_cd' => ['required'],
             //'sys_admin' => ['required'],

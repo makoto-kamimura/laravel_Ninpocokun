@@ -57,7 +57,7 @@
              <tbody>
             @if (isset($reports2))
                 @foreach($reports2 as $report2)
-                <tr class="item clickable-row" data-href="dailyreport_confirm">
+                <tr class="item clickable-row" data-href="/report/{{$report2->no}}">
                     <td style="display:none">{{$report2 -> no}}</td>
                     <td class="dailylist_td1">{{$report2 -> created_at}}</td>
                     <td class="dailylist_td2 dailylist">{{$report2 -> sagyou}}</td>

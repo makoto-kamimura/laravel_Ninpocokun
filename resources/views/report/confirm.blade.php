@@ -24,7 +24,7 @@
       <tr>
         <th>本日の作業内容</th>
         <td class="todaywork">
-          {{$_POST['sagyou']}}
+          {{$report -> sagyou}}
           {{-- 本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります --}}
         </td>
       </tr>
@@ -32,19 +32,19 @@
         <th>進捗状況</th>
         <!-- <td>@yield('err_msgs3')</td> -->
         {{-- <td>進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります</td> --}}
-        <td>{{$_POST['shintyoku']}}</td>
+        <td>{{$report -> shintyoku}}</td>
       </tr>
       <tr>
         <th>残作業</th>
         <!-- <td>@yield('err_msgs4')</td> -->
         {{-- <td>残作業についての内容が入ります残作業についての内容が入ります残作業についての内容が入ります残作業についての内容が入ります残作業についての内容が入ります</td> --}}
-        <td>{{$_POST['zansagyou']}}</td>
+        <td>{{$report -> zansagyou}}</td>
       </tr>
       <tr>
         <th>引き継ぎ事項</th>
         <!-- <td>@yield('err_msgs5')</td> -->
         {{-- <td>引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります</td> --}}
-        <td>{{$_POST['hikitsugi']}}</td>
+        <td>{{$report -> hikitsugi}}</td>
       </tr>
       {{-- @endif --}}
     </table>
@@ -56,6 +56,8 @@
     @endif
 
     <!-- 新規日報登録/編集は下記_20210125_kamimura -->
+    {{-- 203->205のボタンを消す為に一時的に入れてます --}}
+    @if($report -> status < 1 )
     <div class='btn_box tac'>
     <table class='btn'>
       <tr>
@@ -64,6 +66,7 @@
       </tr>
     </table>
     </div>
+    @endif
 
     <!-- 日報承認/否認は下記_20210125_kamimura -->
     <!-- <table class='btn'>

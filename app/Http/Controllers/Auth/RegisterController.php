@@ -173,19 +173,30 @@ class RegisterController extends Controller
 
     public function admin()
     {
-        //ビューの動作確認用サンプルデータ作成
+        //社員の一覧を取得する
+        $table = DB::table('users');
+        $reports = DB::select(DB::raw(
+            "SELECT vui.user_cd,
+        lpad(vui.user_cd, 5, '0') user_disp_cd,
+        vui.dep_div_name,
+        vui.user_name,
+        vui.taishoku_date,
+        CASE 
+            WHEN vui.sys_admin = 1 THEN '○'
+            ELSE '×'
+        END AS sys_admin
+        FROM v_user_info vui
+        ORDER BY vui.user_cd"
+        ));
+        dd($reports);
+        //ビュー
         $tagu = 'ユーザー管理';
         //$title1 = 'ユーザー登録';
         $title2 = 'ユーザーリスト';
-        $msgs1 = ['0001', '営業部一課', '山田太郎', '20-01-01', '○'];
-        $msgs2 = ['0002', '営業部二課', '田中治郎', '20-01-01', '×'];
-        $msgs3 = ['0003', '総務部一課', '佐藤浩一', '20-01-01', '×'];
-        $msgs4 = ['0004', '総務部二課', '丸山幸子', '20-01-01', '×'];
-        $msgs5 = ['0005', '総務部三課', '武田哲也', '20-01-01', '×'];
         $css = 'user.css';
         $js = 'common.js';
 
         //ビューを呼び出す
-        return view('auth.admin', compact('tagu', 'title2', 'msgs1', 'msgs2', 'msgs3', 'msgs4', 'msgs5', 'css', 'js'));
+        return view('auth.admin', compact('reports', 'tagu', 'title2', 'css', 'js'));
     }
 }

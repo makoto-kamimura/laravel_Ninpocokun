@@ -19,24 +19,37 @@ class DailyReportController extends Controller
         $this->middleware('auth');
     }
 
-
-    // // 部下の投稿かどうかを判定する
-    // public function isBuka($data)
-    // {
-    //     //ログインIDを取得
-    //     $current = Auth::id();
-    //     // ログイン者と記事内IDを比較
-    //     if ($current == $data['post_user_cd'] || $current == $data['auth_user_cd']) {
-    //         if ($current == $data['auth_user_cd']) {
-    //             $is_auth = true; // 上司です
-    //         } else {
-    //             $current = true;　// 本人です
-    //         }
-    //     }
-    // }
-
-
     // <<とりあえず日報作成でやりたい事を書いていきます>>
+
+    // 部下の投稿かどうかを判定する
+    public static function isBuka($data)
+    {
+        //ログインIDを取得
+        $current = Auth::id();
+        //セッションに登録した投稿者IDと承認者IDを取得
+        // $data->post_user_cd = \Session::get('post_cd');
+        // $data->auth_user_cd = \Session::get('auth_cd');
+        // ログイン者と記事内IDを比較
+        if (isset($data->post_user_cd)) {
+            if ($current == $data->auth_user_cd) {
+                return true; // 上司です
+            } elseif ($current == $data->post_user_cd) {
+                return false; // 部下です
+            } else {
+                // 当該日報に関係ない第三者に直接リクエストされた場合の対応
+                return null;
+            }
+        } else {
+            // 存在しない日報idをリクエストされた場合の対応
+            return null;
+        }
+    }
+    public static function test()
+    {
+        return "ぬるぽ";
+    }
+
+
     /**
      * 日報一覧を表示する
      *
@@ -123,9 +136,22 @@ class DailyReportController extends Controller
         $report = $request->input();
         \Session::put('report', $report);
 
+        if (!isset($report['comment'])) {
+            $report['comment'] = "";
+        }
+        $report = (object)[
+            'sagyou' => $report['sagyou'],
+            'shintyoku' => $report['shintyoku'],
+            'zansagyou' => $report['zansagyou'],
+            'hikitsugi' => $report['hikitsugi'],
+            'comment' => $report['comment'],
+            'post_user_cd' => \Session::get('post_cd'),
+            'auth_user_cd' => \Session::get('auth_cd'),
+            'status' => -1,
+        ];
         $tagu = '日報登録確認';
         $title = '日報登録確認';
-        $is_auth = false;
+        $is_auth = DailyReportController::isBuka($report);
 
         $css = 'dailyreport_confirm.css';
         $js = 'common.js';
@@ -190,7 +216,6 @@ class DailyReportController extends Controller
                 \DB::commit();
             } catch (\Throwable $th) {
                 \DB::rollback();
-                dd($th);
                 abort(500);
             }
         }
@@ -207,12 +232,15 @@ class DailyReportController extends Controller
 
     public function show($id)
     {
+
         $report = Daily_report::find($id);
 
         if (is_null($report)) {
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('report.index'));
         }
+
+
         //ビューの動作確認用サンプルデータ作成
         $tagu = '日報登録確認';
         $title = '日報登録確認';
@@ -223,9 +251,10 @@ class DailyReportController extends Controller
         $err_msgs5 = 'エラー５-１';
         $css = 'dailyreport_confirm.css';
         $js = 'common.js';
+        $is_auth = DailyReportController::isBuka($report);
 
         //ビューを呼び出す
-        return view('report.confirm', compact('tagu', 'title', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'err_msgs4', 'err_msgs5', 'css', 'js'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'err_msgs1', 'err_msgs2', 'err_msgs3', 'err_msgs4', 'err_msgs5', 'css', 'js', 'is_auth'));
     }
 
     /**
@@ -275,24 +304,11 @@ class DailyReportController extends Controller
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('report.index'));
         }
+        \Session::put('auth_cd', $report->auth_user_cd);
+        \Session::put('post_cd', $report->post_user_cd);
+
         return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
     }
-
-    // /**
-    //  * 日報差戻しの編集を実行
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-
-    // public function update()
-    // {
-    //     // セッションから日報を取得
-    //     $data = \Session::get('report', 'データが存在しない');;
-
-    //     //　差戻し日報を編集する
-    // }
 
     /**
      * 日報登録完了画面を表示する

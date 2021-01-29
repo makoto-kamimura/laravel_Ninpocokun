@@ -7,7 +7,7 @@
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
-        <form action="usertouroku_confirm" method="get">
+        <form action="usertouroku_confirm" method="post">
         	<div class="departments">
                 <label for="departments">所属部</label>
                 <select name="departments" id="departments" onchange="createMenu01(this.value)">
@@ -55,7 +55,7 @@
             <div class="password_box">
     			<div class="password_mainbox">
                     <label for="password">パスワード</label>
-                    <input type="password" name="password" class="field form-control" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
+                    <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
                 </div>
                 <div class="password_subbox">
                     <input type="checkbox" id="password_disp">パスワードを表示する
@@ -64,7 +64,7 @@
             <div class="password_box">
                 <div class="password_mainbox">
                     <label for="password">パスワード確認</label>
-                    <input type="password" name="password_check" class="field form-control" id="password_check" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" oninput="CheckPassword(this)" required>
+                    <input type="password" name="password_check" class="field" id="password_check" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" oninput="CheckPassword(this)" required>
                 </div>
                 <div class="password_subbox">
                     <input type="checkbox" id="password_disp2">パスワードを表示する

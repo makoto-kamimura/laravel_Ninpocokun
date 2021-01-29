@@ -18,7 +18,7 @@
 
     <script src="js/jquery.pagination.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+    <script src="js/jquery.tablesorter.js"></script>
 
     <title>@yield('title')</title>
   </head>
@@ -26,11 +26,11 @@
     <header>
       <p class="homelink"><a href="home"><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
       <ul id="pclist">
-        <li><a href="user"><img src="img/menu01.png" alt="ユーザー管理"></a></li>
-        <li><a href="dailylist_superior"><img src="img/menu02.png" alt="日報承認"></a></li>
-        <li><a href="dailylist"><img src="img/menu03.png" alt="日報一覧"></a></li>
-        <li><a href="dailyreport"><img src="img/menu04.png" alt="日報登録"></a></li>
-        <li><a href="/login"><img src="img/logout.png" alt="ログアウト"></a></li>
+        <li class="odd"><a href="user"><img src="img/menu01.png" alt="ユーザー管理"></a></li>
+        <li class="even"><a href="dailylist_superior"><img src="img/menu02.png" alt="日報承認"></a></li>
+        <li class="odd"><a href="dailylist"><img src="img/menu03.png" alt="日報一覧"></a></li>
+        <li class="even"><a href="dailyreport"><img src="img/menu04.png" alt="日報登録"></a></li>
+        <li class="logout"><a href="/login"><img src="img/logout.png" alt="ログアウト"></a></li>
       </ul>
       <div id="nav-drawer">
         <input id="nav-input" type="checkbox" class="nav-unshown">

@@ -1,6 +1,12 @@
 {{-- home_superior.blade.phpからhome.blade.phpに変更してます --}}
 @extends('common.layout')
 
+@section('jq_plugins','')
+
+@section('page_js')
+<script src="/js/home.js"></script>
+@endsection
+
 @section('title')
   {{$title}}
 @endsection

@@ -2,6 +2,16 @@
 
 @extends('common.layout')
 
+@section('jq_plugins')
+<script src="/js/jquery.pagination.js"></script> 
+<script src="/js/jquery.tablesorter.min.js"></script>
+@endsection
+
+@section('page_js')
+<script src="/js/report/approve.js"></script>
+@endsection
+
+
 @section('tagu')
   {{$tagu}}
 @endsection

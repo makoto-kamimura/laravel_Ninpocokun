@@ -1,6 +1,15 @@
 {{-- user.blade.phpからadmin.blade.phpに変更 --}}
 @extends('common.layout')
 
+@section('jq_plugins')
+<script src="/js/jquery.pagination.js"></script> 
+<script src="/js/jquery.tablesorter.min.js"></script>
+@endsection
+
+@section('page_js')
+<script src="/js/auth/admin.js"></script>
+@endsection
+
 @section('tagu')
   {{$tagu}}
 @endsection

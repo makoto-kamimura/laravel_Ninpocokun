@@ -26,9 +26,6 @@ class DailyReportController extends Controller
     {
         //ログインIDを取得
         $current = Auth::id();
-        //セッションに登録した投稿者IDと承認者IDを取得
-        // $data->post_user_cd = \Session::get('post_cd');
-        // $data->auth_user_cd = \Session::get('auth_cd');
         // ログイン者と記事内IDを比較
         if (isset($data->post_user_cd)) {
             if ($current == $data->auth_user_cd) {
@@ -241,6 +238,7 @@ class DailyReportController extends Controller
             return redirect(route('report.index'));
         }
 
+        // セッションに記事noを登録
         \Session::put('post_no', $report->no);
 
 

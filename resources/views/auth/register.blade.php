@@ -64,14 +64,6 @@
                 <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana', $user -> sei_kana) }}"required>
                 <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana', $user -> mei_kana) }}" required>
             </div>
-            <div>
-            	<label>メールアドレス</label>
-  				<input class="email" type="email" name="email" autocomplete="email"  value="{{ old('email', $user -> email) }}" required>
-			</div>
-			<div>
-				<label>メールアドレス確認</label>
-  				<input class="email" type="email" name="email" autocomplete="email" value="{{ old('email', $user -> email) }}" required>
-			</div>
 			<div id="password_box">
                 <label for="password">パスワード</label>
                 <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>

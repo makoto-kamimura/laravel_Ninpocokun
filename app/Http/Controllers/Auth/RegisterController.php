@@ -63,6 +63,7 @@ class RegisterController extends Controller
      */
     protected function store()
     {
+        // セッションから登録データを取得
         $data = \Session::get('user', 'データが存在しない');;
         $data['cd'] = \Session::get('cd');
         \Session::forget('cd');
@@ -80,7 +81,7 @@ class RegisterController extends Controller
                     'sei_kana' => $data['sei_kana'],
                     'mei_kana' => $data['mei_kana'],
                     'dep_cd' => 10, // $data['dep_cd'],
-                    'div_cd' => 20, // $data['div_cd'],
+                    'div_cd' => 10, // $data['div_cd'],
                     'taishoku_date' => $data['taishoku_date'],
                     'password' => Hash::make($data['password']),
                     'pos_cd' => 5, // $data['pos_cd'],
@@ -145,7 +146,6 @@ class RegisterController extends Controller
             'password' => '',
             'pos_cd' => '',
             'sys_admin' => '',
-            'email' => '', // 後で消す
         ];
         \Session::forget('cd');
 

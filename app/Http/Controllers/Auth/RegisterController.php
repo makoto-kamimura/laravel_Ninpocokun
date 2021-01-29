@@ -64,31 +64,61 @@ class RegisterController extends Controller
     protected function store()
     {
         $data = \Session::get('user', 'データが存在しない');;
+        $data['cd'] = \Session::get('cd');
+        \Session::forget('cd');
 
-        // トランザクション処理
-        \DB::beginTransaction();
-        try {
-            $max_cd = DB::table('users')->max('cd');
-            User::create([
-                'cd' => $max_cd + 1,
-                'sei' => $data['sei'],
-                'mei' => $data['mei'],
-                'sei_kana' => $data['sei_kana'],
-                'mei_kana' => $data['mei_kana'],
-                'dep_cd' => 10, // $data['dep_cd'],
-                'div_cd' => 20, // $data['div_cd'],
-                'taishoku_date' => $data['taishoku_date'],
-                'password' => Hash::make($data['password']),
-                'pos_cd' => 5, // $data['pos_cd'],
-                'sys_admin' => 1, // $data['sys_admin'],
-            ]);
-            \DB::commit();
-        } catch (\Throwable $e) {
-            dd($e);
-            // 登録失敗の場合はロールバック
-            \DB::rollback();
-            abort(500);
+        // 社員番号の有無でINSERT UPDATEを判定
+        if (!isset($data['cd'])) {
+            // トランザクション処理
+            \DB::beginTransaction();
+            try {
+                $max_cd = DB::table('users')->max('cd');
+                User::create([
+                    'cd' => $max_cd + 1,
+                    'sei' => $data['sei'],
+                    'mei' => $data['mei'],
+                    'sei_kana' => $data['sei_kana'],
+                    'mei_kana' => $data['mei_kana'],
+                    'dep_cd' => 10, // $data['dep_cd'],
+                    'div_cd' => 20, // $data['div_cd'],
+                    'taishoku_date' => $data['taishoku_date'],
+                    'password' => Hash::make($data['password']),
+                    'pos_cd' => 5, // $data['pos_cd'],
+                    'sys_admin' => 0, //$data['sys_admin'],
+                ]);
+                \DB::commit();
+            } catch (\Throwable $e) {
+                dd($e);
+                // 登録失敗の場合はロールバック
+                \DB::rollback();
+                abort(500);
+            }
+        } else {
+            //日報noがある場合は編集を実行
+            \DB::beginTransaction();
+            try {
+                $user = User::find($data['cd']);
+                $user->fill([
+                    'sei' => $data['sei'],
+                    'mei' => $data['mei'],
+                    'sei_kana' => $data['sei_kana'],
+                    'mei_kana' => $data['mei_kana'],
+                    'dep_cd' => 10, // $data['dep_cd'],
+                    'div_cd' => 20, // $data['div_cd'],
+                    'taishoku_date' => $data['taishoku_date'],
+                    'password' => Hash::make($data['password']),
+                    'pos_cd' => 5, // $data['pos_cd'],
+                    'sys_admin' => 0,
+                ]);
+                $user->save();
+                \DB::commit();
+            } catch (\Throwable $th) {
+                \DB::rollback();
+                abort(500);
+            }
         }
+
+
         \Session::flash('err_msg', '登録しました');
         return redirect(route('user.complete'));
     }
@@ -104,12 +134,23 @@ class RegisterController extends Controller
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
         $js = 'common.js';
-        if (!empty($errors)) {
-            dd($errors);
-        }
+        $user = (object)[
+            'sei' => '',
+            'mei' => '',
+            'sei_kana' => '',
+            'mei_kana' => '',
+            'dep_cd' => '',
+            'div_cd' => '',
+            'taishoku_date' => '',
+            'password' => '',
+            'pos_cd' => '',
+            'sys_admin' => '',
+            'email' => '', // 後で消す
+        ];
+        \Session::forget('cd');
 
         //ビューを呼び出す
-        return view('auth.register', compact('title', 'err_msgs', 'css', 'js'));
+        return view('auth.register', compact('user', 'title', 'err_msgs', 'css', 'js'));
     }
 
     /**
@@ -139,7 +180,18 @@ class RegisterController extends Controller
         $title = 'メインメニュー';
         $css = 'base.css';
         $js = 'common.js';
-        return view('auth.register', compact('title', 'css', 'js'));
+
+        $user = User::find($id);
+
+        if (is_null($user)) {
+            \Session::flash('err_msg', 'データがありません');
+            return redirect(route('user.admin'));
+        }
+
+        //Sessionに社員コードを登録
+        \Session::put('cd', $user->cd);
+
+        return view('auth.register', compact('user', 'title', 'css', 'js'));
     }
     /**
      * ユーザー編集を実行する

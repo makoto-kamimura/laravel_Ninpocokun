@@ -33,7 +33,7 @@
             </div>
             <div>
                 <label for="sys_admin">システム管理者</label>
-                <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin') }}">
+                <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin' , $user -> sys_admin ) }}">
             </div>
             <div class="position">
                 <label for="position">役職</label>
@@ -52,25 +52,25 @@
             <!-- ユーザー情報変更時のみ項目表示を想定_20210125_kamimura -->
             <div>
                 <label>退社日</label>
-                <input type="date" name="taishoku_date" value="{{ old('taishoku_date') }}">
+                <input type="date" name="taishoku_date" value="{{ old('taishoku_date' , $user -> taishoku_date ) }}">
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>
-                <input type="text" name="sei" class="name" placeholder="姓" value="{{ old('sei') }}">
-                <input type="text" name="mei" class="name" placeholder="名" value="{{ old('mei') }}">
+                <input type="text" name="sei" class="name" placeholder="姓" value="{{ old('sei' , $user -> sei ) }}">
+                <input type="text" name="mei" class="name" placeholder="名" value="{{ old('mei' , $user -> mei ) }}">
             </div>
             <div class="name">
                 <label>名前（カナ）</label>
-                <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana') }}"required>
-                <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana') }}" required>
+                <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana', $user -> sei_kana) }}"required>
+                <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana', $user -> mei_kana) }}" required>
             </div>
             <div>
             	<label>メールアドレス</label>
-  				<input class="email" type="email" name="email" autocomplete="email"  value="{{ old('email') }}" required>
+  				<input class="email" type="email" name="email" autocomplete="email"  value="{{ old('email', $user -> email) }}" required>
 			</div>
 			<div>
 				<label>メールアドレス確認</label>
-  				<input class="email" type="email" name="email" autocomplete="email" value="{{ old('email') }}" required>
+  				<input class="email" type="email" name="email" autocomplete="email" value="{{ old('email', $user -> email) }}" required>
 			</div>
 			<div id="password_box">
                 <label for="password">パスワード</label>

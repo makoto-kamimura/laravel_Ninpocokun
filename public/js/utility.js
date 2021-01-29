@@ -57,9 +57,14 @@ function ajaxbase(params){
  * @param {String} trElemSelector テーブル内の行を指すセレクタ
  */
 function initPagenation(tableElemSelector,trElemSelector){
-$(tableElemSelector).pagination({
-    itemElement : '> > ' + trElemSelector // アイテムの要素
-});
+  $(tableElemSelector).pagination({
+      itemElement : '> > ' + trElemSelector // アイテムの要素
+  });
+
+  $("div:has(p.prev-page)").addClass("pagenation");
+  $("div.pagenation").wrapInner("<div>");
+  $(".pagenation p.prev-page button").append("< 前の５件");
+  $(".pagenation p.next-page button").prepend("次の５件 >");
 }
 
 

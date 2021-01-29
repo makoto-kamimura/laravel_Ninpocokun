@@ -39,10 +39,15 @@ div.btn_box {
 }
 
 div.btn_box input.btn {
+	width: 50%;
 	background-color: #f29214;
 }
 
 .password_box {
+	margin-bottom: 0;
+}
+
+.password_mainbox {
 	display: inline-block;;
 }
 

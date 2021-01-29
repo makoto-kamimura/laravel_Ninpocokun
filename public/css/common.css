@@ -8,7 +8,7 @@ header {
 	position: relative;
 	padding: 12px 0 10px;
 	background-color: #007aac;
-	border-bottom: 1px solid #165e83;
+	border-bottom: 5px solid #165e83;
 }
 
 header p {
@@ -31,16 +31,26 @@ header p span:last-of-type {
 }
 
 header ul#pclist {
-	width: 600px;
 	display: flex;
 	float: right;
 	margin: 6px 10px 0 0;
 }
 
-header ul#pclist li:nth-of-type(odd) {
-	padding: 0 8px;
+header ul#pclist li {
+  padding: 0 4px;
 }
 
+header ul#pclist li.odd {
+  width: 110px;
+}
+
+header ul#pclist li.even {
+  width: 110px;
+}
+
+header ul#pclist li.logout {
+  width: 92px;
+}
 
 header ul#pclist li a:hover {
 	opacity: 0.8;
@@ -55,7 +65,7 @@ section {
 
 section.main {
 	width: 70%;
-	border: 1px solid #b0c4de;
+	border: 3px solid #b0c4de;
     border-top: none;
 }
 

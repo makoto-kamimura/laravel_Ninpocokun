@@ -91,6 +91,11 @@ $(window).on('load',function() {
     itemElement : '> > tr.item' // アイテムの要素
   });
 
+  $("div:has(p.prev-page)").addClass("pagenation");
+  $("div.pagenation").wrapInner("<div>");
+  $(".pagenation p.prev-page button").append("< 前の５件");
+  $(".pagenation p.next-page button").prepend("次の５件 >");
+
 
 
 //ソート設定
@@ -106,13 +111,19 @@ $(window).on('load',function() {
 
 
 
-//ページネーション設定
-  $("div:has(p.prev-page)").addClass("pagenation");
-  $("div.pagenation").wrapInner("<div>");
-  $(".pagenation p.prev-page button").append("< 前の５件");
-  $(".pagenation p.next-page button").prepend("次の５件 >");
-  
+ });
 
-  
-});
 
+
+//パスワードチェック
+  function CheckPassword(confirm){
+    // 入力値取得
+    var input1 = password.value;
+    var input2 = password_check.value;
+    // パスワード比較
+    if(input1 != input2){
+      confirm.setCustomValidity("入力値が一致しません。");
+    }else{
+      confirm.setCustomValidity('');
+    }
+  }

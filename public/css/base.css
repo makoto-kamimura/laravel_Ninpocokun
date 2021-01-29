@@ -13,7 +13,7 @@ h1 {
 }
 
 form {
-	width: 246px;
+	width: 88%;
 	margin: 0 auto;
 }
 
@@ -149,9 +149,9 @@ div.btn_box input.btn:hover {
 		padding: 40px 0 60px;
 	}
 
-	#password, select {
+	/*#password, select {
     	width: 100%;
-	}
+	}*/
 
 	form div label {
 		display: block;

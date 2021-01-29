@@ -18,10 +18,6 @@ section {
 	padding-bottom: 20px;
 }
 
-form {
-	width: 462px;
-}
-
 label {
 	width: 150px;
 }
@@ -35,7 +31,7 @@ input.name {
 }
 
 input.email {
-	width: 66%;
+	width: 45%;
 }
 
 div.btn_box {
@@ -64,17 +60,11 @@ div.btn_box input.btn {
 		padding: 20px;
 	}
 
-	form {
-		width: 100%;
-	}
-
 	div.name input:first-of-type {
 		margin-bottom: 5px;
 	}
 
-	input.email {
-		width: 100%;
-	}
+
 }
 
 p.complete {
@@ -88,5 +78,9 @@ p.complete {
 @media screen and (max-width:500px){
 	form {
 		width: 76%;
+	}
+
+	input.email {
+		width: 100%;
 	}
 }

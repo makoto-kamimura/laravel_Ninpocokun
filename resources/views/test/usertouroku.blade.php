@@ -54,25 +54,29 @@
             </div>
             <div>
             	<label>メールアドレス</label>
-  				<input id="email" class="email" type="email" name="email" autocomplete="email" required>
+  				<input class="email" type="email" name="email" autocomplete="email" required>
 			</div>
 			<div>
 				<label>メールアドレス確認</label>
   				<input class="email" type="email" name="email" autocomplete="email" required>
 			</div>
-			<div class="password_box">
-                <label for="password">パスワード</label>
-                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
-            </div>
-            <div class="password_subbox">
-                <input type="checkbox" id="password_disp">パスワードを表示する
-            </div>
-            <div class="password_box">
-                <label for="password">パスワード確認</label>
-                <input type="password" name="password_check" class="field" id="password_check" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
-            </div>
-            <div class="password_subbox">
-                <input type="checkbox" id="password_disp2">パスワードを表示する
+            <div>
+    			<div class="password_box">
+                    <label for="password">パスワード</label>
+                    <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
+                </div>
+                <div class="password_subbox">
+                    <input type="checkbox" id="password_disp">パスワードを表示する
+                </div>
+            </div> 
+            <div>
+                <div class="password_box">
+                    <label for="password">パスワード確認</label>
+                    <input type="password" name="password_check" class="field" id="password_check" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
+                </div>
+                <div class="password_subbox">
+                    <input type="checkbox" id="password_disp2">パスワードを表示する
+                </div>
             </div>
 			<div class='btn_box tac'>
             	<input id="submit" class='btn' type="submit" value="確認する">

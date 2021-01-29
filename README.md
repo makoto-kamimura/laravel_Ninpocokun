@@ -52,6 +52,8 @@ cscript sql_lib\sql_file_exec.vbs (データベース名) (DBユーザー名) (D
 
 # Author
 
+aaaa
+
 * 代表取締役	前島さん		DB・PHP 及び 実務全般のフォロー
 
 * アルバイト	藤井さん		フロントエンド（HTML・CSS）

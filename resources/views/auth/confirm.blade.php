@@ -2,6 +2,12 @@
 
 @extends('common.layout')
 
+@section('jq_plugins','')
+
+@section('page_js')
+<script src="/js/auth/confirm.js"></script>
+@endsection
+
 @section('title')
   {{$title}}
 @endsection
@@ -37,10 +43,6 @@
                     <th>氏名（カナ）</th>
                     <td class="name_td">{{$_POST['sei_kana']}}</td>
                     <td>{{$_POST['mei_kana']}}</td>
-                </tr>
-                <tr>
-                    <th>メールアドレス</th>
-                    <td colspan="2">{{$_POST['email']}}</td>
                 </tr>
                 <tr>
                     <th>パスワード</th>

@@ -2,6 +2,12 @@
 
 @extends('common.layout')
 
+@section('jq_plugins','')
+
+@section('page_js')
+<script src="/js/report/complete.js"></script>
+@endsection
+
 @section('tagu')
   {{$tagu}}
 @endsection

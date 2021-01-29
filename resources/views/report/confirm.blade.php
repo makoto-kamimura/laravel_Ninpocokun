@@ -1,6 +1,12 @@
 {{-- dailyreport_confirm.blade.phpからconfirm.phpへ変更 --}}
 @extends('common.layout')
 
+@section('jq_plugins','')
+
+@section('page_js')
+<script src="/js/report/confirm.js"></script>
+@endsection
+
 @section('tagu')
 {{$tagu}}
 @endsection

@@ -14,16 +14,10 @@
     <link rel="stylesheet" href="/css/{{$css}}">
 
     <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/jquery.pagination.js"></script>
-    @if (isset( $js ))
-    <script type="text/javascript" src="/js/{{$js}}"></script>
-    @endif
-    @if (isset( $js2 ))
-    <script type="text/javascript" src="/js/{{$js2}}"></script>
-    @endif
-    @if (isset( $js3 ))
-    <script type="text/javascript" src="/js/{{$js3}}"></script>
-    @endif
+    @yield('jq_plugins')
+    <script src="/js/utility.js"></script>
+    @yield('page_js')
+
     <title>@yield('title')</title>
   </head>
   <body>
@@ -32,16 +26,16 @@
       <ul id="pclist">
         @if(Auth::check())
           @if (isset( Auth::user()->sys_admin ) && Auth::user()->sys_admin == 1)
-          <li><a href="{{route('user.admin')}}"><img src="/img/menu01.png" alt="ユーザー管理"></a></li>
+          <li class="odd"><a href="{{route('user.admin')}}"><img src="/img/menu01.png" alt="ユーザー管理"></a></li>
           @endif
           @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd < 30)
-          <li><a href="{{route('report.approve')}}"><img src="/img/menu02.png" alt="日報承認"></a></li>
+          <li class="even"><a href="{{route('report.approve')}}"><img src="/img/menu02.png" alt="日報承認"></a></li>
           @endif
           @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd != 1)
-          <li><a href="{{route('report.index')}}"><img src="/img/menu03.png" alt="日報一覧"></a></li>
-          <li><a href="{{route('report.create')}}"><img src="/img/menu04.png" alt="日報登録"></a></li>
+          <li class="odd"><a href="{{route('report.index')}}"><img src="/img/menu03.png" alt="日報一覧"></a></li>
+          <li class="even"><a href="{{route('report.create')}}"><img src="/img/menu04.png" alt="日報登録"></a></li>
           @endif
-          <li><a href="{{route('user.logout')}}"><img src="/img/logout.png" alt="ログアウト"></a></li>
+          <li class="logout"><a href="{{route('user.logout')}}"><img src="/img/logout.png" alt="ログアウト"></a></li>
         @endif
       </ul>
       <div id="nav-drawer">

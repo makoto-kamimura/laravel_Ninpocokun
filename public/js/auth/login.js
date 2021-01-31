@@ -1,4 +1,8 @@
 $(function(){
+    //　ブラウザのキャッシュ対策(スーパーリロード替わり)
+    $('#name').empty().attr('disabled','disabled');
+    $('#login_submit').attr('disabled','disabled');
+
     // 「所属部門」セレクトボックスの変更時イベント登録
     $("#departments").on('change',function(){get_div()});
 
@@ -9,7 +13,7 @@ $(function(){
     $("#name").on('change',function(){change_user()});
 
     // 「パスワードを表示する」チェックボックスの変更時イベント登録
-    passwordFieldToggle('#password_subbox','#password');
+    passwordFieldToggle('#password-check','#password');
 
     /**
      * ajax通信を用いて課情報を取得
@@ -108,5 +112,5 @@ $(function(){
         $('#login_submit').prop('disabled',false);
       }
 
-    
+      // $('#divisions').eq(0).attr('selected','selected');
 });

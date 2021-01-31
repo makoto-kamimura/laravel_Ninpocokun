@@ -134,7 +134,6 @@ class RegisterController extends Controller
         $title = 'ユーザー登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
-        $js = 'common.js';
         $user = (object)[
             'sei' => '',
             'mei' => '',
@@ -150,7 +149,7 @@ class RegisterController extends Controller
         \Session::forget('cd');
 
         //ビューを呼び出す
-        return view('auth.register', compact('user', 'title', 'err_msgs', 'css', 'js'));
+        return view('auth.register', compact('user', 'title', 'err_msgs', 'css'));
     }
 
     /**
@@ -166,8 +165,7 @@ class RegisterController extends Controller
         $title = 'ユーザー登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
-        $js = 'common.js';
-        return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css', 'js'));
+        return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css'));
     }
 
     /**
@@ -179,7 +177,6 @@ class RegisterController extends Controller
     {
         $title = 'メインメニュー';
         $css = 'base.css';
-        $js = 'common.js';
 
         $user = User::find($id);
 
@@ -191,7 +188,7 @@ class RegisterController extends Controller
         //Sessionに社員コードを登録
         \Session::put('cd', $user->cd);
 
-        return view('auth.register', compact('user', 'title', 'css', 'js'));
+        return view('auth.register', compact('user', 'title', 'css'));
     }
     /**
      * ユーザー編集を実行する
@@ -213,10 +210,9 @@ class RegisterController extends Controller
         //ビューの動作確認用サンプルデータ作成
         $tagu = 'ユーザー登録完了';
         $css = 'usertouroku.css';
-        $js = 'common.js';
 
         //ビューを呼び出す
-        return view('auth.complete', compact('tagu', 'css', 'js'));
+        return view('auth.complete', compact('tagu', 'css'));
     }
 
     /**
@@ -245,9 +241,8 @@ class RegisterController extends Controller
         //$title1 = 'ユーザー登録';
         $title2 = 'ユーザーリスト';
         $css = 'user.css';
-        $js = 'common.js';
 
         //ビューを呼び出す
-        return view('auth.admin', compact('users', 'tagu', 'title2', 'css', 'js'));
+        return view('auth.admin', compact('users', 'tagu', 'title2', 'css'));
     }
 }

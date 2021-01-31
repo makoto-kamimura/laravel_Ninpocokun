@@ -53,7 +53,6 @@ class LoginController extends Controller
         $title = 'ログインページ';
         // $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'base.css';
-        $js = 'common.js';
 
         // //部門とか部署の一覧を取得する
         // $deps = DB::table('departments')->select('cd', 'name')->get();;
@@ -69,10 +68,10 @@ class LoginController extends Controller
             );
 
             // ビューを呼び出す(クッキーあり)
-            return view('Auth.login', compact('get_cookie', 'title', 'css', 'js'));
+            return view('Auth.login', compact('get_cookie', 'title', 'css'));
         } else {
             // ビューを呼び出す(クッキーなし)
-            return view('Auth.login', compact('title', 'css', 'js'));
+            return view('Auth.login', compact('title', 'css'));
         }
     }
 

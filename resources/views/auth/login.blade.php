@@ -14,9 +14,6 @@
 
 @section('body')
       <div class="pw-form">
-        @auth
-        <p>ログイン中</p>
-        @endauth
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
         {{$errors}}
         @if (isset($err_msgs))

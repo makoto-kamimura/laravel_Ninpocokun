@@ -61,7 +61,7 @@
     @if($is_auth)
     <div class="">
       <label for="">コメント</label>
-      <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力"></textarea>
+      <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
     </div>
     @endif
 

@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         $title = 'メインメニュー';
         $css = 'home.css';
-        $js = 'common.js';
 
 
         $sys_admin = Auth::user()->sys_admin;
@@ -43,6 +42,6 @@ class HomeController extends Controller
         }
 
 
-        return view('home', compact('title', 'css', 'js'));
+        return view('home', compact('title', 'css'));
     }
 }

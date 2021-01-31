@@ -82,10 +82,9 @@ class DailyReportController extends Controller
         $title1 = '日報承認・確認';
         $title2 = '日報一覧';
         $css = 'dailylist.css';
-        $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.list', compact('reports', 'reports2', 'tagu', 'title1', 'title2',  'css', 'js'));
+        return view('report.list', compact('reports', 'reports2', 'tagu', 'title1', 'title2',  'css'));
     }
 
     /**
@@ -101,7 +100,6 @@ class DailyReportController extends Controller
         $title = '日報登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'dailyreport.css';
-        $js = 'common.js';
         $report = (object)[
             'sagyou' => '',
             'shintyoku' => '',
@@ -113,7 +111,7 @@ class DailyReportController extends Controller
         \Session::forget('post_no');
 
         //ビューを呼び出す
-        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
+        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css'));
     }
 
     /**
@@ -145,10 +143,9 @@ class DailyReportController extends Controller
         $is_auth = DailyReportController::isBuka($report);
 
         $css = 'dailyreport_confirm.css';
-        $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js', 'is_auth'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'is_auth'));
     }
 
     /**
@@ -246,11 +243,10 @@ class DailyReportController extends Controller
         $tagu = '日報登録確認';
         $title = '日報登録確認';
         $css = 'dailyreport_confirm.css';
-        $js = 'common.js';
         $is_auth = DailyReportController::isBuka($report);
 
         //ビューを呼び出す
-        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'js', 'is_auth'));
+        return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'is_auth'));
     }
 
     /**
@@ -292,10 +288,9 @@ class DailyReportController extends Controller
         $title1 = '日報承認';
         $title2 = '日報一覧';
         $css = 'dailylist.css';
-        $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.approve', compact('reports', 'reports2', 'tagu', 'title1', 'title2', 'css', 'js'));
+        return view('report.approve', compact('reports', 'reports2', 'tagu', 'title1', 'title2', 'css'));
     }
 
     /**
@@ -354,7 +349,6 @@ class DailyReportController extends Controller
         $title = '日報編集';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'dailyreport.css';
-        $js = 'common.js';
 
         $report = Daily_report::find($id);
 
@@ -366,7 +360,7 @@ class DailyReportController extends Controller
         \Session::put('post_cd', $report->post_user_cd);
         \Session::put('post_no', $report->no);
 
-        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css', 'js'));
+        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css'));
     }
 
     /**
@@ -380,10 +374,9 @@ class DailyReportController extends Controller
         //ビューの動作確認用サンプルデータ作成
         $tagu = '日報登録完了';
         $css = 'usertouroku.css';
-        $js = 'common.js';
 
         //ビューを呼び出す
-        return view('report.complete', compact('tagu', 'css', 'js'));
+        return view('report.complete', compact('tagu', 'css'));
     }
 
 

@@ -125,7 +125,7 @@ class UsersTableSeeder extends Seeder
             'div_cd' => 10 ,
             'taishoku_date' => '2019/12/31' ,
             'password' => Hash::make('abcd1234') ,
-            'pos_cd' => 35 ,
+            'pos_cd' => 30 ,
             'sys_admin' => 0 ,
         ];
         DB::table('users')->insert($param);
@@ -140,7 +140,7 @@ class UsersTableSeeder extends Seeder
             'div_cd' => 0 ,
             // 'taishoku_date' => '' ,
             'password' => Hash::make('abcd1234') ,
-            'pos_cd' => 35 ,
+            'pos_cd' => 30 ,
             'sys_admin' => 1 ,            
         ];
         DB::table('users')->insert($param);
@@ -155,7 +155,7 @@ class UsersTableSeeder extends Seeder
             'div_cd' => 0 ,
             // 'taishoku_date' => '' ,
             'password' => Hash::make('abcd1234') ,
-            'pos_cd' => 35 ,
+            'pos_cd' => 30 ,
             'sys_admin' => 0 ,           
         ];
         DB::table('users')->insert($param);

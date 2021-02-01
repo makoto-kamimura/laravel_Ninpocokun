@@ -13,7 +13,7 @@ class StatusesTableSeeder extends Seeder
     {
         $param = [
             'cd' => 1,
-            'name' => '承認済',
+            'name' => '完了',
         ];
         DB::table('statuses')->insert($param);
         

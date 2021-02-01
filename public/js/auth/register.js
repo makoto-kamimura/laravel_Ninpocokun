@@ -14,7 +14,17 @@ $(function(){
     // 「所属部門」セレクトボックスの変更時イベント登録
     $("#department").on('change',function(){get_div()});
 
-        /**
+    // システム管理者のチェックon/off設定
+    $("#sys_admin").on("click", function(){
+        if($(this).prop("checked") == true){
+            $(this).val("true").attr('checked','checked');
+
+        }else{
+            $(this).val("false").removeAttr('checked') ;
+        }
+    });
+
+    /**
      * ajax通信を用いて課情報を取得
      */
     function get_div(){
@@ -48,6 +58,4 @@ $(function(){
         ajaxbase(params);
       }
 
-    
-    
 });

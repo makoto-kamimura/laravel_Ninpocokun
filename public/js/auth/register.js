@@ -17,10 +17,9 @@ $(function(){
     // システム管理者のチェックon/off設定
     $("#sys_admin").on("click", function(){
         if($(this).prop("checked") == true){
-            $(this).val("true").attr('checked','checked');
-
+            $(this).val(1).attr('checked','checked');
         }else{
-            $(this).val("false").removeAttr('checked') ;
+            $(this).val(0).removeAttr('checked') ;
         }
     });
 

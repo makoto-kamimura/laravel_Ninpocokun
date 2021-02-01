@@ -2,6 +2,14 @@
 
 @extends('common.layout')
 
+@section('jq_plugins')
+<script src="/js/jquery.cookie.js"></script>
+@endsection
+
+@section('page_js')
+<script src="/js/auth/register.js"></script>
+@endsection
+
 @section('title')
   {{$title}}
 @endsection
@@ -20,28 +28,30 @@
 
         	<div class="department">
                 <label for="department">所属部門</label>
-                <select name="department" id="department" onchange="createMenu01(this.value)">
+                <select name="department" id="department"">
                     <option disabled selected>選択してください</option>
-                    <option value="総務部">総務部</option>
-                    <option value="営業部">営業部</option>
-                    <option value="工務部">工務部</option>
+                    <option value="1">社長</option>
+                    <option value="10">工務部</option>
+                    <option value="20">営業部</option>
+                    <option value="30">総務部</option>
                 </select>
             </div>
             <div class="division">
                 <label for="division">所属課</label>
-                <select name="division" id="division" disabled onchange="createMenu02(this.value)"></select>
+                <select name="division" id="division" disabled"></select>
             </div>
             <div>
                 <label for="sys_admin">システム管理者</label>
-                <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin' , $user -> sys_admin ) }}">
+                <input type="checkbox" name="sys_admin" id="sys_admin" value="{{ old('sys_admin' , $user -> sys_admin ) }}"  @if( old('sys_admin' , $user -> sys_admin ) == 1) checked = "checked" @endif >
             </div>
             <div class="position">
                 <label for="position">役職</label>
                 <select name="position" id="position">2
                 	<option disabled selected>選択してください</option>
-                    <option value="役員">役員</option>
-                    <option value="上長">上長</option>
-                    <option value="社員">社員</option>
+                    <option value="1">社長</option>
+                    <option value="20">部長</option>
+                    <option value="25">課長</option>
+                    <option value="30">一般社員</option>
                 </select>
             </div>
             <!-- 0119_ToDo起票_要件等箇所_20210125_kamimura -->

@@ -156,66 +156,72 @@ class DailyReportController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store()
+    public function store(Request $request)
     {
-        $data = \Session::get('report', 'データが存在しません');
-        $data['post_cd'] = \Session::get('post_cd');
-        \Session::forget('post_cd');
-        if (isset($data['post_cd'])) {
-            $data['no'] =  \Session::get('post_no');
-            \Session::forget('post_no');
-        }
 
-        // 日報noの存在でinsert update分岐
-        if (!isset($data['no'])) {
-            //日報noが無ければ新規登録
-            \DB::beginTransaction();
-
-            try {
-                $max_no = DB::table('daily_reports')->max('no');
-                $current = Auth::id();
-                $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => $current]);
-                foreach ($joushi as $jo) {
-                    $jocd = $jo->joushi;
-                }
-
-                Daily_report::create([
-                    'no' => $max_no + 1,
-                    'post_user_cd' => $current,
-                    'auth_user_cd' => $jocd,
-                    'sagyou' => $data['sagyou'],
-                    'shintyoku' => $data['shintyoku'],
-                    'zansagyou' => $data['zansagyou'],
-                    'hikitsugi' => $data['hikitsugi'],
-                    'status' => 0,
-                ]);
-                \DB::commit();
-            } catch (\Throwable $th) {
-                // 登録失敗の場合はロールバック
-                \DB::rollback();
-                dd($th);
-                abort(500);
-            }
+        $input = $request->input();
+        if ($input['submit'] == '修正する') {
+            return redirect('report/create')->withInput();
         } else {
-            //日報noがある場合は編集を実行
-            \DB::beginTransaction();
-            try {
-                $report = Daily_report::find($data['no']);
-                $report->fill([
-                    'sagyou' => $data['sagyou'],
-                    'shintyoku' => $data['shintyoku'],
-                    'zansagyou' => $data['zansagyou'],
-                    'hikitsugi' => $data['hikitsugi'],
-                ]);
-                $report->save();
-                \DB::commit();
-            } catch (\Throwable $th) {
-                \DB::rollback();
-                abort(500);
+            $data = \Session::get('report', 'データが存在しません');
+            $data['post_cd'] = \Session::get('post_cd');
+            \Session::forget('post_cd');
+            if (isset($data['post_cd'])) {
+                $data['no'] =  \Session::get('post_no');
+                \Session::forget('post_no');
             }
+
+            // 日報noの存在でinsert update分岐
+            if (!isset($data['no'])) {
+                //日報noが無ければ新規登録
+                \DB::beginTransaction();
+
+                try {
+                    $max_no = DB::table('daily_reports')->max('no');
+                    $current = Auth::id();
+                    $joushi = DB::select('SELECT f_get_joushi(:cd) joushi', ['cd' => $current]);
+                    foreach ($joushi as $jo) {
+                        $jocd = $jo->joushi;
+                    }
+
+                    Daily_report::create([
+                        'no' => $max_no + 1,
+                        'post_user_cd' => $current,
+                        'auth_user_cd' => $jocd,
+                        'sagyou' => $data['sagyou'],
+                        'shintyoku' => $data['shintyoku'],
+                        'zansagyou' => $data['zansagyou'],
+                        'hikitsugi' => $data['hikitsugi'],
+                        'status' => 0,
+                    ]);
+                    \DB::commit();
+                } catch (\Throwable $th) {
+                    // 登録失敗の場合はロールバック
+                    \DB::rollback();
+                    dd($th);
+                    abort(500);
+                }
+            } else {
+                //日報noがある場合は編集を実行
+                \DB::beginTransaction();
+                try {
+                    $report = Daily_report::find($data['no']);
+                    $report->fill([
+                        'sagyou' => $data['sagyou'],
+                        'shintyoku' => $data['shintyoku'],
+                        'zansagyou' => $data['zansagyou'],
+                        'hikitsugi' => $data['hikitsugi'],
+                    ]);
+                    $report->save();
+                    \DB::commit();
+                } catch (\Throwable $th) {
+                    \DB::rollback();
+                    abort(500);
+                }
+            }
+            \Session::flash('err_msg', '日報を登録しました');
+            return redirect(route('report.complete'));
         }
-        \Session::flash('err_msg', '日報を登録しました');
-        return redirect(route('report.complete'));
     }
 
     /**

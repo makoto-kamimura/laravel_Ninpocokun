@@ -62,9 +62,13 @@
     <div class="">
       <label for="">コメント</label>
       <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
+      <input type="hidden" name="comment" value="{{$report -> comment}}">
     </div>
     @endif
-
+    <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">
+    <input type="hidden" name="shintyoku" value="{{$report-> shintyoku }}">
+    <input type="hidden" name="zansagyou" value="{{$report -> zansagyou}}">
+    <input type="hidden" name="hikitsugi" value="{{$report -> hikitsugi}}">
     <!-- 新規日報登録/編集は下記_20210125_kamimura -->
     {{-- 203->205のボタンを消す為に一時的に入れてます --}}
     @if($report -> status < 1 )

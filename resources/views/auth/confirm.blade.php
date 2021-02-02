@@ -35,6 +35,10 @@
                     <td colspan="2">{{$_POST['position']}}</td>
                 </tr>
                 <tr>
+                    <th>システム管理者</th>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
                     <th>氏名（漢字）</th>
                     <td class="name_td">{{$_POST['sei']}}</td>
                     <td>{{$_POST['mei']}}</td>

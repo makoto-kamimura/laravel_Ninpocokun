@@ -80,12 +80,12 @@ class RegisterController extends Controller
                     'mei' => $data['mei'],
                     'sei_kana' => $data['sei_kana'],
                     'mei_kana' => $data['mei_kana'],
-                    'dep_cd' => 10, // $data['dep_cd'],
-                    'div_cd' => 10, // $data['div_cd'],
+                    'dep_cd' => $data['dep_cd'],
+                    'div_cd' => $data['div_cd'],
                     'taishoku_date' => $data['taishoku_date'],
                     'password' => Hash::make($data['password']),
-                    'pos_cd' => 5, // $data['pos_cd'],
-                    'sys_admin' => 0, //$data['sys_admin'],
+                    'pos_cd' => $data['pos_cd'],
+                    'sys_admin' => $data['sys_admin'],
                 ]);
                 \DB::commit();
             } catch (\Throwable $e) {
@@ -104,12 +104,12 @@ class RegisterController extends Controller
                     'mei' => $data['mei'],
                     'sei_kana' => $data['sei_kana'],
                     'mei_kana' => $data['mei_kana'],
-                    'dep_cd' => 10, // $data['dep_cd'],
-                    'div_cd' => 20, // $data['div_cd'],
+                    'dep_cd' => $data['dep_cd'],
+                    'div_cd' => $data['div_cd'],
                     'taishoku_date' => $data['taishoku_date'],
                     'password' => Hash::make($data['password']),
-                    'pos_cd' => 5, // $data['pos_cd'],
-                    'sys_admin' => 0,
+                    'pos_cd' => $data['pos_cd'],
+                    'sys_admin' => $data['sys_admin'],
                 ]);
                 $user->save();
                 \DB::commit();

@@ -31,7 +31,7 @@ $(window).on('load',function() {
   // パスの取得
   var path = location.pathname
 
-  if (path == "/login"){
+  if ((path == "/login") || (path == "/errordisplay")){
     $('ul#pclist').remove();
     $('div#nav-drawer').remove();
     $('p.homelink').children().contents().unwrap();

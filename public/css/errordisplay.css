@@ -1,0 +1,21 @@
+@charset "UTF-8";
+@import url("base.css");
+@import url("usertouroku.css");
+
+.error {
+	width: 40%;
+	padding: 20px 0;
+	margin: 150px 0;
+	line-height: 1.8;
+	display: inline-block;
+	border: 2px solid #ddd;
+}
+
+.error span {
+	color: red;
+	font-size: 0.8em;
+}
+
+@media screen and (min-width:892px){
+
+}

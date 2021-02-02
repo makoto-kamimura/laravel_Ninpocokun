@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -52,6 +53,10 @@ class LoginController extends Controller
         // 部課情報を取得
         $deps = DB::table('departments')->get();
 
+        // view
+        $title = 'ログインページ';
+        $css = 'base.css';
+
         // cokkieがセットされていなければ値を取得
         if (isset($request->cookie)) {
             $get_cookie = array(
@@ -60,12 +65,8 @@ class LoginController extends Controller
                 'user_cd' => $request->cookie('name')
             );
 
-            // view
-            $title = 'ログインページ';
-            $css = 'base.css';
-
             // ビューを呼び出す(クッキーあり)
-            return view('Auth.login', compact('get_cookie', 'title', 'css'));
+            return view('Auth.login', compact('deps', 'get_cookie', 'title', 'css'));
         } else {
             // ビューを呼び出す(クッキーなし)
             return view('Auth.login', compact('deps', 'title', 'css'));

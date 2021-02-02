@@ -49,17 +49,10 @@ class LoginController extends Controller
     // showLoginControllerをオーバーライドする
     public function showLoginForm(Request $request)
     {
-        //ビューの動作確認用サンプルデータ作成
-        $title = 'ログインページ';
-        // $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
-        $css = 'base.css';
+        // 部課情報を取得
+        $deps = DB::table('departments')->get();
 
-        // //部門とか部署の一覧を取得する
-        // $deps = DB::table('departments')->select('cd', 'name')->get();;
-        // $divs = DB::table('divisions')->select('cd', 'name')->get();
-        // $usrs = ;
-
-        //cokkieがセットされていなければ値を取得
+        // cokkieがセットされていなければ値を取得
         if (isset($request->cookie)) {
             $get_cookie = array(
                 'department' => $request->cookie('departments'),
@@ -67,11 +60,15 @@ class LoginController extends Controller
                 'user_cd' => $request->cookie('name')
             );
 
+            // view
+            $title = 'ログインページ';
+            $css = 'base.css';
+
             // ビューを呼び出す(クッキーあり)
             return view('Auth.login', compact('get_cookie', 'title', 'css'));
         } else {
             // ビューを呼び出す(クッキーなし)
-            return view('Auth.login', compact('title', 'css'));
+            return view('Auth.login', compact('deps', 'title', 'css'));
         }
     }
 

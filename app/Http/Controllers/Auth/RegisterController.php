@@ -187,6 +187,7 @@ class RegisterController extends Controller
         $css = 'base.css';
 
         $user = User::find($id);
+        $divs = DB::table('divisions')->where('dep_cd', $user->dep_cd)->select('cd', 'name')->get();
 
         if (is_null($user)) {
             \Session::flash('err_msg', 'データがありません');
@@ -196,7 +197,7 @@ class RegisterController extends Controller
         //Sessionに社員コードを登録
         \Session::put('cd', $user->cd);
 
-        return view('auth.register', compact('user', 'deps', 'pos', 'title', 'css'));
+        return view('auth.register', compact('user', 'deps', 'pos', 'divs', 'title', 'css'));
     }
     /**
      * ユーザー編集を実行する

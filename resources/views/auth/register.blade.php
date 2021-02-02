@@ -30,10 +30,9 @@
                 <label for="department">所属部門</label>
                 <select name="department" id="department"">
                     <option disabled selected>選択してください</option>
-                    <option value="1">社長</option>
-                    <option value="10">工務部</option>
-                    <option value="20">営業部</option>
-                    <option value="30">総務部</option>
+                    @foreach($deps as $dep)
+                    <option value="{{$dep->cd}}" {{$user -> dep_cd == $dep->cd ? "selected" : ""}}>{{$dep->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="division">
@@ -48,10 +47,9 @@
                 <label for="position">役職</label>
                 <select name="position" id="position">2
                 	<option disabled selected>選択してください</option>
-                    <option value="1">社長</option>
-                    <option value="20">部長</option>
-                    <option value="25">課長</option>
-                    <option value="30">一般社員</option>
+                    @foreach($pos as $po)
+                    <option value="{{$po->cd}}" {{$user -> pos_cd == $po->cd ? "selected" : ""}}>{{$po->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <!-- 0119_ToDo起票_要件等箇所_20210125_kamimura -->

@@ -1,9 +1,9 @@
 $(function(){
 
     //　ブラウザのキャッシュ対策(スーパーリロード替わり)
-    $('#division').empty().attr('disabled','disabled');
-    $('#department').eq(0).attr('selected','selected');
-    $('input[type="submit"]').attr('disabled','disabled');
+    // $('#division').empty().attr('disabled','disabled');
+    // $('#department').eq(0).attr('selected','selected');
+    // $('input[type="submit"]').attr('disabled','disabled');
     
     // 「パスワードを表示する」チェックボックスの変更時イベント登録(パスワード欄)
     passwordFieldToggle('#password_disp','#password');

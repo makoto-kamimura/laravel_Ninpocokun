@@ -37,7 +37,16 @@
             </div>
             <div class="division">
                 <label for="division">所属課</label>
-                <select name="division" id="division" disabled"></select>
+                <select name="division" id="division" {{isset($divs) && $divs->count() > 0 ? "" : "disabled"}}>
+                @if(isset($divs) && $divs->count() > 0)
+                    <option disabled selected>選択してください</option>
+                @foreach($divs as $div)
+                    <option value="{{$div->cd}}" {{$user -> div_cd == $div->cd ? "selected" : ""}}>{{$div->name}}</option>                
+                @endforeach
+                @else
+                    <option value="0" selected></option>
+                @endif
+                </select>                
             </div>
             <div>
                 <label for="sys_admin">システム管理者</label>
@@ -72,22 +81,27 @@
                 <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana', $user -> sei_kana) }}"required>
                 <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana', $user -> mei_kana) }}" required>
             </div>
-			<div id="password_box">
-                <label for="password">パスワード</label>
-                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
+            <div class="password_box">
+    			<div class="password_mainbox">
+                    <label for="password">パスワード</label>
+                    <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
+                </div>
+                <div class="password_subbox">
+                    <input type="checkbox" id="password_disp">パスワードを表示する
+                </div>
+            </div> 
+            <div class="password_box">
+                <div class="password_mainbox">
+                    <label for="password">パスワード確認</label>
+                    <input type="password" name="password_check" class="field" id="password_check" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" oninput="CheckPassword(this)" required>
+                </div>
+                <div class="password_subbox">
+                    <input type="checkbox" id="password_disp2">パスワードを表示する
+                </div>
             </div>
-            <div id="password_subbox">
-                <input type="checkbox" id="password-check">パスワードを表示する
-            </div>
-            <div id="password_box">
-                <label for="password">パスワード確認</label>
-                <input type="password" name="password" class="field" id="password" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
-            </div>
-            <div id="password_subbox">
-                <input type="checkbox" id="password-check">パスワードを表示する
-            </div>
+
 			<div class='btn_box tac'>
-            	<input class='btn' type="submit" value="確認する">
+            	<input id="submit" class='btn' type="submit" value="確認する">
             </div>
         </form>
 	</section>

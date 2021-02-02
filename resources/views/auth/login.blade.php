@@ -8,10 +8,6 @@
 <script src="/js/auth/login.js"></script>
 @endsection
 
-@section('title')
-  {{$title}}
-@endsection
-
 @section('body')
       <div class="pw-form">
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
@@ -29,10 +25,9 @@
                 <label for="departments">所属部門</label>
                 <select name="departments" id="departments">
                     <option disabled=disabled selected>選択してください</option>
-                    <option value="1">社長</option>
-                    <option value="10">工務部</option>
-                    <option value="20">営業部</option>
-                    <option value="30">総務部</option>
+                    @foreach($deps as $dep)
+                    <option value="{{$dep->cd}}">{{$dep->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div>
@@ -41,11 +36,7 @@
             </div>
             <div>
                 <label for="name">名前</label>
-                <select name="name" id="name" disabled></select>
-            </div>
-            <div>
-              <label for="cd">社員コード</label>
-              <input type="text" class="field" name="cd" id="cd">
+                <select name="cd" id="cd" disabled></select>
             </div>
             <div>
                 <label for="password">パスワード</label>

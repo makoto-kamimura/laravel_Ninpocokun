@@ -1,6 +1,6 @@
 $(function(){
     //　ブラウザのキャッシュ対策(スーパーリロード替わり)
-    $('#name').empty().attr('disabled','disabled');
+    $('#cd').empty().attr('disabled','disabled');
     $('#login_submit').attr('disabled','disabled');
 
     // 「所属部門」セレクトボックスの変更時イベント登録
@@ -10,7 +10,7 @@ $(function(){
     $("#divisions").on('change',function(){get_user('div')});
 
     // 「名前」セレクトボックスの変更時イベント登録
-    $("#name").on('change',function(){change_user()});
+    $("#cd").on('change',function(){change_user()});
 
     // 「パスワードを表示する」チェックボックスの変更時イベント登録
     passwordFieldToggle('#password-check','#password');
@@ -29,14 +29,14 @@ $(function(){
           .attr('disabled','disabled')
           .empty();
     
-          $('#name')
+          $('#cd')
           .attr('disabled','disabled')
           .empty();
     
           $('#login_submit')
           .attr('disabled','disabled')
     
-          $('#name')
+          $('#cd')
           .empty();
           if(data.length>0){
             $('#divisions')
@@ -75,26 +75,26 @@ $(function(){
         params[3] = function(data){
           $('#login_submit').attr('disabled','disabled');
           if(data.length>0){
-            $('#name')
+            $('#cd')
               .prop('disabled', false)
               .empty();
               if(data.length == 1){
                 $.each(data,
                   function(index, val) {
-                    $('#name').append('<option value=' + val.user_cd + ' selected >' + val.user_name + '</option>');
+                    $('#cd').append('<option value=' + val.user_cd + ' selected >' + val.user_name + '</option>');
                     $('#login_submit').prop('disabled',false);
                   }
                 )            
               } else {
-                $('#name').append('<option disabled="" selected>選択してください</option>');
+                $('#cd').append('<option disabled="" selected>選択してください</option>');
                 $.each(data,
                   function(index, val) {
-                    $('#name').append('<option value=' + val.user_cd + '>' + val.user_name + '</option>');
+                    $('#cd').append('<option value=' + val.user_cd + '>' + val.user_name + '</option>');
                   }
                 )
               };
           } else {
-            $('#name')
+            $('#cd')
             .prop('disabled', true)
             .empty();
           }

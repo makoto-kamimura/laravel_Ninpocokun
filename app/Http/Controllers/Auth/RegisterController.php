@@ -130,7 +130,11 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        //ビューの動作確認用サンプルデータ作成
+        // 部課情報を取得
+        $deps = DB::table('departments')->get();
+        $pos = DB::table('positions')->get();
+
+        //viewに渡す情報を作成
         $title = 'ユーザー登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
@@ -149,7 +153,7 @@ class RegisterController extends Controller
         \Session::forget('cd');
 
         //ビューを呼び出す
-        return view('auth.register', compact('user', 'title', 'err_msgs', 'css'));
+        return view('auth.register', compact('user', 'deps', 'pos', 'title', 'err_msgs', 'css'));
     }
 
     /**
@@ -175,6 +179,10 @@ class RegisterController extends Controller
      */
     public function edit($id)
     {
+        // 部課情報を取得
+        $deps = DB::table('departments')->get();
+        $pos = DB::table('positions')->get();
+
         $title = 'メインメニュー';
         $css = 'base.css';
 
@@ -188,7 +196,7 @@ class RegisterController extends Controller
         //Sessionに社員コードを登録
         \Session::put('cd', $user->cd);
 
-        return view('auth.register', compact('user', 'title', 'css'));
+        return view('auth.register', compact('user', 'deps', 'pos', 'title', 'css'));
     }
     /**
      * ユーザー編集を実行する

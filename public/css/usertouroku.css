@@ -68,6 +68,8 @@ div.btn_box input.btn {
 	div.name input:first-of-type {
 		margin-bottom: 5px;
 	}
+
+
 }
 
 p.complete {
@@ -78,21 +80,12 @@ p.complete {
 	border: 2px solid #ddd;
 }
 
-@media screen and (max-width:1024px){
+@media screen and (max-width:500px){
 	form {
-		width: 60%;
+		width: 76%;
 	}
 
-	label {
-		margin: 0 auto;
-		text-align-last: justify !important;
+	input.email {
+		width: 100%;
 	}
-}
-
-@media screen and (max-width:892px){
-	form {
-		text-align: center;
-	}
-
-
 }

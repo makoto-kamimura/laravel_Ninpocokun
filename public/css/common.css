@@ -30,34 +30,30 @@ header p span:last-of-type {
 	top: 34%;
 }
 
-header ul.listbox {
+header ul#pclist {
+	display: flex;
 	float: right;
 	margin: 6px 10px 0 0;
 }
 
-header ul.listbox li {
+header ul#pclist li {
   padding: 0 4px;
-  float: left;
 }
 
-header ul.listbox li.odd {
+header ul#pclist li.odd {
   width: 110px;
 }
 
-header ul.listbox li.even {
+header ul#pclist li.even {
   width: 110px;
 }
 
-header ul.listbox li.logout {
+header ul#pclist li.logout {
   width: 92px;
 }
 
-header ul.listbox li a:hover {
+header ul#pclist li a:hover {
 	opacity: 0.8;
-}
-
-header ul#pclist {
-  display: none;
 }
 
 section {
@@ -180,7 +176,7 @@ footer {
 
 @media screen and (max-width:1024px) {
   header ul#pclist {
-    display:none !important;
+    display:none;
   }
 
   header div div#nav-content {
@@ -189,14 +185,15 @@ footer {
 
   header ul#splist {
   	padding: 10px;
-    text-align: center;
+	text-align: center;
   	background-color: #007aac;
+
   }
 
   header ul#splist li {
   	color: #fff;
   	font-size: 1.5em;
-    padding: 20px 0 17px;
+	padding: 20px 0 17px;
   }
 
    header ul#splist li:not(:last-of-type) {

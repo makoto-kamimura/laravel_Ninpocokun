@@ -50,9 +50,9 @@
                     <td colspan="2">　○　</td>
                     @else
                     <td colspan="2">　×　</td>
+                    @endif
                     <input type="hidden" name="sys_admin" value="{{ $user['sys_admin'] }}">
                 </tr>
-                @endisset
                 <tr>
                     <th>氏名（漢字）</th>
                     <td class="name_td">{{ $user['sei'] }}</td>

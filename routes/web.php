@@ -39,13 +39,19 @@ Route::resource('report', 'DailyReportController');
 
 // <<ユーザー管理関係ルーティング>>
 Auth::routes();
-Route::post('auth/confirm', 'Auth\RegisterController@confirm')->name('user.confirm');
-Route::get('register', 'Auth\RegisterController@create')->name('user.create');
 Route::get('auth/logout', 'Auth\LoginController@logout')->name('user.logout');
-Route::post('store', 'Auth\RegisterController@store')->name('user.store');
-Route::get('auth/edit/{id}', 'Auth\RegisterController@edit')->name('user.edit');
-Route::get('auth/complete', 'Auth\RegisterController@complete')->name('user.complete');
-Route::get('auth/admin', 'Auth\RegisterController@admin')->name('user.admin');
+
+// システム管理者のみアクセス可能
+Route::group(['middleware' => 'admin'], function () {
+    // この中は、全てミドルウェアが適用されます。
+    Route::post('auth/confirm', 'Auth\RegisterController@confirm')->name('user.confirm');
+    Route::get('register', 'Auth\RegisterController@create')->name('user.create');
+    Route::post('store', 'Auth\RegisterController@store')->name('user.store');
+    Route::get('auth/edit/{id}', 'Auth\RegisterController@edit')->name('user.edit');
+    Route::get('auth/complete', 'Auth\RegisterController@complete')->name('user.complete');
+    Route::get('auth/admin', 'Auth\RegisterController@admin')->name('user.admin');
+});
+
 
 // <<ユーザー情報取得ルーティング>>
 Route::get('get_div/{dep_cd}', 'Auth\GetinfoController@getDiv');

@@ -211,6 +211,7 @@ class DailyReportController extends Controller
                         'shintyoku' => $data['shintyoku'],
                         'zansagyou' => $data['zansagyou'],
                         'hikitsugi' => $data['hikitsugi'],
+                        'status' => 0,
                     ]);
                     $report->save();
                     \DB::commit();
@@ -251,7 +252,6 @@ class DailyReportController extends Controller
         $css = 'dailyreport_confirm.css';
         $is_auth = DailyReportController::isBuka($report);
 
-        dd($is_auth);
         if (is_null($is_auth)) {
             return redirect(route('report.index'));
         }
@@ -267,7 +267,7 @@ class DailyReportController extends Controller
     public function approve()
     {
         // 承認権限の無い一般社員がアクセスした場合mainにredirectさせる
-        if (isset(Auth::user()->pos_cd) && !Auth::user()->pos_cd < 30) {
+        if (isset(Auth::user()->pos_cd) && Auth::user()->pos_cd >= 30) {
             abort(403);
         }
 
@@ -284,7 +284,6 @@ class DailyReportController extends Controller
         WHERE dr.status < 1
         AND dr.auth_user_cd = :cd
         ORDER BY dr.no"), ['cd' => $current]);
-
 
         // 承認済の部下の日報を取得する
         $table = DB::table('daily_reports');

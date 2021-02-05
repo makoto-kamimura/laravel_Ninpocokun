@@ -62,7 +62,6 @@
     <div class="">
       <label for="">コメント</label>
       <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
-      <input type="hidden" name="comment" value="{{$report -> comment}}">
     </div>
     @endif
     <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">

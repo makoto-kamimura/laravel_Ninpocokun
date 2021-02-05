@@ -29,6 +29,8 @@
 ![test](/README_img/211_個別日報入力内容完了画面.png) 
 ユーザー管理画面
 ![test](/README_img/216_ユーザー管理画面.png) 
+エラー画面
+![test](/README_img/219_エラー画面.png) 
 
 # Features
 
@@ -42,6 +44,7 @@
 
 # Installation
 
+Laravelのプロジェクトをgit cloneしたときの手順について
 ```参考資料
 http://vdeep.net/laravel-git-clone
 ```

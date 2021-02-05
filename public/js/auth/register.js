@@ -12,7 +12,7 @@ $(function(){
     passwordFieldToggle('#password_disp2','#password_confirmation');
 
     // 「所属部門」セレクトボックスの変更時イベント登録
-    $("#department").on('change',function(){checkSelect($(this),'課');get_div();});
+    $("#department").on('change',function(){checkSelect($(this),'部');get_div();});
 
     // 「所属課」セレクトボックスの変更時イベント登録
     $('#division').on('change',function(){checkSelect($(this),'課')});

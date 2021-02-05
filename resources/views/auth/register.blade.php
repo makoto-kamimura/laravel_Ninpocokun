@@ -22,8 +22,13 @@
         @csrf
 
         <div class="employeecode">
-                <label>社員コード</label>
+                <label>社員コード</label>                        
+                @isset($user->cd)
+                <label>{{ old('cd' , $user -> cd) }}</label>
+                <input type="hidden" name="cd" id="cd" value="{{ old('cd' , $user -> cd )}}">
+                @else
                 <label>自動採番</label>
+                @endif
             </div>
 
         	<div class="department">
@@ -31,7 +36,7 @@
                 <select name="department" id="department"">
                     <option disabled selected>選択してください</option>
                     @foreach($deps as $dep)
-                    <option value="{{$dep->cd}}" {{$user -> dep_cd == $dep->cd ? "selected" : ""}}>{{$dep->name}}</option>
+                    <option value="{{$dep->cd}}" {{ old('department' ,$user -> dep_cd) == $dep->cd ? "selected" : ""}}>{{$dep->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -41,7 +46,7 @@
                 @if(isset($divs) && $divs->count() > 0)
                     <option disabled selected>選択してください</option>
                 @foreach($divs as $div)
-                    <option value="{{$div->cd}}" {{$user -> div_cd == $div->cd ? "selected" : ""}}>{{$div->name}}</option>                
+                    <option value="{{$div->cd}}" {{old('division' , $user -> div_cd) == $div->cd ? "selected" : ""}}>{{$div->name}}</option>                
                 @endforeach
                 @else
                     <option value="0" selected></option>
@@ -57,7 +62,7 @@
                 <select name="position" id="position">2
                 	<option disabled selected>選択してください</option>
                     @foreach($pos as $po)
-                    <option value="{{$po->cd}}" {{$user -> pos_cd == $po->cd ? "selected" : ""}}>{{$po->name}}</option>
+                    <option value="{{$po->cd}}" {{ old('position' , $user -> pos_cd) == $po->cd ? "selected" : ""}}>{{$po->name}}</option>
                     @endforeach
                 </select>
             </div>

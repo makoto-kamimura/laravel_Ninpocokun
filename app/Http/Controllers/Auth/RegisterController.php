@@ -61,67 +61,84 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function store()
+    protected function store(Request $request)
     {
-        // セッションから登録データを取得
-        $data = \Session::get('user', 'データが存在しない');;
-        $data['cd'] = \Session::get('cd');
-        \Session::forget('cd');
-
-        // 社員番号の有無でINSERT UPDATEを判定
-        if (!isset($data['cd'])) {
-            // トランザクション処理
-            \DB::beginTransaction();
-            try {
-                $max_cd = DB::table('users')->max('cd');
-                User::create([
-                    'cd' => $max_cd + 1,
-                    'sei' => $data['sei'],
-                    'mei' => $data['mei'],
-                    'sei_kana' => $data['sei_kana'],
-                    'mei_kana' => $data['mei_kana'],
-                    'dep_cd' => $data['dep_cd'],
-                    'div_cd' => $data['div_cd'],
-                    'taishoku_date' => $data['taishoku_date'],
-                    'password' => Hash::make($data['password']),
-                    'pos_cd' => $data['pos_cd'],
-                    'sys_admin' => $data['sys_admin'],
-                ]);
-                \DB::commit();
-            } catch (\Throwable $e) {
-                dd($e);
-                // 登録失敗の場合はロールバック
-                \DB::rollback();
-                abort(500);
-            }
+        $input = $request->input();
+        if ($input['submit'] == '修正する') {
+            return redirect('register')->withInput();
         } else {
-            //日報noがある場合は編集を実行
-            \DB::beginTransaction();
-            try {
-                $user = User::find($data['cd']);
-                $user->fill([
-                    'sei' => $data['sei'],
-                    'mei' => $data['mei'],
-                    'sei_kana' => $data['sei_kana'],
-                    'mei_kana' => $data['mei_kana'],
-                    'dep_cd' => $data['dep_cd'],
-                    'div_cd' => $data['div_cd'],
-                    'taishoku_date' => $data['taishoku_date'],
-                    'password' => Hash::make($data['password']),
-                    'pos_cd' => $data['pos_cd'],
-                    'sys_admin' => $data['sys_admin'],
-                ]);
-                $user->save();
-                \DB::commit();
-            } catch (\Throwable $th) {
-                \DB::rollback();
-                abort(500);
+            // セッションから登録データを取得
+            $data = \Session::get('user', 'データが存在しない');;
+
+            // 編集画面遷移時に登録した社員コードの取得を試行
+            $data['cd'] = \Session::get('cd');
+            \Session::forget('cd');
+
+            // システム管理者ではない場合に0を設定
+            if (!isset($data['sys_admin'])) {
+                $data['sys_admin'] = 0;
             }
+
+            // divが無い場合に0をセット
+            if (!isset($data['division'])) {
+                $data['division'] = 0;
+            }
+
+            // 社員番号の有無でINSERT UPDATEを判定
+            if (!isset($data['cd'])) {
+                // トランザクション処理
+                \DB::beginTransaction();
+                try {
+                    $max_cd = DB::table('users')->max('cd');
+                    User::create([
+                        'cd' => $max_cd + 1,
+                        'sei' => $data['sei'],
+                        'mei' => $data['mei'],
+                        'sei_kana' => $data['sei_kana'],
+                        'mei_kana' => $data['mei_kana'],
+                        'dep_cd' => $data['department'],
+                        'div_cd' => $data['division'],
+                        'taishoku_date' => $data['taishoku_date'],
+                        'password' => Hash::make($data['password']),
+                        'pos_cd' => $data['position'],
+                        'sys_admin' => $data['sys_admin'],
+                    ]);
+                    \DB::commit();
+                } catch (\Throwable $e) {
+                    dd($e);
+                    // 登録失敗の場合はロールバック
+                    \DB::rollback();
+                    abort(500);
+                }
+            } else {
+                //日報noがある場合は編集を実行
+                \DB::beginTransaction();
+                try {
+                    $user = User::find($data['cd']);
+                    $user->fill([
+                        'sei' => $data['sei'],
+                        'mei' => $data['mei'],
+                        'sei_kana' => $data['sei_kana'],
+                        'mei_kana' => $data['mei_kana'],
+                        'dep_cd' => $data['department'],
+                        'div_cd' => $data['division'],
+                        'taishoku_date' => $data['taishoku_date'],
+                        'password' => Hash::make($data['password']),
+                        'pos_cd' => $data['position'],
+                        'sys_admin' => $data['sys_admin'],
+                    ]);
+                    $user->save();
+                    \DB::commit();
+                } catch (\Throwable $th) {
+                    \DB::rollback();
+                    abort(500);
+                }
+            }
+
+
+            \Session::flash('err_msg', '登録しました');
+            return redirect(route('user.complete'));
         }
-
-
-        \Session::flash('err_msg', '登録しました');
-        return redirect(route('user.complete'));
     }
 
     /**
@@ -164,12 +181,45 @@ class RegisterController extends Controller
 
     public function confirm(UserRequest $request)
     {
+        // cdを取得
+        $cd = \Session::get('cd');
+        // 無ければRequestから$userに入力データを取得
+        if (isset($cd)) { // = 編集モード
+
+        }
+
         $user = $request->input();
+
+        $de = "";
+        $di = "";
+        $po = "";
+
+        // 部課コードを名称に変換
+        if (isset($user['department'])) {
+            $dep = DB::table('departments')->where('cd', $user['department'])
+                ->select('name')->first();
+            foreach ($dep as $de) {
+            }
+        }
+        if (isset($user['division'])) {
+            $div = DB::table('divisions')->where('cd', $user['division'])
+                ->select('name')->first();
+            foreach ($div as $di) {
+            }
+        }
+        // 職位コードを名称に変換
+        if (isset($user['position'])) {
+            $pos = DB::table('positions')->where('cd', $user['position'])
+                ->select('name')->first();
+            foreach ($pos as $po) {
+            }
+        }
+
         \Session::put('user', $user);
         $title = 'ユーザー登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
-        return view('auth.confirm', compact('user', 'title', 'err_msgs', 'css'));
+        return view('auth.confirm', compact('de', 'di', 'po', 'user', 'title', 'err_msgs', 'css'));
     }
 
     /**

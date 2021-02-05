@@ -11,11 +11,10 @@
 @section('body')
       <div class="pw-form">
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
-        {{$errors}}
-        @if (isset($err_msgs))
+        @if (isset($errors))
           <ul id="error_box">
-            @foreach ($err_msgs as $err_msg)
-              <li>{{$err_msg}}</li>
+            @foreach ($errors->all() as $error)
+              <li>{{$error}}</li>
             @endforeach
           </ul>
         @endif

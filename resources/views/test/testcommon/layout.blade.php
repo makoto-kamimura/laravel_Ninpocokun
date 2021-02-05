@@ -25,7 +25,7 @@
   <body>
     <header>
       <p class="homelink"><a href="home"><span><img src="img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
-      <ul id="pclist">
+      <ul id="pclist" class="listbox">
         <li class="odd"><a href="user"><img src="img/menu01.png" alt="ユーザー管理"></a></li>
         <li class="even"><a href="dailylist_superior"><img src="img/menu02.png" alt="日報承認"></a></li>
         <li class="odd"><a href="dailylist"><img src="img/menu03.png" alt="日報一覧"></a></li>

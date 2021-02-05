@@ -32,9 +32,13 @@ $(window).on('load',function() {
   var path = location.pathname
 
   if ((path == "/login") || (path == "/errordisplay")){
-    $('ul#pclist').remove();
+    //$('ul#pclist').remove();
     $('div#nav-drawer').remove();
     $('p.homelink').children().contents().unwrap();
+  }
+
+  if (!(path == "/login")){
+    $('#pclist').css('display', 'block');
   }
 });
 

@@ -8,8 +8,6 @@ use App\Http\Requests\ReportRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isNull;
-
 class DailyReportController extends Controller
 {
     public function __construct()

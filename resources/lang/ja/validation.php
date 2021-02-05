@@ -19,7 +19,8 @@ return [
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeはアルファベットのみがご利用できます。',
     'alpha_dash'           => ':attributeはアルファベットとダッシュ(-)及び下線(_)がご利用できます。',
-    'alpha_num'            => ':attributeはアルファベット数字がご利用できます。',
+    // 文言変更　指定=>入力
+    'alpha_num'            => ':attributeは半角英数字しか入力できません。',
     'array'                => ':attributeは配列でなくてはなりません。',
     'before'               => ':attributeには、:dateより前の日付をご利用ください。',
     'before_or_equal'      => ':attributeには、:date以前の日付をご利用ください。',
@@ -30,7 +31,7 @@ return [
         'array'   => ':attributeは、:min個から:max個の間で指定してください。',
     ],
     'boolean'              => ':attributeは、trueかfalseを指定してください。',
-    'confirmed'            => ':attributeと、確認フィールドとが、一致していません。',
+    'confirmed'            => ':attributeと、確認用フィールドが、一致していません。',
     'date'                 => ':attributeには有効な日付を指定してください。',
     'date_equals'          => ':attributeには、:dateと同じ日付けを指定してください。',
     'date_format'          => ':attributeは:format形式で指定してください。',
@@ -95,7 +96,8 @@ return [
     'numeric'              => ':attributeには、数字を指定してください。',
     'present'              => ':attributeが存在していません。',
     'regex'                => ':attributeに正しい形式を指定してください。',
-    'required'             => ':attributeは必ず指定してください。',
+    // 文言変更　指定=>入力
+    'required'             => ':attributeは必ず入力してください。',
     'required_if'          => ':otherが:valueの場合、:attributeも指定してください。',
     'required_unless'      => ':otherが:valuesでない場合、:attributeを指定してください。',
     'required_with'        => ':valuesを指定する場合は、:attributeも指定してください。',
@@ -145,6 +147,20 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'password' => 'パスワード',
+        'password_confitation' => '確認用パスワード',
+        'sei' => '姓',
+        'mei' => '名',
+        'sei_kana' => '姓(かな)',
+        'mei_kana' => '名(かな)',
+        'sagyou' => '作業欄',
+        'shintyoku' => '進捗欄',
+        'zansagyou' => '残作業欄',
+        'hikitsugi' => '引継ぎ項目欄',
+        'comment' => 'コメント欄',
+        'taishoku_date' => '退職日',
+
+    ],
 
 ];

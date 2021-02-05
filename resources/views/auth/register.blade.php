@@ -17,7 +17,16 @@
 @section('body')
 	<section>
         <h1>@yield('title')</h1>
-        <p>バリデーションエラー確認用{{ $errors }}</p>
+        @if ($errors->any())
+        <div class="">
+            <ul id="error_box">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        
         <form action="{{route('user.confirm')}}" method="post">
         @csrf
 

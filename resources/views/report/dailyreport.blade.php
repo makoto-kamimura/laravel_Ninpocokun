@@ -14,6 +14,16 @@
 	<section>
         <!-- <h1>@yield('title')</h1> -->
         <h1>日報報告</h1>
+        @if ($errors->any())
+        <div class="">
+            <ul id="error_box">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <form action="{{route('report.confirm')}}" method="post">
             @csrf
             <!-- <div class="dailytitle">

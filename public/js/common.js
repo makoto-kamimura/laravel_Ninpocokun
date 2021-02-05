@@ -36,6 +36,14 @@ $(window).on('load',function() {
     $('div#nav-drawer').remove();
     $('p.homelink').children().contents().unwrap();
   }
+<<<<<<< Updated upstream
+=======
+  /*
+  if (!(path == "/login")){
+    $('#pclist').css('display', 'block');
+  }
+  */
+>>>>>>> Stashed changes
 });
 
 

@@ -55,7 +55,15 @@ header ul#pclist li.logout {
 header ul#pclist li a:hover {
 	opacity: 0.8;
 }
+<<<<<<< Updated upstream
 
+=======
+/*
+header ul#pclist {
+  display: none;
+}
+*/
+>>>>>>> Stashed changes
 section {
 	width: 75%;
     padding: 0 0 120px 0;
@@ -169,7 +177,7 @@ footer {
 }
 
 @media screen and (min-width:1024px) {
-  #nav-open {
+  header div div#nav-content, #nav-open {
     display:none;
   }
 }
@@ -180,7 +188,7 @@ footer {
   }
 
   header div div#nav-content {
-  	height: 84.5%;
+  	height: 344px;
   }
 
   header ul#splist {

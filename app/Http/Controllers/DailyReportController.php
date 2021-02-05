@@ -251,6 +251,11 @@ class DailyReportController extends Controller
         $css = 'dailyreport_confirm.css';
         $is_auth = DailyReportController::isBuka($report);
 
+        dd($is_auth);
+        if (is_null($is_auth)) {
+            return redirect(route('report.index'));
+        }
+
         //ビューを呼び出す
         return view('report.confirm', compact('report', 'tagu', 'title', 'css', 'is_auth'));
     }
@@ -261,6 +266,11 @@ class DailyReportController extends Controller
      */
     public function approve()
     {
+        // 承認権限の無い一般社員がアクセスした場合mainにredirectさせる
+        if (isset(Auth::user()->pos_cd) && !Auth::user()->pos_cd < 30) {
+            abort(403);
+        }
+
         // 承認待機状態の部下の日報を取得する
         $current = Auth::id();
         $table = DB::table('daily_reports');
@@ -357,9 +367,14 @@ class DailyReportController extends Controller
         $css = 'dailyreport.css';
 
         $report = Daily_report::find($id);
-
         if (is_null($report)) {
             \Session::flash('err_msg', 'データがありません');
+            return redirect(route('report.index'));
+        }
+
+        // 本人と上司以外が日報にアクセスした場合は閲覧できないようにする
+        $is_auth = DailyReportController::isBuka($report);
+        if (is_null($is_auth)) {
             return redirect(route('report.index'));
         }
         \Session::put('auth_cd', $report->auth_user_cd);

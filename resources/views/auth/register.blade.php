@@ -73,7 +73,7 @@
             </div> -->
             <!-- ユーザー情報変更時のみ項目表示を想定_20210125_kamimura -->
             <div>
-                <label>退社日</label>
+                <label>退職日</label>
                 <input type="date" name="taishoku_date" value="{{ old('taishoku_date' , $user -> taishoku_date ) }}">
             </div>
         	<div class="name">

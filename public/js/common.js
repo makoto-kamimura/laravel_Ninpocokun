@@ -132,3 +132,56 @@ $(window).on('load',function() {
       confirm.setCustomValidity('');
     }
   }
+
+
+
+//チェックボックスを記憶
+   function alertDebug(arg) {
+         //alert(arg);   // ﾃﾞﾊﾞｯｸﾞ時に有効化すると良い
+      }
+ 
+      function save_restore1_checkbox(target_class) {
+         var cbstate;
+ 
+         window.addEventListener('load', function () {
+            cbstate = JSON.parse(localStorage['CBState'] || '{}');
+            alertDebug('cbstate = ' + JSON.stringify(cbstate));
+            for (var key in cbstate) { // cbstateはobjectで、このようにforﾙｰﾌﾟすると var key はobjectのｷｰが来るのだ。知らなんだ。
+               alertDebug('key=' + key);
+               var el_lst = document.querySelectorAll('input[data-savekey="' + key + '"].' + target_class);
+               set_checkbox_checked_all(el_lst, true);
+            }
+ 
+            var cb = document.getElementsByClassName(target_class);
+            alertDebug('cb = ' + JSON.stringify(cb));
+ 
+            for (var c = 0; c < cb.length; c++) {
+               alertDebug('cb[' + c + ']:name=' + cb[c].name + ', value=' + cb[c].value);
+ 
+               cb[c].addEventListener('click', function (evt) {
+                  var savekey = this.getAttribute('data-savekey');
+                  alertDebug('click:savekey_value=' + savekey + ', checked=' + this.checked);
+                  if (this.checked) {
+                     cbstate[savekey] = true;
+                  }
+                  else if (cbstate[savekey]) {
+                     delete cbstate[savekey];
+                  }
+                  localStorage['CBState'] = JSON.stringify(cbstate);
+               });
+            }
+         });
+ 
+         function set_checkbox_checked_all(el_lst, checked) {
+            for (var c = 0; c < el_lst.length; c++) {
+               var el = el_lst[c];
+               alertDebug('el=' + JSON.stringify(el) + ' ,el.name=' + el.name);
+               if (el) {
+                  alertDebug('el.checked=' + el.checked);
+                  el.checked = checked;
+               }
+            }
+         }
+      }
+
+      save_restore1_checkbox('save-state1');

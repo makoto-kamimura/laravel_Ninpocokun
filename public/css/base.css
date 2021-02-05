@@ -143,6 +143,19 @@ div.btn_box input.btn:hover {
     border: none;
 }
 
+
+
+@media screen and (max-width:1024px){
+	form {
+		width: 60%;
+	}
+
+	label {
+		margin: 0 auto;
+		text-align-last: justify !important;
+	}
+}
+
 @media screen and (max-width:892px){
 	h1 {
 		width: 160px;
@@ -153,11 +166,19 @@ div.btn_box input.btn:hover {
     	width: 100%;
 	}*/
 
+	form {
+		text-align: center;
+	}
+
 	form div label {
 		display: block;
 		text-align: left;
 		margin-bottom: 5px;
 		text-align-last: left;
+	}
+
+	div.btn_box input.btn {
+		width: 35%;
 	}
 
 	div.btn_box input.btn:hover {

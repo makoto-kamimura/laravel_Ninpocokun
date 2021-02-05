@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <label for="info">情報システム課</label>
-                    <input type="checkbox" name="info" id="info" data-savekey="1" class="save-state1">
+                    <input type="checkbox" name="info" id="info" data-savekey="" class="save-state1">
                 </div>
                 <div class="positions">
                     <label for="positions">役職</label>
@@ -74,7 +74,7 @@
             </div>
 
     		<div class='btn_box tac'>
-                <input id="submit button1_ID" class='btn' type="submit" value="確認する">
+                <input id="submit" class='btn' type="submit" value="確認する">
             </div>
             
         </form>

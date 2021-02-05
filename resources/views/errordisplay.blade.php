@@ -20,6 +20,6 @@
 
 @section('body')
 	<section class="tac">
-        <p class="error tac">{{$tagu}}エラーが発生しました<br><span>システム管理者に確認してください</span></p>
+        <p class="error tac">{{$tagu}}エラーが発生しました<br><span>{{$message}}</span></p>
 	</section>
 @endsection

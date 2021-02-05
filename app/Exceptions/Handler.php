@@ -57,6 +57,43 @@ class Handler extends ExceptionHandler
     protected function renderHttpException(HttpExceptionInterface $e)
     {
         $tagu = $e->getStatusCode();
-        return response()->view('errordisplay', compact('tagu'));
+        $message = $e->getMessage();
+        if (!$message) {
+            switch ($tagu) {
+                case 400:
+                    $message = 'Bad Request';
+                    break;
+                case 401:
+                    $message = '認証に失敗しました';
+                    break;
+                case 403:
+                    $message = 'アクセス権限がありません';
+                    break;
+                case 404:
+                    $message = '存在しないページです';
+                    break;
+                case 408:
+                    $message = 'タイムアウトです';
+                    break;
+                case 414:
+                    $message = 'リクエストURIが長すぎます';
+                    break;
+                case 419:
+                    $message = '不正なリクエストです';
+                    break;
+                case 500:
+                    $message = 'Internal Server Error';
+                    break;
+                case 503:
+                    $message = 'Service Unavailable';
+                    break;
+                default:
+                    $message = 'システム管理者に確認してください';
+                    break;
+            }
+        }
+
+
+        return response()->view('errordisplay', compact('tagu', 'message'));
     }
 }

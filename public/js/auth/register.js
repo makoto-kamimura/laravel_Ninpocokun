@@ -12,7 +12,13 @@ $(function(){
     passwordFieldToggle('#password_disp2','#password_confirmation');
 
     // 「所属部門」セレクトボックスの変更時イベント登録
-    $("#department").on('change',function(){get_div()});
+    $("#department").on('change',function(){checkSelect($(this),'課');get_div();});
+
+    // 「所属課」セレクトボックスの変更時イベント登録
+    $('#division').on('change',function(){checkSelect($(this),'課')});
+
+    // 「役職」セレクトボックスの変更時イベント登録
+    $('#position').on('change',function(){checkSelect($(this),'役職')});
 
     // システム管理者のチェックon/off設定
     $("#sys_admin").on("click", function(){
@@ -24,20 +30,19 @@ $(function(){
     });
 
     // 「確認する」ボタンクリックイベント(バリデーション実装)
-    // $('form').on('submit',function(){
-    //   // $(this).off('submit'); 
-    //   var isValid = true;
-    //   isValid = checkDivSelect();
-    //   isValid = checkPassword("#password","#password_confirmation");
-    //   return false;
-
-
-
-
-
-    // })
-
-
+    $('#submit_form').on('click',function(){
+      var isValid = 0;
+      isValid += checkSelect($('#department'),'部') ? 0 : 1;
+      isValid += checkSelect($('#division'),'課') ? 0 : 1;
+      isValid += checkSelect($('#position'),'役職') ? 0 : 1;
+      isValid += checkPassword("#password","#password_confirmation") ? 0 : 1;
+      if(isValid > 0 || !$('form').get(0).checkValidity()){
+        $('form').get(0).reportValidity();
+      } else {
+        $('form').submit();
+      }
+      
+    })
 
     /**
      * ajax通信を用いて課情報を取得
@@ -73,18 +78,18 @@ $(function(){
         ajaxbase(params);
       }
 
-      
       // 課セレクトボックスチェック
-    function checkDivSelect(){
-      var val = $('#division').val();
-      if (val == null){
-        $('#division')[0].setCustomValidity("課を選択して下さい。");
+    function checkSelect(targetJqObj,targetName){
+      // var val = targetJqObj.val();
+      if (targetJqObj.val() == null){
+        targetJqObj[0].setCustomValidity(targetName + "を選択して下さい。");
         return false;
       }else{
-        $('#division')[0].setCustomValidity("");
+        targetJqObj[0].setCustomValidity("");
         return true;
       }
     }
+
 
       //　パスワードチェック
     function checkPassword(pwSelector,ckSelector){
@@ -93,7 +98,7 @@ $(function(){
       var input2 = $(ckSelector).val();
       // パスワード比較
       if(input1 != input2){
-        $(ckSelector)[0].setCustomValidity("入力値が一致しません。");
+        $(ckSelector)[0].setCustomValidity("パスワードが一致しません。");
         return false;
       }else{
         $(ckSelector)[0].setCustomValidity("");
@@ -101,7 +106,7 @@ $(function(){
       }
     }
 
-    
+
 
 
 });

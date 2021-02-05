@@ -26,7 +26,7 @@
                         <input type="hidden" name="cd" value="{{ $user -> cd }}">
                         @else
                         登録時に自動採番されます
-                        @endif
+                        @endisset
                     </td>
                 </tr>
                 <tr>
@@ -44,10 +44,12 @@
                     <th>役職</th>
                     <td colspan="2">{{ $po }}</td>
                 </tr>
-                @isset($user['sys_admin'])
                 <tr>
                     <th>システム管理者</th>
-                    <td colspan="2">{{ $user['sys_admin'] }}</td>
+                    @if($user['sys_admin'] == 1)
+                    <td colspan="2">　○　</td>
+                    @else
+                    <td colspan="2">　×　</td>
                     <input type="hidden" name="sys_admin" value="{{ $user['sys_admin'] }}">
                 </tr>
                 @endisset

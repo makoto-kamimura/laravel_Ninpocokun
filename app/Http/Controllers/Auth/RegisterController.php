@@ -74,11 +74,6 @@ class RegisterController extends Controller
             $data['cd'] = \Session::get('cd');
             \Session::forget('cd');
 
-            // システム管理者ではない場合に0を設定
-            if (!isset($data['sys_admin'])) {
-                $data['sys_admin'] = 0;
-            }
-
             // divが無い場合に0をセット
             if (!isset($data['division'])) {
                 $data['division'] = 0;
@@ -189,6 +184,11 @@ class RegisterController extends Controller
         }
 
         $user = $request->input();
+
+        // システム管理者ではない場合に0を設定
+        if (!isset($user['sys_admin'])) {
+            $user['sys_admin'] = 0;
+        }
 
         $de = "";
         $di = "";

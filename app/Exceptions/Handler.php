@@ -56,8 +56,10 @@ class Handler extends ExceptionHandler
 
     protected function renderHttpException(HttpExceptionInterface $e)
     {
+        // 例外発生時にエラーステータスを取得
         $tagu = $e->getStatusCode();
         $message = $e->getMessage();
+        // ステータスに応じてエラーメッセージを作成
         if (!$message) {
             switch ($tagu) {
                 case 400:

@@ -55,15 +55,11 @@ header ul#pclist li.logout {
 header ul#pclist li a:hover {
 	opacity: 0.8;
 }
-<<<<<<< Updated upstream
-
-=======
 /*
 header ul#pclist {
   display: none;
 }
 */
->>>>>>> Stashed changes
 section {
 	width: 75%;
     padding: 0 0 120px 0;

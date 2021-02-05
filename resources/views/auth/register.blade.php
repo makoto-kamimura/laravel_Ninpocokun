@@ -59,7 +59,7 @@
             </div>
             <div class="position">
                 <label for="position">役職</label>
-                <select name="position" id="position">2
+                <select name="position" id="position">
                 	<option disabled selected>選択してください</option>
                     @foreach($pos as $po)
                     <option value="{{$po->cd}}" {{ old('position' , $user -> pos_cd) == $po->cd ? "selected" : ""}}>{{$po->name}}</option>
@@ -78,13 +78,13 @@
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>
-                <input type="text" name="sei" class="name" placeholder="姓" value="{{ old('sei' , $user -> sei ) }}">
-                <input type="text" name="mei" class="name" placeholder="名" value="{{ old('mei' , $user -> mei ) }}">
+                <input type="text" name="sei" class="name" placeholder="姓" value="{{ old('sei' , $user -> sei ) }}" minlength="1" maxlength="6" required>
+                <input type="text" name="mei" class="name" placeholder="名" value="{{ old('mei' , $user -> mei ) }}" minlength="1" maxlength="10"  required>
             </div>
             <div class="name">
                 <label>名前（カナ）</label>
-                <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana', $user -> sei_kana) }}"required>
-                <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana', $user -> mei_kana) }}" required>
+                <input type="text" name="sei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="セイ"  value="{{ old('sei_kana', $user -> sei_kana) }}" minlength="1" maxlength="10" required>
+                <input type="text" name="mei_kana" class="name" pattern="[\u30A1-\u30F6]*" placeholder="メイ" value="{{ old('mei_kana', $user -> mei_kana) }}" minlength="1" maxlength="20"  required>
             </div>
             <div class="password_box">
     			<div class="password_mainbox">
@@ -106,7 +106,7 @@
             </div>
 
 			<div class='btn_box tac'>
-            	<input id="submit" class='btn' type="submit" value="確認する">
+            	<input id="submit_form" class='btn' type="button" value="確認する">
             </div>
         </form>
 	</section>

@@ -9,7 +9,7 @@ $(function(){
     passwordFieldToggle('#password_disp','#password');
     
     // 「パスワードを表示する」チェックボックスの変更時イベント登録(パスワード確認欄)
-    passwordFieldToggle('#password_disp2','#password_check');
+    passwordFieldToggle('#password_disp2','#password_confirmation');
 
     // 「所属部門」セレクトボックスの変更時イベント登録
     $("#department").on('change',function(){get_div()});
@@ -22,6 +22,22 @@ $(function(){
             $(this).val(0).removeAttr('checked') ;
         }
     });
+
+    // 「確認する」ボタンクリックイベント(バリデーション実装)
+    // $('form').on('submit',function(){
+    //   // $(this).off('submit'); 
+    //   var isValid = true;
+    //   isValid = checkDivSelect();
+    //   isValid = checkPassword("#password","#password_confirmation");
+    //   return false;
+
+
+
+
+
+    // })
+
+
 
     /**
      * ajax通信を用いて課情報を取得
@@ -56,5 +72,36 @@ $(function(){
         params[5] = function(data){};
         ajaxbase(params);
       }
+
+      
+      // 課セレクトボックスチェック
+    function checkDivSelect(){
+      var val = $('#division').val();
+      if (val == null){
+        $('#division')[0].setCustomValidity("課を選択して下さい。");
+        return false;
+      }else{
+        $('#division')[0].setCustomValidity("");
+        return true;
+      }
+    }
+
+      //　パスワードチェック
+    function checkPassword(pwSelector,ckSelector){
+      // 入力値取得
+      var input1 = $(pwSelector).val();
+      var input2 = $(ckSelector).val();
+      // パスワード比較
+      if(input1 != input2){
+        $(ckSelector)[0].setCustomValidity("入力値が一致しません。");
+        return false;
+      }else{
+        $(ckSelector)[0].setCustomValidity("");
+        return true;
+      }
+    }
+
+    
+
 
 });

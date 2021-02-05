@@ -98,7 +98,7 @@
             <div class="password_box">
                 <div class="password_mainbox">
                     <label for="password">パスワード確認</label>
-                    <input type="password" name="password_check" class="field" id="password_check" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" oninput="CheckPassword(this)" required>
+                    <input type="password" name="password_confirmation" class="field" id="password_confirmation" minlength="8" maxlength="16" pattern="[a-zA-Z0-9]+" onpaste="return false" required>
                 </div>
                 <div class="password_subbox">
                     <input type="checkbox" id="password_disp2">パスワードを表示する

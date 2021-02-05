@@ -74,7 +74,7 @@
             </div>
 
     		<div class='btn_box tac'>
-                <input id="button1_ID" class='btn' type="submit" value="確認する">
+                <input id="submit button1_ID" class='btn' type="submit" value="確認する">
             </div>
             
         </form>

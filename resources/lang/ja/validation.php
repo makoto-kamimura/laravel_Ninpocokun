@@ -149,7 +149,7 @@ return [
 
     'attributes' => [
         'password' => 'パスワード',
-        'password_confitation' => '確認用パスワード',
+        'password_confirmation' => '確認用パスワード',
         'sei' => '姓',
         'mei' => '名',
         'sei_kana' => '姓(かな)',

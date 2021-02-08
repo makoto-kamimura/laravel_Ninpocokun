@@ -52,8 +52,10 @@
               @if (isset( Auth::user()->pos_cd ) && Auth::user()->pos_cd < 30)
               <li><a href="{{route('report.approve')}}">日報承認・確認</a></li>
               @endif
+              @if(isset( Auth::user()->pos_cd ) && Auth::user()->dep_cd != 1)
               <li><a href="{{route('report.index')}}">日報一覧</a></li>
               <li><a href="{{route('report.create')}}">日報登録</a></li>
+              @endif
               <li><a href="{{route('user.logout')}}">ログアウト</a></li>
             @endif
             {{-- @if (isset( $sys_admin ) && $sys_admin == 1)

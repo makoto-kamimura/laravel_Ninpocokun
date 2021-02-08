@@ -40,6 +40,16 @@ class DailyReportController extends Controller
         }
     }
 
+    // 社長かどうかを判定する
+    public static function isCeo()
+    {
+        if (isset(Auth::user()->pos_cd) && Auth::user()->pos_cd == 1) {
+            abort(403);
+        } else {
+            false;
+        }
+    }
+
     /**
      * 日報一覧を表示する
      *
@@ -49,31 +59,34 @@ class DailyReportController extends Controller
 
     public function index()
     {
+        //社長ならアクセスを弾く
+        DailyReportController::isCeo();
+
         //未承認の自分の日報を取得する
         $current = Auth::id();
         $table = DB::table('daily_reports');
         $reports = DB::select(DB::raw("SELECT dr.no, dr.created_at,LEFT(dr.sagyou,12) sagyou, st.name
-            FROM daily_reports dr
-            LEFT JOIN v_user_info vui
-            ON dr.post_user_cd = vui.user_cd
-            LEFT JOIN statuses st
-            ON dr.status = st.cd
-            WHERE dr.status < 1
-            AND dr.post_user_cd = :cd
-            ORDER BY dr.no"), ['cd' => $current]);
+        FROM daily_reports dr
+        LEFT JOIN v_user_info vui
+        ON dr.post_user_cd = vui.user_cd
+        LEFT JOIN statuses st
+        ON dr.status = st.cd
+        WHERE dr.status < 1
+        AND dr.post_user_cd = :cd
+        ORDER BY dr.no"), ['cd' => $current]);
 
         // 承認済みの自分の日報を取得する
         $table = DB::table('daily_reports');
         $reports2 = DB::select(DB::raw(
             "SELECT dr.no, dr.created_at,LEFT(dr.sagyou,12) sagyou, st.name
-            FROM daily_reports dr
-            LEFT JOIN v_user_info vui
-            ON dr.post_user_cd = vui.user_cd
-            LEFT JOIN statuses st
-            ON dr.status = st.cd
-            WHERE dr.status = 1
-            AND dr.post_user_cd = :cd
-            ORDER BY dr.no"
+        FROM daily_reports dr
+        LEFT JOIN v_user_info vui
+        ON dr.post_user_cd = vui.user_cd
+        LEFT JOIN statuses st
+        ON dr.status = st.cd
+        WHERE dr.status = 1
+        AND dr.post_user_cd = :cd
+        ORDER BY dr.no"
         ), ['cd' => $current]);
 
         $tagu = '日報';
@@ -94,6 +107,9 @@ class DailyReportController extends Controller
 
     public function create()
     {
+        //社長ならアクセスを弾く
+        DailyReportController::isCeo();
+
         //ビューの動作確認用サンプルデータ作成
         $title = '日報登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
@@ -239,6 +255,11 @@ class DailyReportController extends Controller
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('report.index'));
         }
+        // 本人と上司以外が日報にアクセスした場合は閲覧できないようにする
+        $is_auth = DailyReportController::isBuka($report);
+        if (is_null($is_auth)) {
+            return redirect(route('report.index'));
+        }
 
         // セッションに記事noを登録
         \Session::put('post_no', $report->no);
@@ -369,9 +390,9 @@ class DailyReportController extends Controller
             return redirect(route('report.index'));
         }
 
-        // 本人と上司以外が日報にアクセスした場合は閲覧できないようにする
+        // 本人以外が日報にアクセスした場合は閲覧できないようにする
         $is_auth = DailyReportController::isBuka($report);
-        if (is_null($is_auth)) {
+        if ($is_auth) {
             return redirect(route('report.index'));
         }
         \Session::put('auth_cd', $report->auth_user_cd);

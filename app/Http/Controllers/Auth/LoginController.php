@@ -79,4 +79,10 @@ class LoginController extends Controller
         //セッションにsys_adminとpos_cdを保存
         return '/';
     }
+
+    // 同一アカウントへの多重ログインを禁止する
+    protected function authenticated(Request $request, $user)
+    {
+        Auth::logoutOtherDevices($request->input('password'));
+    }
 }

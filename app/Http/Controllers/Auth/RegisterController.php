@@ -146,6 +146,12 @@ class RegisterController extends Controller
         $deps = DB::table('departments')->get();
         $pos = DB::table('positions')->get();
 
+        if (old('division') !== null && old('department') !== null) {
+            $divs = DB::table('divisions')->where('dep_cd', old('department'))->select('cd', 'name')->get();
+        } else {
+            $divs = null;
+        }
+
         //viewに渡す情報を作成
         $title = 'ユーザー登録';
         $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
@@ -165,7 +171,7 @@ class RegisterController extends Controller
         \Session::forget('cd');
 
         //ビューを呼び出す
-        return view('auth.register', compact('user', 'deps', 'pos', 'title', 'err_msgs', 'css'));
+        return view('auth.register', compact('user', 'divs', 'deps', 'pos', 'title', 'err_msgs', 'css'));
     }
 
     /**

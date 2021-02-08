@@ -455,6 +455,8 @@ summary {
 /* ============================================ */
 
 table {
+  	/* ユーザー登録確認レイアウト調整_kamimura */
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -466,7 +468,8 @@ caption {
 td,
 th {
   vertical-align: top;
-  padding: 0;
+  /* ユーザー登録確認レイアウト調整_kamimura */
+  padding: 5px;
 }
 
 th {

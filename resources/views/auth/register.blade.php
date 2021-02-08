@@ -32,12 +32,12 @@
 
         <div class="employeecode">
                 <label>社員コード</label>                        
-                @isset($user->cd)
-                <label>{{ old('cd' , $user -> cd) }}</label>
-                <input type="hidden" name="cd" id="cd" value="{{ old('cd' , $user -> cd )}}">
-                @else
+                @empty($cd)
                 <label>自動採番</label>
-                @endif
+                @else
+                <label>{{ old('cd' , $cd )}}</label>
+                <input type="hidden" name="cd" id="cd" value="{{ old('cd' , $cd )}}">
+                @endempty
             </div>
 
         	<div class="department">
@@ -60,7 +60,7 @@
                 @else
                     <option value="0" selected></option>
                 @endif
-                </select>                
+                </select>
             </div>
             <div>
                 <label for="sys_admin">システム管理者</label>

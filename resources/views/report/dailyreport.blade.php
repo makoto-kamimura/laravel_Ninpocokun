@@ -56,7 +56,8 @@
             @if(old('comment' , $report -> comment ) == !NULL)
             <div class="comment">
                 <label for="">コメント</label>
-                <p name="comment"> {{$report -> comment}} </p>
+                <p name="comment"> {{ old( 'comment', $report -> comment) }} </p>
+                <input type="hidden" name="comment" value="{{$report -> comment}}">
             </div>
             @endif
             <!--

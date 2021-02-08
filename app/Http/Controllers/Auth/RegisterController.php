@@ -45,17 +45,6 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        //
-    }
-
-    /**
      *　ユーザー登録画面を表示する
      *
      * @param  array  $data
@@ -64,11 +53,13 @@ class RegisterController extends Controller
     protected function store(Request $request)
     {
         $input = $request->input();
+        \Session::put('cd', $input['cd']);
+
         if ($input['submit'] == '修正する') {
             return redirect('register')->withInput();
         } else {
             // セッションから登録データを取得
-            $data = \Session::get('user', 'データが存在しない');;
+            $data = \Session::get('user', 'データが存在しない');
 
             // 編集画面遷移時に登録した社員コードの取得を試行
             $data['cd'] = \Session::get('cd');
@@ -130,7 +121,6 @@ class RegisterController extends Controller
                 }
             }
 
-
             \Session::flash('err_msg', '登録しました');
             return redirect(route('user.complete'));
         }
@@ -145,7 +135,6 @@ class RegisterController extends Controller
         // 部課情報を取得
         $deps = DB::table('departments')->get();
         $pos = DB::table('positions')->get();
-
         if (old('division') !== null && old('department') !== null) {
             $divs = DB::table('divisions')->where('dep_cd', old('department'))->select('cd', 'name')->get();
         } else {
@@ -154,7 +143,6 @@ class RegisterController extends Controller
 
         //viewに渡す情報を作成
         $title = 'ユーザー登録';
-        $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
         $user = (object)[
             'sei' => '',
@@ -168,10 +156,17 @@ class RegisterController extends Controller
             'pos_cd' => '',
             'sys_admin' => '',
         ];
+
+        // 新規作成時にセッション上のcdを取得しないようにする
+        if (old('cd') !== null) {
+            $cd = \Session::get('cd');
+        } else {
+            $cd = null;
+        }
         \Session::forget('cd');
 
         //ビューを呼び出す
-        return view('auth.register', compact('user', 'divs', 'deps', 'pos', 'title', 'err_msgs', 'css'));
+        return view('auth.register', compact('user', 'cd', 'divs', 'deps', 'pos', 'title', 'css'));
     }
 
     /**
@@ -184,12 +179,12 @@ class RegisterController extends Controller
     {
         // cdを取得
         $cd = \Session::get('cd');
+        \Session::forget('cd');
+        $user = $request->input();
         // 無ければRequestから$userに入力データを取得
         if (isset($cd)) { // = 編集モード
-
+            $user['cd'];
         }
-
-        $user = $request->input();
 
         // システム管理者ではない場合に0を設定
         if (!isset($user['sys_admin'])) {
@@ -220,12 +215,10 @@ class RegisterController extends Controller
             foreach ($pos as $po) {
             }
         }
-
         \Session::put('user', $user);
         $title = 'ユーザー登録';
-        $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'usertouroku.css';
-        return view('auth.confirm', compact('de', 'di', 'po', 'user', 'title', 'err_msgs', 'css'));
+        return view('auth.confirm', compact('de', 'di', 'po', 'user', 'title', 'css'));
     }
 
     /**
@@ -239,8 +232,8 @@ class RegisterController extends Controller
         $deps = DB::table('departments')->get();
         $pos = DB::table('positions')->get();
 
-        $title = 'メインメニュー';
-        $css = 'base.css';
+        $title = 'ユーザー編集';
+        $css = 'usertouroku.css';
 
         $user = User::find($id);
         $divs = DB::table('divisions')->where('dep_cd', $user->dep_cd)->select('cd', 'name')->get();
@@ -250,10 +243,12 @@ class RegisterController extends Controller
             return redirect(route('user.admin'));
         }
 
+        // cdを取得
+        $cd = $id;
         //Sessionに社員コードを登録
         \Session::put('cd', $user->cd);
 
-        return view('auth.register', compact('user', 'deps', 'pos', 'divs', 'title', 'css'));
+        return view('auth.register', compact('user', 'cd', 'deps', 'pos', 'divs', 'title', 'css'));
     }
     /**
      * ユーザー編集を実行する

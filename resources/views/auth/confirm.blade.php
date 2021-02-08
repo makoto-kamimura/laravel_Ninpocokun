@@ -21,9 +21,8 @@
                 <tr>
                     <th>社員コード</th>
                     <td SPAN="2">
-                        @isset($user->cd)
-                        {{ $user -> cd }}
-                        <input type="hidden" name="cd" value="{{ $user -> cd }}">
+                        @isset($user['cd'])
+                        {{ $user['cd'] }}
                         @else
                         登録時に自動採番されます
                         @endisset
@@ -74,6 +73,7 @@
             </table>
             {{-- リダイレクト先に値を渡す為 --}}
             <div class="hidden">
+                <input type="hidden" name="cd" value="{{$user['cd']}}">
                 <input type="hidden" name="department" value="{{ $user['department'] }}">
                 <input type="hidden" name="position" value="{{ $user['position'] }}">
                 <input type="hidden" name="taishoku_date" value="{{ $user['taishoku_date'] }}">

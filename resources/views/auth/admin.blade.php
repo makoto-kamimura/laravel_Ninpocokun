@@ -25,7 +25,7 @@
     </section>
 	<section>
         <h1>@yield('title2')</h1>
-        <table border="1" class="m0a tac approval">
+        <table border="1" class="m0a tac approval items">
             <tr> 
                 <th>社員コード</th>
                 <th>所属部門/所属課</th>
@@ -35,7 +35,7 @@
             </tr>
             @if (isset($users))
             @foreach ($users as $user)
-            <tr data-href="/auth/edit/{{$user->user_cd}}">
+            <tr  class="item" data-href="/auth/edit/{{$user->user_cd}}">
                 <td>{{$user->user_disp_cd}}</td>
                 <td>{{$user->dep_div_name}}</td>
                 <td>{{$user->user_name}}</td>

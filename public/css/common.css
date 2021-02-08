@@ -6,7 +6,7 @@ body {
 
 header {
 	position: relative;
-	padding: 12px 0 10px;
+	padding: 6px 0 10px;
 	background-color: #007aac;
 	border-bottom: 1px solid #165e83;
 }
@@ -41,15 +41,15 @@ header ul#pclist li {
 }
 
 header ul#pclist li.odd {
-  width: 110px;
+  width: 130px;
 }
 
 header ul#pclist li.even {
-  width: 110px;
+  width: 130px;
 }
 
 header ul#pclist li.logout {
-  width: 92px;
+  width: 109px;
 }
 
 header ul#pclist li a:hover {

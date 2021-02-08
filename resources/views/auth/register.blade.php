@@ -42,7 +42,7 @@
 
         	<div class="department">
                 <label for="department">所属部門</label>
-                <select name="department" id="department"">
+                <select name="department" id="department">
                     <option disabled selected>選択してください</option>
                     @foreach($deps as $dep)
                     <option value="{{$dep->cd}}" {{ old('department' ,$user -> dep_cd) == $dep->cd ? "selected" : ""}}>{{$dep->name}}</option>

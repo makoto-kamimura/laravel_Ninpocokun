@@ -45,6 +45,10 @@
                     <td colspan="2">{{ $po }}</td>
                 </tr>
                 <tr>
+                    <th>退職日</th>
+                    <td colspan="2">{{ $user['taishoku_date'] }}</td>
+                </tr>
+                <tr>
                     <th>システム管理者</th>
                     @if($user['sys_admin'] == 1)
                     <td colspan="2">　○　</td>
@@ -72,6 +76,7 @@
             <div class="hidden">
                 <input type="hidden" name="department" value="{{ $user['department'] }}">
                 <input type="hidden" name="position" value="{{ $user['position'] }}">
+                <input type="hidden" name="taishoku_date" value="{{ $user['taishoku_date'] }}">
                 <input type="hidden" name="sei" value="{{ $user['sei'] }}">
                 <input type="hidden" name="mei" value="{{ $user['mei'] }}">
                 <input type="hidden" name="sei_kana" value="{{ $user['sei_kana'] }}">

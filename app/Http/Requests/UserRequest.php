@@ -34,7 +34,7 @@ class UserRequest extends FormRequest
             'mei_kana' => 'required | max:20',
             'password' => 'required | alpha_num | between:8,16 | confirmed',
             'password_confirmation' => 'required | alpha_num | between:8,16',
-            'taishoku_date' => 'date',
+            'taishoku_date' => 'nullable | date',
         ];
     }
 

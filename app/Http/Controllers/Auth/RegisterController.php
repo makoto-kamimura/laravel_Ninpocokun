@@ -238,12 +238,12 @@ class RegisterController extends Controller
         $css = 'usertouroku.css';
 
         $user = User::find($id);
-        $divs = DB::table('divisions')->where('dep_cd', $user->dep_cd)->select('cd', 'name')->get();
-
         if (is_null($user)) {
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('user.admin'));
         }
+        $divs = DB::table('divisions')->where('dep_cd', $user->dep_cd)->select('cd', 'name')->get();
+
 
         // cdを取得
         $cd = $id;

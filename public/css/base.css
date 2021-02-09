@@ -12,6 +12,15 @@ h1 {
 	margin: 0 auto 50px;
 }
 
+table {
+    table-layout: fixed;
+}
+
+table tr td {
+    word-wrap: break-word; /*IE*/
+    overflow-wrap: break-word;
+}
+
 form {
 	width: 88%;
 	margin: 0 auto;

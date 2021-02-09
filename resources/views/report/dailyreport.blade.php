@@ -37,19 +37,19 @@
             </div> -->
         	<div class="">
                 <label for="">本日の作業内容</label>
-                <textarea cols="70" rows="10" name="sagyou" maxlength="360" required placeholder="本日の作業内容">{{ old('sagyou' , $report -> sagyou ) }}</textarea>
+                <textarea cols="70" rows="10" name="sagyou" required placeholder="本日の作業内容">{{ old('sagyou' , $report -> sagyou ) }}</textarea>
             </div>
             <div class="">
                 <label for="">進捗状況</label>
-                <textarea cols="70" rows="5" name="shintyoku" maxlength="360" placeholder="進捗状況">{{ old('shintyoku' , $report -> shintyoku ) }}</textarea>
+                <textarea cols="70" rows="5" name="shintyoku" required  placeholder="進捗状況">{{ old('shintyoku' , $report -> shintyoku ) }}</textarea>
             </div>
             <div class="">
                 <label for="">残作業</label>
-                <textarea cols="70" rows="5" name="zansagyou" maxlength="360" placeholder="残作業">{{ old('zansagyou' , $report -> zansagyou ) }}</textarea>
+                <textarea cols="70" rows="5" name="zansagyou" required  placeholder="残作業">{{ old('zansagyou' , $report -> zansagyou ) }}</textarea>
             </div>
             <div class="">
                 <label for="">引き継ぎ事項</label>
-                <textarea cols="70" rows="5" name="hikitsugi" maxlength="360" placeholder="引き継ぎ事項">{{ old('hikitsugi' , $report -> hikitsugi ) }}</textarea>
+                <textarea cols="70" rows="5" name="hikitsugi" required  placeholder="引き継ぎ事項">{{ old('hikitsugi' , $report -> hikitsugi ) }}</textarea>
             </div>
             <div class="">
             <!-- 差し戻し時のみ上長のコメント表示を想定_20210125_kamimura-->
@@ -67,7 +67,7 @@
             </div>
             -->
 			<div class='btn_box tac'>
-            	<input class='btn' type="submit" value="確認する">
+            	<input id='submit_form' class='btn' type='button' value="確認する">
             </div>
         </form>
 	</section>

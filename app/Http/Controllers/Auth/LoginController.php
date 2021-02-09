@@ -58,6 +58,7 @@ class LoginController extends Controller
         $css = 'base.css';
 
         // cokkieがセットされていなければ値を取得
+        // dd($request->cookie);
         if (isset($request->cookie)) {
             $get_cookie = array(
                 'department' => $request->cookie('departments'),

@@ -73,7 +73,9 @@
             </table>
             {{-- リダイレクト先に値を渡す為 --}}
             <div class="hidden">
+                @isset($user['cd'])
                 <input type="hidden" name="cd" value="{{$user['cd']}}">
+                @endisset
                 <input type="hidden" name="department" value="{{ $user['department'] }}">
                 <input type="hidden" name="position" value="{{ $user['position'] }}">
                 <input type="hidden" name="taishoku_date" value="{{ $user['taishoku_date'] }}">

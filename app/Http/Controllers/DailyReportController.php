@@ -112,7 +112,6 @@ class DailyReportController extends Controller
 
         //ビューの動作確認用サンプルデータ作成
         $title = '日報登録';
-        $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'dailyreport.css';
         $report = (object)[
             'sagyou' => '',
@@ -125,7 +124,7 @@ class DailyReportController extends Controller
         \Session::forget('post_no');
 
         //ビューを呼び出す
-        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css'));
+        return view('report.dailyreport', compact('report', 'title', 'css'));
     }
 
     /**
@@ -381,7 +380,6 @@ class DailyReportController extends Controller
     public function edit($id)
     {
         $title = '日報編集';
-        $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'dailyreport.css';
 
         $report = Daily_report::find($id);
@@ -399,7 +397,7 @@ class DailyReportController extends Controller
         \Session::put('post_cd', $report->post_user_cd);
         \Session::put('post_no', $report->no);
 
-        return view('report.dailyreport', compact('report', 'title', 'err_msgs', 'css'));
+        return view('report.dailyreport', compact('report', 'title', 'css'));
     }
 
     /**

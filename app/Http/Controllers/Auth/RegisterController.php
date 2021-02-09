@@ -53,7 +53,9 @@ class RegisterController extends Controller
     protected function store(Request $request)
     {
         $input = $request->input();
-        \Session::put('cd', $input['cd']);
+        if (isset($input['cd'])) {
+            \Session::put('cd', $input['cd']);
+        }
 
         if ($input['submit'] == '修正する') {
             return redirect('register')->withInput();
@@ -299,7 +301,7 @@ class RegisterController extends Controller
         //ビュー
         $tagu = 'ユーザー管理';
         //$title1 = 'ユーザー登録';
-        $title2 = 'ユーザーリスト';
+        $title2 = 'ユーザー管理';
         $css = 'user.css';
 
         //ビューを呼び出す

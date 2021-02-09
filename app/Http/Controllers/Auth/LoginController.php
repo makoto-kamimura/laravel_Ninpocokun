@@ -41,9 +41,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // 認証columnを社員コードにするように変更する
     public function username()
     {
-        // 社員コードを取得
+        // 社員コードを返す
         return 'cd';
     }
 
@@ -53,11 +54,11 @@ class LoginController extends Controller
         // 部課情報を取得
         $deps = DB::table('departments')->get();
 
-        // view
+        // viewに渡すblade用データ
         $title = 'ログインページ';
         $css = 'base.css';
 
-        // cokkieがセットされていなければ値を取得
+        // cokkieがセットされていなければ値を取得(未使用?)
         if (isset($request->cookie)) {
             $get_cookie = array(
                 'department' => $request->cookie('departments'),
@@ -65,18 +66,17 @@ class LoginController extends Controller
                 'user_cd' => $request->cookie('name')
             );
 
-            // ビューを呼び出す(クッキーあり)
+            // viewを呼び出す(cookieあり)
             return view('Auth.login', compact('deps', 'get_cookie', 'title', 'css'));
         } else {
-            // ビューを呼び出す(クッキーなし)
+            // viewを呼び出す(cookieなし)
             return view('Auth.login', compact('deps', 'title', 'css'));
         }
     }
 
-    // ログイン後の遷移先を指定
+    // ログイン後の遷移先を指定する
     public function redirectPath()
     {
-        //セッションにsys_adminとpos_cdを保存
         return '/';
     }
 

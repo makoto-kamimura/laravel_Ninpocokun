@@ -12,9 +12,6 @@
 */
 
 //メイン画面を表示する
-
-use App\Http\Controllers\DailyReportController;
-
 Route::get('/', 'HomeController@main')->name('main');
 
 // // <<日報管理関係ルーティング>>

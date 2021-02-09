@@ -95,7 +95,7 @@ class Handler extends ExceptionHandler
             }
         }
 
-
+        // viewを呼び出す
         return response()->view('errordisplay', compact('tagu', 'message'));
     }
 }

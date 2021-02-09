@@ -7,7 +7,6 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
@@ -45,22 +44,23 @@ class RegisterController extends Controller
     }
 
     /**
-     *　ユーザー登録画面を表示する
+     *　ユーザー登録を実行する
      *
-     * @param  array  $data
-     * @return \App\User
+     * @param  Request $request
+     * @return view [209]ユーザー情報登録完了画面
      */
     protected function store(Request $request)
     {
+        // 入力データを受け取る
         $input = $request->input();
         if (isset($input['cd'])) {
             \Session::put('cd', $input['cd']);
         }
 
+        // [修正する]が押下された場合は入力画面にリダイレクトする
         if ($input['submit'] == '修正する') {
             return redirect('register')->withInput();
         } else {
-            // セッションから登録データを取得
             $data = \Session::get('user', 'データが存在しない');
 
             // 編集画面遷移時に登録した社員コードの取得を試行
@@ -72,7 +72,7 @@ class RegisterController extends Controller
                 $data['division'] = 0;
             }
 
-            // 社員番号の有無でINSERT UPDATEを判定
+            // 社員番号の有無でCREATE UPDATEを判定する
             if (!isset($data['cd'])) {
                 // トランザクション処理
                 \DB::beginTransaction();
@@ -122,15 +122,15 @@ class RegisterController extends Controller
                     abort(500);
                 }
             }
-
-            \Session::flash('err_msg', '登録しました');
+            // viewを呼び出す
             return redirect(route('user.complete'));
         }
     }
 
     /**
      * ユーザー登録画面を表示する
-     * @return view
+     * 
+     * @return view [207]ユーザー新規登録画面
      */
     public function create()
     {
@@ -143,7 +143,7 @@ class RegisterController extends Controller
             $divs = null;
         }
 
-        //viewに渡す情報を作成
+        // viewに渡すblade用データ
         $title = 'ユーザー登録';
         $css = 'usertouroku.css';
         $user = (object)[
@@ -167,14 +167,14 @@ class RegisterController extends Controller
         }
         \Session::forget('cd');
 
-        //ビューを呼び出す
+        // viewを呼び出す
         return view('auth.register', compact('user', 'cd', 'divs', 'deps', 'pos', 'title', 'css'));
     }
 
     /**
      * ユーザー登録確認画面を表示する
-     * @param
-     * @return view
+     * @param UserRequest $request
+     * @return view [208]ユーザー登録確認画面
      */
 
     public function confirm(UserRequest $request)
@@ -182,13 +182,16 @@ class RegisterController extends Controller
         // cdを取得
         $cd = \Session::get('cd');
         \Session::forget('cd');
+
+        // 入力データを取得する
         $user = $request->input();
-        // 無ければRequestから$userに入力データを取得
+
+        // 無ければRequestから$userに入力データを取得する
         if (isset($cd)) { // = 編集モード
             $user['cd'];
         }
 
-        // システム管理者ではない場合に0を設定
+        // システム管理者ではない場合に0を設定する
         if (!isset($user['sys_admin'])) {
             $user['sys_admin'] = 0;
         }
@@ -196,8 +199,7 @@ class RegisterController extends Controller
         $de = "";
         $di = "";
         $po = "";
-
-        // 部課コードを名称に変換
+        // 部課コードを名称に変換する
         if (isset($user['department'])) {
             $dep = DB::table('departments')->where('cd', $user['department'])
                 ->select('name')->first();
@@ -210,7 +212,7 @@ class RegisterController extends Controller
             foreach ($div as $di) {
             }
         }
-        // 職位コードを名称に変換
+        // 職位コードを名称に変換する
         if (isset($user['position'])) {
             $pos = DB::table('positions')->where('cd', $user['position'])
                 ->select('name')->first();
@@ -218,15 +220,19 @@ class RegisterController extends Controller
             }
         }
         \Session::put('user', $user);
+
+        // viewに渡すblade用データ
         $title = 'ユーザー登録';
         $css = 'usertouroku.css';
+
+        // viewを呼び出す
         return view('auth.confirm', compact('de', 'di', 'po', 'user', 'title', 'css'));
     }
 
     /**
      * ユーザー編集画面を表示する
-     * @param
-     * @return view
+     * @param int $id 社員id
+     * @return view [207]ユーザー変更画面
      */
     public function edit($id)
     {
@@ -234,9 +240,7 @@ class RegisterController extends Controller
         $deps = DB::table('departments')->get();
         $pos = DB::table('positions')->get();
 
-        $title = 'ユーザー編集';
-        $css = 'usertouroku.css';
-
+        // ユーザー情報を取得
         $user = User::find($id);
         if (is_null($user)) {
             \Session::flash('err_msg', 'データがありません');
@@ -244,41 +248,40 @@ class RegisterController extends Controller
         }
         $divs = DB::table('divisions')->where('dep_cd', $user->dep_cd)->select('cd', 'name')->get();
 
-
         // cdを取得
         $cd = $id;
         //Sessionに社員コードを登録
         \Session::put('cd', $user->cd);
 
+        // viewに渡すblade用データ
+        $title = 'ユーザー編集';
+        $css = 'usertouroku.css';
+
+        // viewを呼び出す
         return view('auth.register', compact('user', 'cd', 'deps', 'pos', 'divs', 'title', 'css'));
-    }
-    /**
-     * ユーザー編集を実行する
-     * 
-     */
-    public function update()
-    {
-        return redirect('complete');
     }
 
     /**
      * ユーザー登録完了画面を表示する
-     * 
-     * @return view
+     *
+     * @param Request $request
+     * @return view [209]ユーザー登録完了画面
      */
 
     public function complete(Request $request)
     {
-        //ビューの動作確認用サンプルデータ作成
+        // viewに渡すblade用データ
         $tagu = 'ユーザー登録完了';
         $css = 'usertouroku.css';
 
-        //ビューを呼び出す
+        // viewを呼び出す
         return view('auth.complete', compact('tagu', 'css'));
     }
 
     /**
      * ユーザー管理画面を表示する
+     *
+     * @return view [216]ユーザー管理画面
      */
 
     public function admin()
@@ -298,13 +301,13 @@ class RegisterController extends Controller
         FROM v_user_info vui
         ORDER BY vui.user_cd"
         ));
-        //ビュー
+
+        // viewに渡すblade用データ
         $tagu = 'ユーザー管理';
-        //$title1 = 'ユーザー登録';
         $title2 = 'ユーザー管理';
         $css = 'user.css';
 
-        //ビューを呼び出す
+        // viewを呼び出す
         return view('auth.admin', compact('users', 'tagu', 'title2', 'css'));
     }
 }

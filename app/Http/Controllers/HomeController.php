@@ -17,31 +17,27 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // ログイン後でないと見れないように
+        // ログイン後でないと閲覧出来ないようにミドルウェアを適用する
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * メインメニューを表示する
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request 
+     * @return view [202]メインメニュー/機能選択画面
      */
     public function main(Request $request)
     {
-        $title = 'メインメニュー';
-        $css = 'home.css';
-
-
+        // システム管理者と職位コードを取得(未使用?)
         $sys_admin = Auth::user()->sys_admin;
         $pos_cd = Auth::user()->pos_cd;
 
+        // viewに渡すblade用データ
+        $title = 'メインメニュー';
+        $css = 'home.css';
 
-
-        if (!Auth::check()) {
-            echo '未ログイン状態';
-        }
-
-
+        // viewを呼び出す
         return view('home', compact('title', 'css'));
     }
 }

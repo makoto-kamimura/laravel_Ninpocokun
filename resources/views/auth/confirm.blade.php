@@ -43,10 +43,12 @@
                     <th>役職</th>
                     <td colspan="2">{{ $po }}</td>
                 </tr>
+                @isset($user['taishoku_date'])
                 <tr>
                     <th>退職日</th>
                     <td colspan="2">{{ $user['taishoku_date'] }}</td>
                 </tr>
+                @endisset
                 <tr>
                     <th>システム管理者</th>
                     @if($user['sys_admin'] == 1)

@@ -24,7 +24,12 @@ class ReportRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            // 日報記入事項のバリデーション
+            'sagyou' => 'required | max:360',
+            'shintyoku' => 'required | max:360',
+            'zansagyou' => 'required | max:360',
+            'hikitsugi' => 'required | max:360',
+            'comment' => 'max:360',
         ];
     }
 

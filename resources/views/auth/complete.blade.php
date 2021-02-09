@@ -1,6 +1,12 @@
 {{-- usertouroku_complete.blade.phpからcompleteに変更 --}}
 @extends('common.layout')
 
+@section('jq_plugins','')
+
+@section('page_js')
+<script src="/js/auth/complete.js"></script>
+@endsection
+
 @section('tagu')
   {{$tagu}}
 @endsection

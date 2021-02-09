@@ -28,16 +28,13 @@ class UserRequest extends FormRequest
         return [
             // Validationルール記述箇所
             // バリデーションの内容は要確認
-            'sei' => ['required'],
-            'mei' => ['required'],
-            'sei_kana' => ['required'],
-            'mei_kana' => ['required'],
-            // 'dep_cd' => ['required'],
-            // 'div_cd' => ['required'],
-            'taishoku_date' => ['required'],
-            'password' => ['required'],
-            //'pos_cd' => ['required'],
-            //'sys_admin' => ['required'],
+            'sei' => 'required | max:6',
+            'mei' => 'required | max:10',
+            'sei_kana' => 'required | max:10',
+            'mei_kana' => 'required | max:20',
+            'password' => 'required | alpha_num | between:8,16 | confirmed',
+            'password_confirmation' => 'required | alpha_num | between:8,16',
+            'taishoku_date' => 'nullable | date',
         ];
     }
 

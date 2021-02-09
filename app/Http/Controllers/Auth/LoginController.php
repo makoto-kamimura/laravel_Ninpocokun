@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -40,27 +41,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // 認証columnを社員コードにするように変更する
     public function username()
     {
-        // 社員コードを取得
+        // 社員コードを返す
         return 'cd';
     }
 
     // showLoginControllerをオーバーライドする
     public function showLoginForm(Request $request)
     {
-        //ビューの動作確認用サンプルデータ作成
+        // 部課情報を取得
+        $deps = DB::table('departments')->get();
+
+        // viewに渡すblade用データ
         $title = 'ログインページ';
-        // $err_msgs = ['エラー１', 'エラー２', 'エラー３'];
         $css = 'base.css';
-        $js = 'common.js';
 
-        // //部門とか部署の一覧を取得する
-        // $deps = DB::table('departments')->select('cd', 'name')->get();;
-        // $divs = DB::table('divisions')->select('cd', 'name')->get();
-        // $usrs = ;
-
-        //cokkieがセットされていなければ値を取得
+        // cokkieがセットされていなければ値を取得(未使用?)
         if (isset($request->cookie)) {
             $get_cookie = array(
                 'department' => $request->cookie('departments'),
@@ -68,18 +66,23 @@ class LoginController extends Controller
                 'user_cd' => $request->cookie('name')
             );
 
-            // ビューを呼び出す(クッキーあり)
-            return view('Auth.login', compact('get_cookie', 'title', 'css', 'js'));
+            // viewを呼び出す(cookieあり)
+            return view('Auth.login', compact('deps', 'get_cookie', 'title', 'css'));
         } else {
-            // ビューを呼び出す(クッキーなし)
-            return view('Auth.login', compact('title', 'css', 'js'));
+            // viewを呼び出す(cookieなし)
+            return view('Auth.login', compact('deps', 'title', 'css'));
         }
     }
 
-    // ログイン後の遷移先を指定
+    // ログイン後の遷移先を指定する
     public function redirectPath()
     {
-        //セッションにsys_adminとpos_cdを保存
         return '/';
+    }
+
+    // 同一アカウントへの多重ログインを禁止する
+    protected function authenticated(Request $request, $user)
+    {
+        Auth::logoutOtherDevices($request->input('password'));
     }
 }

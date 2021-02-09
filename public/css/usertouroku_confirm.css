@@ -2,6 +2,7 @@
 @import url("base.css");
 @import url("usertouroku.css");
 
+/*
 table {
 	width: 100%;
 }
@@ -19,8 +20,9 @@ table tr td {
 }
 
 table tr td.name_td {
-	width: 20%
+	width: 20%;
 }
+*/
 
 div.btn_box input.btn {
 	width: 45%;

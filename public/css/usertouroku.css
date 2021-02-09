@@ -18,10 +18,6 @@ section {
 	padding-bottom: 20px;
 }
 
-form {
-	width: 462px;
-}
-
 label {
 	width: 150px;
 }
@@ -35,7 +31,7 @@ input.name {
 }
 
 input.email {
-	width: 66%;
+	width: 45%;
 }
 
 div.btn_box {
@@ -43,10 +39,15 @@ div.btn_box {
 }
 
 div.btn_box input.btn {
-	background-color: #f29214;
+	/* ユーザー登録確認レイアウト調整_kamimura */
+	width: 100%;
 }
 
 .password_box {
+	margin-bottom: 0;
+}
+
+.password_mainbox {
 	display: inline-block;;
 }
 
@@ -64,16 +65,8 @@ div.btn_box input.btn {
 		padding: 20px;
 	}
 
-	form {
-		width: 100%;
-	}
-
 	div.name input:first-of-type {
 		margin-bottom: 5px;
-	}
-
-	input.email {
-		width: 100%;
 	}
 }
 
@@ -85,8 +78,22 @@ p.complete {
 	border: 2px solid #ddd;
 }
 
-@media screen and (max-width:500px){
-	form {
-		width: 76%;
-	}
+table.confirm {
+	width: 100%;
+}
+
+table.confirm tr th {
+	width: 47%;
+	text-align: right;
+	padding: 8px 18px 8px 0;
+}
+
+table.confirm tr td {
+	text-align: left;
+	padding: 5px 5px;
+	vertical-align: middle;
+}
+
+table.confirm tr td.name_td {
+	width: 20%;
 }

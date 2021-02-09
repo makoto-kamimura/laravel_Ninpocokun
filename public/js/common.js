@@ -31,11 +31,16 @@ $(window).on('load',function() {
   // パスの取得
   var path = location.pathname
 
-  if (path == "/login"){
+  if ((path == "/login") || (path == "/errordisplay")){
     $('ul#pclist').remove();
     $('div#nav-drawer').remove();
     $('p.homelink').children().contents().unwrap();
   }
+  /*
+  if (!(path == "/login")){
+    $('#pclist').css('display', 'block');
+  }
+  */
 });
 
 
@@ -91,6 +96,11 @@ $(window).on('load',function() {
     itemElement : '> > tr.item' // アイテムの要素
   });
 
+  $("div:has(p.prev-page)").addClass("pagenation");
+  $("div.pagenation").wrapInner("<div>");
+  $(".pagenation p.prev-page button").append("< 前の５件");
+  $(".pagenation p.next-page button").prepend("次の５件 >");
+
 
 
 //ソート設定
@@ -106,13 +116,72 @@ $(window).on('load',function() {
 
 
 
-//ページネーション設定
-  $("div:has(p.prev-page)").addClass("pagenation");
-  $("div.pagenation").wrapInner("<div>");
-  $(".pagenation p.prev-page button").append("< 前の５件");
-  $(".pagenation p.next-page button").prepend("次の５件 >");
-  
+ });
 
-  
-});
 
+
+//パスワードチェック
+  function CheckPassword(confirm){
+    // 入力値取得
+    var input1 = password.value;
+    var input2 = password_check.value;
+    // パスワード比較
+    if(input1 != input2){
+      confirm.setCustomValidity("入力値が一致しません。");
+    }else{
+      confirm.setCustomValidity('');
+    }
+  }
+
+
+
+//チェックボックスを記憶
+   function alertDebug(arg) {
+         //alert(arg);   // ﾃﾞﾊﾞｯｸﾞ時に有効化すると良い
+      }
+ 
+      function save_restore1_checkbox(target_class) {
+         var cbstate;
+ 
+         window.addEventListener('load', function () {
+            cbstate = JSON.parse(localStorage['CBState'] || '{}');
+            alertDebug('cbstate = ' + JSON.stringify(cbstate));
+            for (var key in cbstate) { // cbstateはobjectで、このようにforﾙｰﾌﾟすると var key はobjectのｷｰが来るのだ。知らなんだ。
+               alertDebug('key=' + key);
+               var el_lst = document.querySelectorAll('input[data-savekey="' + key + '"].' + target_class);
+               set_checkbox_checked_all(el_lst, true);
+            }
+ 
+            var cb = document.getElementsByClassName(target_class);
+            alertDebug('cb = ' + JSON.stringify(cb));
+ 
+            for (var c = 0; c < cb.length; c++) {
+               alertDebug('cb[' + c + ']:name=' + cb[c].name + ', value=' + cb[c].value);
+ 
+               cb[c].addEventListener('click', function (evt) {
+                  var savekey = this.getAttribute('data-savekey');
+                  alertDebug('click:savekey_value=' + savekey + ', checked=' + this.checked);
+                  if (this.checked) {
+                     cbstate[savekey] = true;
+                  }
+                  else if (cbstate[savekey]) {
+                     delete cbstate[savekey];
+                  }
+                  localStorage['CBState'] = JSON.stringify(cbstate);
+               });
+            }
+         });
+ 
+         function set_checkbox_checked_all(el_lst, checked) {
+            for (var c = 0; c < el_lst.length; c++) {
+               var el = el_lst[c];
+               alertDebug('el=' + JSON.stringify(el) + ' ,el.name=' + el.name);
+               if (el) {
+                  alertDebug('el.checked=' + el.checked);
+                  el.checked = checked;
+               }
+            }
+         }
+      }
+
+      save_restore1_checkbox('save-state1');

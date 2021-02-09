@@ -6,9 +6,9 @@ body {
 
 header {
 	position: relative;
-	padding: 12px 0 10px;
+	padding: 6px 0 10px;
 	background-color: #007aac;
-	border-bottom: 5px solid #165e83;
+	border-bottom: 1px solid #165e83;
 }
 
 header p {
@@ -31,21 +31,35 @@ header p span:last-of-type {
 }
 
 header ul#pclist {
-	width: 600px;
 	display: flex;
 	float: right;
 	margin: 6px 10px 0 0;
 }
 
-header ul#pclist li:nth-of-type(odd) {
-	padding: 0 8px;
+header ul#pclist li {
+  padding: 0 4px;
 }
 
+header ul#pclist li.odd {
+  width: 130px;
+}
+
+header ul#pclist li.even {
+  width: 130px;
+}
+
+header ul#pclist li.logout {
+  width: 109px;
+}
 
 header ul#pclist li a:hover {
 	opacity: 0.8;
 }
-
+/*
+header ul#pclist {
+  display: none;
+}
+*/
 section {
 	width: 75%;
     padding: 0 0 120px 0;
@@ -55,8 +69,8 @@ section {
 
 section.main {
 	width: 70%;
-	border: 3px solid #b0c4de;
-    border-top: none;
+	border: 1px solid #b0c4de;
+  border-top: none;
 }
 
 footer {
@@ -159,7 +173,7 @@ footer {
 }
 
 @media screen and (min-width:1024px) {
-  #nav-open {
+  header div div#nav-content, #nav-open {
     display:none;
   }
 }
@@ -170,7 +184,7 @@ footer {
   }
 
   header div div#nav-content {
-  	height: 84.5%;
+  	height: 344px;
   }
 
   header ul#splist {

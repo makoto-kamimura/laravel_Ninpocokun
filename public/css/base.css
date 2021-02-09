@@ -12,8 +12,17 @@ h1 {
 	margin: 0 auto 50px;
 }
 
+table {
+    table-layout: fixed;
+}
+
+table tr td {
+    word-wrap: break-word; /*IE*/
+    overflow-wrap: break-word;
+}
+
 form {
-	width: 246px;
+	width: 88%;
 	margin: 0 auto;
 }
 
@@ -21,7 +30,7 @@ form div {
 	margin-bottom: 20px;
 }
 
-#password, #password_check, select {
+#password, #password_confirmation, select {
     width: 150px;
     padding: 8px 0;
 }
@@ -34,7 +43,7 @@ label {
 	text-justify: inter-ideograph;
 }
 
-input#password, #password_check {
+input#password, #password_confirmation {
 	font-size: 1em;
 	padding: 6px 0 3px 1px;
 }
@@ -50,7 +59,7 @@ div.btn_box {
 }
 
 div.btn_box input.btn {
-	width: 50%;
+	width: 20%;
 	color: #fff;
 	padding: 10px 0;
 	background-color: #007aac;
@@ -143,14 +152,31 @@ div.btn_box input.btn:hover {
     border: none;
 }
 
+
+
+@media screen and (max-width:1024px){
+	form {
+		width: 60%;
+	}
+
+	label {
+		margin: 0 auto;
+		text-align-last: justify !important;
+	}
+}
+
 @media screen and (max-width:892px){
 	h1 {
 		width: 160px;
 		padding: 40px 0 60px;
 	}
 
-	#password, select {
+	/*#password, select {
     	width: 100%;
+	}*/
+
+	form {
+		text-align: center;
 	}
 
 	form div label {
@@ -158,6 +184,10 @@ div.btn_box input.btn:hover {
 		text-align: left;
 		margin-bottom: 5px;
 		text-align-last: left;
+	}
+
+	div.btn_box input.btn {
+		width: 35%;
 	}
 
 	div.btn_box input.btn:hover {

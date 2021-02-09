@@ -1,6 +1,12 @@
 {{-- dailyreport_confirm.blade.phpからconfirm.phpへ変更 --}}
 @extends('common.layout')
 
+@section('jq_plugins','')
+
+@section('page_js')
+<script src="/js/report/confirm.js"></script>
+@endsection
+
 @section('tagu')
 {{$tagu}}
 @endsection
@@ -13,57 +19,64 @@
 <section>
   <!-- <h1>@yield('title')</h1> -->
   <h1>日報報告</h1>
+  @if ($is_auth)
+  <form action="{{route('report.remand')}}" method="post">
+  @else
   <form action="{{route('report.store')}}" method="post">
+  @endif
     @csrf
     <table border="1" class="m0a">
-      {{-- @if (isset($err_msgs1, $err_msgs2, $err_msgs3, $err_msgs4, $err_msgs5)) --}}
-      <!--<tr> 
-                        <th>タイトル</th>
-                        <td>@yield('err_msgs1')</td>
-                    </tr>-->
       <tr>
         <th>本日の作業内容</th>
         <td class="todaywork">
-          {{$_POST['sagyou']}}
-          {{-- 本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります本日の作業内容が入ります --}}
+          {{$report -> sagyou}}
         </td>
       </tr>
       <tr>
         <th>進捗状況</th>
-        <!-- <td>@yield('err_msgs3')</td> -->
-        {{-- <td>進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります進捗状況の内容が入ります</td> --}}
-        <td>{{$_POST['shintyoku']}}</td>
+        <td>{{$report -> shintyoku}}</td>
       </tr>
       <tr>
         <th>残作業</th>
-        <!-- <td>@yield('err_msgs4')</td> -->
-        {{-- <td>残作業についての内容が入ります残作業についての内容が入ります残作業についての内容が入ります残作業についての内容が入ります残作業についての内容が入ります</td> --}}
-        <td>{{$_POST['zansagyou']}}</td>
+        <td>{{$report -> zansagyou}}</td>
       </tr>
       <tr>
         <th>引き継ぎ事項</th>
-        <!-- <td>@yield('err_msgs5')</td> -->
-        {{-- <td>引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります引き継ぎ事項の内容が入ります</td> --}}
-        <td>{{$_POST['hikitsugi']}}</td>
+        <td>{{$report -> hikitsugi}}</td>
       </tr>
-      {{-- @endif --}}
     </table>
+    <div class="comment">
     @if($is_auth)
-    <div class="">
-      <label for="">コメント</label>
-      <textarea cols="70" rows="5" name="hikitsugi" maxlength="360" placeholder="コメントを入力"></textarea>
-    </div>
+      <p>コメント</p>
+      @if ($report-> status == 1 )
+      <p>{{$report -> comment}}</p>
+      @else
+      <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
+      @endif
+    @else
+      @if ($report-> status == 1 )
+      <p>コメント</p>
+      <p>{{old('comment' , $report -> comment) }}</p>
+      <input type="hidden" name="comment" value="{{$report -> comment}}">
+      @endif
     @endif
+    </div>
+    <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">
+    <input type="hidden" name="shintyoku" value="{{$report-> shintyoku }}">
+    <input type="hidden" name="zansagyou" value="{{$report -> zansagyou}}">
+    <input type="hidden" name="hikitsugi" value="{{$report -> hikitsugi}}">
 
     <!-- 新規日報登録/編集は下記_20210125_kamimura -->
+    @if($report -> status < 1 )
     <div class='btn_box tac'>
     <table class='btn'>
       <tr>
-        <td><input class='btn' type="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
-        <td><input class='btn' type="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
+        <td><input class='btn' type="submit" name="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
+        <td><input class='btn' type="submit" name="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
       </tr>
     </table>
     </div>
+    @endif
 
     <!-- 日報承認/否認は下記_20210125_kamimura -->
     <!-- <table class='btn'>

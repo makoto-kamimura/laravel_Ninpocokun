@@ -1,20 +1,20 @@
 @extends('common.layout')
 
-@section('title')
-  {{$title}}
+@section('jq_plugins')
+<script src="/js/jquery.cookie.js"></script>
+@endsection
+
+@section('page_js')
+<script src="/js/auth/login.js"></script>
 @endsection
 
 @section('body')
       <div class="pw-form">
-        @auth
-        <p>ログイン中</p>
-        @endauth
         <h1 class="text-info tac"><img src="img/logo.png" alt="skロゴ"></h1>
-        {{$errors}}
-        @if (isset($err_msgs))
+        @if (isset($errors))
           <ul id="error_box">
-            @foreach ($err_msgs as $err_msg)
-              <li>{{$err_msg}}</li>
+            @foreach ($errors->all() as $error)
+              <li>{{$error}}</li>
             @endforeach
           </ul>
         @endif
@@ -23,11 +23,10 @@
             <div class="departments">
                 <label for="departments">所属部門</label>
                 <select name="departments" id="departments">
-                    <option disabled selected>選択してください</option>
-                    <option value="1">社長</option>
-                    <option value="10">工務部</option>
-                    <option value="20">営業部</option>
-                    <option value="30">総務部</option>
+                    <option disabled=disabled selected>選択してください</option>
+                    @foreach($deps as $dep)
+                    <option value="{{$dep->cd}}">{{$dep->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div>
@@ -36,11 +35,7 @@
             </div>
             <div>
                 <label for="name">名前</label>
-                <select name="name" id="name" disabled></select>
-            </div>
-            <div>
-              <label for="cd">社員コード</label>
-              <input type="text" class="field" name="cd" id="cd">
+                <select name="cd" id="cd" disabled></select>
             </div>
             <div>
                 <label for="password">パスワード</label>
@@ -50,7 +45,7 @@
                 <input type="checkbox" id="password-check">パスワードを表示する
             </div>
             <div class='btn_box tac'>
-                <input class="btn btn-primary" type="submit" value="ログイン">
+                <input class="btn btn-primary" type="submit" id="login_submit" value="ログイン">
             </div>
         </form>
       </div>

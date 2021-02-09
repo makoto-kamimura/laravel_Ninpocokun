@@ -21,7 +21,7 @@ form div {
 	margin-bottom: 20px;
 }
 
-#password, #password_check, select {
+#password, #password_confirmation, select {
     width: 150px;
     padding: 8px 0;
 }
@@ -34,7 +34,7 @@ label {
 	text-justify: inter-ideograph;
 }
 
-input#password, #password_check {
+input#password, #password_confirmation {
 	font-size: 1em;
 	padding: 6px 0 3px 1px;
 }

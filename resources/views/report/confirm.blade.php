@@ -46,7 +46,7 @@
       </tr>
     </table>
     @if($is_auth)
-    <div class="">
+    <div class="comment">
       @if ($report-> status == 1 )
       <p>コメント</p>
       <p>{{$report -> comment}}</p>
@@ -56,7 +56,7 @@
       @endif
     @else
       @if ($report-> status == 1 )
-      <p>コメント</p>
+      <!--<p>コメント</p>-->
       <p>{{old('comment' , $report -> comment) }}</p>
       <input type="hidden" name="comment" value="{{$report -> comment}}">
       @endif

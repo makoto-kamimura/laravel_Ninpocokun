@@ -45,18 +45,17 @@
         <td>{{$report -> hikitsugi}}</td>
       </tr>
     </table>
-    @if($is_auth)
     <div class="comment">
-      @if ($report-> status == 1 )
+    @if($is_auth)
       <p>コメント</p>
+      @if ($report-> status == 1 )
       <p>{{$report -> comment}}</p>
       @else
-      <p>コメント</p>
       <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
       @endif
     @else
       @if ($report-> status == 1 )
-      <!--<p>コメント</p>-->
+      <p>コメント</p>
       <p>{{old('comment' , $report -> comment) }}</p>
       <input type="hidden" name="comment" value="{{$report -> comment}}">
       @endif

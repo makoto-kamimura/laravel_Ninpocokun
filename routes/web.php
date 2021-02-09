@@ -19,17 +19,15 @@ Route::get('/', 'HomeController@main')->name('main');
 Route::get('report/approve', 'DailyReportController@approve')->name('report.approve');
 // 日報のの承認/差戻しを実行　=> remand
 Route::post('report/remand', 'DailyReportController@remand')->name('report.remand');
-
 // 登録確認画面を表示 -> confirm
 Route::post('report/confirm', 'DailyReportController@confirm')->name('report.confirm');
+// 登録完了画面を表示 -> complete
 Route::get('report/complete', 'DailyReportController@complete')->name('report.complete');
 Route::resource('report', 'DailyReportController');
 // 一覧を表示 => index
 // 登録画面を表示 => create
-
 // 登録実行 => store
 // 差戻しの編集画面を表示 => edit
-// 差戻しの編集を実行 => update
 // 削除する => delete
 // 個別の記事を表示 => show
 

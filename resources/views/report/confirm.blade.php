@@ -26,11 +26,6 @@
   @endif
     @csrf
     <table border="1" class="m0a">
-      {{-- @if (isset($err_msgs1, $err_msgs2, $err_msgs3, $err_msgs4, $err_msgs5)) --}}
-      <!--<tr> 
-                        <th>タイトル</th>
-                        <td>@yield('err_msgs1')</td>
-                    </tr>-->
       <tr>
         <th>本日の作業内容</th>
         <td class="todaywork">
@@ -39,20 +34,16 @@
       </tr>
       <tr>
         <th>進捗状況</th>
-        <!-- <td>@yield('err_msgs3')</td> -->
         <td>{{$report -> shintyoku}}</td>
       </tr>
       <tr>
         <th>残作業</th>
-        <!-- <td>@yield('err_msgs4')</td> -->
         <td>{{$report -> zansagyou}}</td>
       </tr>
       <tr>
         <th>引き継ぎ事項</th>
-        <!-- <td>@yield('err_msgs5')</td> -->
         <td>{{$report -> hikitsugi}}</td>
       </tr>
-      {{-- @endif --}}
     </table>
     @if($is_auth)
     <div class="">
@@ -60,12 +51,15 @@
       <p>コメント</p>
       <p>{{$report -> comment}}</p>
       @else
+      <p>コメント</p>
       <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
       @endif
     @else
-    <p>コメント</p>
-    <p>{{old('comment' , $report -> comment) }}</p>
-    <input type="hidden" name="comment" value="{{$report -> comment}}">
+      @if ($report-> status == 1 )
+      <p>コメント</p>
+      <p>{{old('comment' , $report -> comment) }}</p>
+      <input type="hidden" name="comment" value="{{$report -> comment}}">
+      @endif
     @endif
     </div>
     <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">

@@ -392,7 +392,7 @@ class DailyReportController extends Controller
 
         // 本人以外が日報にアクセスした場合は閲覧できないようにする
         $is_auth = DailyReportController::isBuka($report);
-        if ($is_auth) {
+        if (is_null($is_auth) || $is_auth) {
             return redirect(route('report.index'));
         }
         \Session::put('auth_cd', $report->auth_user_cd);

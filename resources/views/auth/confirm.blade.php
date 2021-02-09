@@ -17,10 +17,10 @@
         <h1>@yield('title')</h1>
         <form action="{{route('user.store')}}" method="post">
           @csrf
-            <table>
+            <table class="confirm">
                 <tr>
                     <th>社員コード</th>
-                    <td SPAN="2">
+                    <td colspan="2">
                         @isset($user['cd'])
                         {{ $user['cd'] }}
                         @else

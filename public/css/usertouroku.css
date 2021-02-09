@@ -78,3 +78,23 @@ p.complete {
 	display: inline-block;
 	border: 2px solid #ddd;
 }
+
+table.confirm {
+	width: 100%;
+}
+
+table.confirm tr th {
+	width: 47%;
+	text-align: right;
+	padding: 8px 18px 8px 0;
+}
+
+table.confirm tr td {
+	text-align: left;
+	padding: 5px 5px;
+	vertical-align: middle;
+}
+
+table.confirm tr td.name_td {
+	width: 20%;
+}

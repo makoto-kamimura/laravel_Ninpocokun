@@ -1,7 +1,7 @@
 $(function(){
     //　ブラウザのキャッシュ対策(スーパーリロード替わり)
-    $('#cd').empty().attr('disabled','disabled');
-    $('#login_submit').attr('disabled','disabled');
+    // $('#cd').empty().attr('disabled','disabled');
+    // $('#login_submit').attr('disabled','disabled');
 
     // 「所属部門」セレクトボックスの変更時イベント登録
     $("#departments").on('change',function(){get_div()});

@@ -66,8 +66,33 @@ class LoginController extends Controller
                 'user_cd' => $request->cookie('name')
             ];
 
+            if($get_cookie['division'] == "0"){
+                $divs = null;
+                $users = DB::table('v_user_info')
+                        ->where('dep_cd', $get_cookie['department'])
+                        ->select('user_cd', 'user_name')
+                        ->whereNull('taishoku_date')
+                        ->orderBy('user_cd','ASC')
+                        ->get();
+            }else{
+                $divs = DB::table('divisions')
+                        ->where('dep_cd', $get_cookie['department'])
+                        ->select('cd', 'name')
+                        ->orderBy('cd','ASC')
+                        ->get();
+                
+                $users = DB::table('v_user_info')
+                        ->where('div_cd', $get_cookie['division'])        
+                        ->where('dep_cd', $get_cookie['department'])
+                        ->select('user_cd', 'user_name')
+                        ->whereNull('taishoku_date')
+                        ->orderBy('user_cd','ASC')
+                        ->get();
+            }
+
+
             // viewを呼び出す(cookieあり)
-            return view('Auth.login', compact('deps', 'get_cookie', 'title', 'css'));
+            return view('Auth.login', compact('deps', 'divs', 'users', 'get_cookie', 'title', 'css'));
         } else {
             // viewを呼び出す(cookieなし)
             return view('Auth.login', compact('deps', 'title', 'css'));

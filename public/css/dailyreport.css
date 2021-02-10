@@ -20,6 +20,10 @@ textarea {
 	width: 100%;
 }
 
+div.btn_box input.btn {
+	background-color: #007aac;
+}
+
 @media screen and (min-width:892px){
 	label {
 		padding-bottom: 5px;

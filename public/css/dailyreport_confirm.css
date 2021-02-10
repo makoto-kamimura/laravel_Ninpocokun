@@ -38,6 +38,10 @@ div.comment textarea {
 	box-sizing:border-box;
 }
 
+div.btn_box input.btn {
+	background-color: #007aac;
+}
+
 @media screen and (min-width:892px){
 
 }

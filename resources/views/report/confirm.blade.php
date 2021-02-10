@@ -71,8 +71,8 @@
     <div class='btn_box tac'>
     <table class='btn'>
       <tr>
-        <td><input class='btn' type="submit" name="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
-        <td><input class='btn' type="submit" name="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
+        <td><input class='btn btn1' type="submit" name="submit" value="{{ $is_auth ? '承認する' : '登録する' }}"></td>
+        <td><input class='btn btn2' type="submit" name="submit" value="{{ $is_auth ? '否認する' : '修正する' }}"></td>
       </tr>
     </table>
     </div>

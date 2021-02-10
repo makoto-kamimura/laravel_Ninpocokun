@@ -67,6 +67,18 @@ div.btn_box input.btn {
 	border-radius: 3px;
 }
 
+.btn1 {	
+	background-color: #007aac;
+	border: none;
+	color: #fff;
+}
+
+.btn2 {
+	background-color: #FFFFFF !important;
+	border: 1px solid #333 !important;
+	color: #333 !important;
+}
+
 div.btn_box input.btn:hover {
 	opacity: 0.8;
 }

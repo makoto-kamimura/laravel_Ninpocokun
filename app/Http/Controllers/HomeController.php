@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -32,6 +33,16 @@ class HomeController extends Controller
         // システム管理者と職位コードを取得(未使用?)
         $sys_admin = Auth::user()->sys_admin;
         $pos_cd = Auth::user()->pos_cd;
+
+        $current = Auth::id();
+        $userinfo = DB::table('v_user_info')
+            ->where('user_cd', $current)
+            ->select('user_name', 'dep_name')
+            ->get();
+        foreach ($userinfo as $uinfo) {
+        }
+        \Session::put('username', $uinfo->user_name);
+        \Session::put('dep_name', $uinfo->dep_name);
 
         // viewに渡すblade用データ
         $title = 'メインメニュー';

@@ -15,6 +15,13 @@ $(function(){
     // 「パスワードを表示する」チェックボックスの変更時イベント登録
     passwordFieldToggle('#password-check','#password');
 
+
+    $('#login_submit').on('click',function(){
+      $.cookie("departments", $("#departments").val(), { expires: 30 });
+      $.cookie("divisions", $("#divisions").val() == null ? 0 : $("#divisions").val(), { expires: 30 });
+      $.cookie("name", $("#cd").val(), { expires: 30 });
+    });
+
     /**
      * ajax通信を用いて課情報を取得
      */
@@ -113,4 +120,7 @@ $(function(){
       }
 
       // $('#divisions').eq(0).attr('selected','selected');
+
+
+
 });

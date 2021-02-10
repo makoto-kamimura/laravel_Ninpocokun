@@ -23,8 +23,8 @@
   <body>
     <header>
       <p class="homelink"><a href="{{route('main')}}"><span><img src="/img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
+      @if(Auth::check())
       <ul id="pclist">
-        @if(Auth::check())
           @if (isset( Auth::user()->sys_admin ) && Auth::user()->sys_admin == 1)
           <li class="odd"><a href="{{route('user.admin')}}"><img src="/img/menu01.png" alt="ユーザー管理"></a></li>
           @endif
@@ -36,7 +36,6 @@
           <li class="even"><a href="{{route('report.create')}}"><img src="/img/menu04.png" alt="日報登録"></a></li>
           @endif
           <li class="logout"><a href="{{route('user.logout')}}"><img src="/img/logout.png" alt="ログアウト"></a></li>
-        @endif
       </ul>
       <div id="nav-drawer">
         <input id="nav-input" type="checkbox" class="nav-unshown">
@@ -45,7 +44,6 @@
         <div id="nav-content">
 
           <ul id="splist">
-            @if(Auth::check())
               @if (isset( Auth::user()->sys_admin ) && Auth::user()->sys_admin == 1)
               <li><a href="{{route('user.admin')}}">ユーザー管理</a></li>
               @endif
@@ -57,7 +55,6 @@
               <li><a href="{{route('report.create')}}">日報登録</a></li>
               @endif
               <li><a href="{{route('user.logout')}}">ログアウト</a></li>
-            @endif
             {{-- @if (isset( $sys_admin ) && $sys_admin == 1)
             <li><a href="user">ユーザー管理</a></li>
             @endif
@@ -70,6 +67,7 @@
           </ul>
         </div>
       </div>
+      @endif
     </header>
     <section class="main">
         @yield('body')

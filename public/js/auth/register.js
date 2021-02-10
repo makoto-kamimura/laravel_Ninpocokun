@@ -111,12 +111,11 @@ $(function(){
     var useragent = window.navigator.userAgent.toLowerCase();
     if (useragent.indexOf('chrome') != -1) {
       $('input[type="date"]').click(function() {
-        $('.taishoku_date span').css("display", "block");
+        $('.taishoku_date span').css("display", "inline-block");
       });
       $('.taishoku_date span').click(function() {
-        $().remove();
+        $('input[type="date"]').val("");
+        $('.taishoku_date span').css("display", "none");
       });
     }
-
-
 });

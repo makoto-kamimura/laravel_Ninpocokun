@@ -97,3 +97,22 @@ table.confirm tr td {
 table.confirm tr td.name_td {
 	width: 20%;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+	.taishoku_date span {
+		color: #fff;
+		fill: currentColor;
+		opacity: .5;
+		background-color: gray;
+		border: none;
+		flex: none;
+		padding-inline: 5px;
+		border-radius: 20px;
+		font-size: 0.8em;
+		display: none;
+	}
+
+	.taishoku_date span:hover {
+		opacity: .3;
+	}
+}

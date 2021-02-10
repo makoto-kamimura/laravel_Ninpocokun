@@ -81,9 +81,10 @@
                 <input type="date" name="enter">
             </div> -->
             <!-- ユーザー情報変更時のみ項目表示を想定_20210125_kamimura -->
-            <div>
+            <div class="taishoku_date">
                 <label>退職日</label>
                 <input type="date" name="taishoku_date" value="{{ old('taishoku_date' , $user -> taishoku_date ) }}">
+                <span>✕</span>
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>

@@ -58,9 +58,8 @@ class LoginController extends Controller
         $title = 'ログインページ';
         $css = 'base.css';
 
-        $check = $request->cookie('name');
         // cokkieがセットされていなければ値を取得(未使用?)
-        if (isset($check)) {
+        if (\Cookie::has('name')) {
             $get_cookie = [
                 'department' => $request->cookie('departments'),
                 'division' => $request->cookie('divisions'),

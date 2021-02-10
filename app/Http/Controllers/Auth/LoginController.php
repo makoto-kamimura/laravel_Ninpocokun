@@ -58,13 +58,14 @@ class LoginController extends Controller
         $title = 'ログインページ';
         $css = 'base.css';
 
+        $check = $request->cookie('name');
         // cokkieがセットされていなければ値を取得(未使用?)
-        if (isset($request->cookie)) {
-            $get_cookie = array(
+        if (isset($check)) {
+            $get_cookie = [
                 'department' => $request->cookie('departments'),
                 'division' => $request->cookie('divisions'),
                 'user_cd' => $request->cookie('name')
-            );
+            ];
 
             // viewを呼び出す(cookieあり)
             return view('Auth.login', compact('deps', 'get_cookie', 'title', 'css'));

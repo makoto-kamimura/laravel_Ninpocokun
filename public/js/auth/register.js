@@ -108,6 +108,7 @@ $(function(){
 
 
     
+    //カレンダー✕ボタン追加（Chromeのみ）
     var useragent = window.navigator.userAgent.toLowerCase();
     if (useragent.indexOf('chrome') != -1) {
       $('input[type="date"]').click(function() {
@@ -118,4 +119,21 @@ $(function(){
         $('.taishoku_date span').css("display", "none");
       });
     }
+
+    // var useragent = window.navigator.userAgent.toLowerCase();
+    // if (useragent.indexOf('chrome') != -1) {
+    //   $(window).on('load',function() {
+    //     $('input[type="date"].date').css('background-image', 'none');
+    //   });
+
+    //   $('input[type="date"]').click(function() {
+    //     $('input[type="date"].date').css('background-image', 'url(../img/cross.png)');
+    //   });
+
+    //   $('').click(function() {
+    //     $('input[type="date"]').val("");
+    //     $('input[type="date"].date').css('background-image', 'none');
+    //   });
+    // }
+
 });

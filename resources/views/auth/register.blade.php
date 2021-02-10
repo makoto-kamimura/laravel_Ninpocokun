@@ -84,7 +84,7 @@
             <div class="taishoku_date">
                 <label>退職日</label>
                 <input type="date" name="taishoku_date" class="date" value="{{ old('taishoku_date' , $user -> taishoku_date ) }}">
-                <span>✕</span>
+                <span><img src="../img/cross.png"></span>
             </div>
         	<div class="name">
                 <label>名前（漢字）</label>

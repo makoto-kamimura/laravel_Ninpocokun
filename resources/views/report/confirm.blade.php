@@ -57,10 +57,10 @@
       @if ($report-> status == 1 )
       <p>コメント</p>
       <p>{{old('comment' , $report -> comment) }}</p>
+      <input type="hidden" name="comment" value="{{$report -> comment}}">
       @endif
     @endif
     </div>
-    <input type="hidden" name="comment" value="{{$report -> comment}}">
     <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">
     <input type="hidden" name="shintyoku" value="{{$report-> shintyoku }}">
     <input type="hidden" name="zansagyou" value="{{$report -> zansagyou}}">

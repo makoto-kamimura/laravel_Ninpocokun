@@ -91,7 +91,7 @@
                 <table class='btn'>
                 <tr>
                     <td><input class='btn' type="submit" name="submit" value="登録する"></td>
-                    <td><input class='btn' type="submit" name="submit" value="修正する"></td>
+                    <td><input class='btn btn2' type="submit" name="submit" value="修正する"></td>
                 </tr>
                 </table>
             </div>

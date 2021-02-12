@@ -1,7 +1,7 @@
 $(function(){
     //　ブラウザのキャッシュ対策(スーパーリロード替わり)
-    $('#cd').empty().attr('disabled','disabled');
-    $('#login_submit').attr('disabled','disabled');
+    // $('#cd').empty().attr('disabled','disabled');
+    // $('#login_submit').attr('disabled','disabled');
 
     // 「所属部門」セレクトボックスの変更時イベント登録
     $("#departments").on('change',function(){get_div()});
@@ -14,6 +14,13 @@ $(function(){
 
     // 「パスワードを表示する」チェックボックスの変更時イベント登録
     passwordFieldToggle('#password-check','#password');
+
+
+    $('#login_submit').on('click',function(){
+      $.cookie("departments", $("#departments").val(), { expires: 30 });
+      $.cookie("divisions", $("#divisions").val() == null ? 0 : $("#divisions").val(), { expires: 30 });
+      $.cookie("name", $("#cd").val(), { expires: 30 });
+    });
 
     /**
      * ajax通信を用いて課情報を取得
@@ -113,4 +120,7 @@ $(function(){
       }
 
       // $('#divisions').eq(0).attr('selected','selected');
+
+
+
 });

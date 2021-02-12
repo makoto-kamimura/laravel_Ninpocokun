@@ -24,7 +24,9 @@
     <header>
       <p class="homelink"><a href="{{route('main')}}"><span><img src="/img/title.png" alt="OMOTEDASBURO"></span><span>OMOTESABURO</span></a></p>
       @if(Auth::check())
-      <span><p>{{ Session::get('dep_name') }} {{ Session::get('username') }}さん</p></span>
+      <span><p>
+        {{-- {{ Session::get('dep_name') }}  --}}
+        {{ Session::get('username') }}(最終ログイン：{{ Session::get('last_login')}})</p></span>
       <ul id="pclist">
           @if (isset( Auth::user()->sys_admin ) && Auth::user()->sys_admin == 1)
           <li class="odd"><a href="{{route('user.admin')}}"><img src="/img/menu01.png" alt="ユーザー管理"></a></li>

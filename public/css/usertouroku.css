@@ -41,6 +41,7 @@ div.btn_box {
 div.btn_box input.btn {
 	/* ユーザー登録確認レイアウト調整_kamimura */
 	width: 100%;
+	background-color: #f29214;
 }
 
 .password_box {

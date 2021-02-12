@@ -53,19 +53,24 @@
       @else
       <textarea cols="70" rows="5" name="comment" maxlength="360" placeholder="コメントを入力">{{$report -> comment}}</textarea>
       @endif
+      <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">
+      <input type="hidden" name="shintyoku" value="{{$report-> shintyoku }}">
+      <input type="hidden" name="zansagyou" value="{{$report -> zansagyou}}">
+      <input type="hidden" name="hikitsugi" value="{{$report -> hikitsugi}}">
     @else
       @if ($report-> status == 1 )
       <p>コメント</p>
       <p>{{old('comment' , $report -> comment) }}</p>
-      <input type="hidden" name="comment" value="{{$report -> comment}}">
+      <input type="hidden" name="comment" value="{{ $report-> comment }}">
+      @else
+      <input type="hidden" name="comment" value="{{ \Session::get('comment') }}">
       @endif
+      <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">
+      <input type="hidden" name="shintyoku" value="{{$report-> shintyoku }}">
+      <input type="hidden" name="zansagyou" value="{{$report -> zansagyou}}">
+      <input type="hidden" name="hikitsugi" value="{{$report -> hikitsugi}}">
     @endif
     </div>
-    <input type="hidden" name="sagyou" value="{{$report -> sagyou}}">
-    <input type="hidden" name="shintyoku" value="{{$report-> shintyoku }}">
-    <input type="hidden" name="zansagyou" value="{{$report -> zansagyou}}">
-    <input type="hidden" name="hikitsugi" value="{{$report -> hikitsugi}}">
-
     <!-- 新規日報登録/編集は下記_20210125_kamimura -->
     @if($report -> status < 1 )
     <div class='btn_box tac'>

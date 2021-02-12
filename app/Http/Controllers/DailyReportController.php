@@ -102,6 +102,10 @@ class DailyReportController extends Controller
         $title2 = '日報一覧';
         $css = 'dailylist.css';
 
+        if (\Session::has('comment')) {
+            \Session::forget('comment');
+        }
+
         // viewを呼び出す
         return view('report.list', compact('reports', 'reports2', 'tagu', 'title1', 'title2',  'css'));
     }
@@ -145,11 +149,12 @@ class DailyReportController extends Controller
     {
         // 入力データを受け取る
         $report = $request->input();
-        \Session::put('report', $report);
-
-        if (!isset($report['comment'])) {
+        if (isset($report['comment'])) {
+            \Session::put('comment', $report['comment']);
+        } else {
             $report['comment'] = "";
         }
+        \Session::put('report', $report);
 
         // reportオブジェクトに入力データを代入
         $report = (object)[
@@ -249,6 +254,7 @@ class DailyReportController extends Controller
                     abort(500);
                 }
             }
+            \Session::forget('comment');
 
             // viewを呼び出す
             return redirect(route('report.complete'));
@@ -305,6 +311,10 @@ class DailyReportController extends Controller
         // 承認権限の無い一般社員がアクセスした場合403エラーを返す
         if (isset(Auth::user()->pos_cd) && Auth::user()->pos_cd >= 30) {
             abort(403);
+        }
+
+        if (\Session::has('comment')) {
+            \Session::forget('comment');
         }
 
         // 承認待機状態の部下の日報を取得する
@@ -391,6 +401,7 @@ class DailyReportController extends Controller
             }
         }
 
+        \Session::forget('comment');
         // viewを呼び出す
         return redirect(route('report.complete'));
     }

@@ -5,6 +5,18 @@ PHPUnit_起動
 
 <https://qiita.com/shindex/items/4f28f8e06ef2d10e8d2b>
 
+# Gitのブランチモデルについて
+
+master & develop & feature
+
+【開発作業の流れ】
+1. masterブランチからdevelopブランチを作成
+2. developブランチから実装する機能毎にfeatureブランチを作成
+3. featureブランチで実装完了した機能はdevelopブランチにマージ
+4. リリース時点でdevelop → masterマージ
+
+<https://qiita.com/y-okudera/items/0b57830d2f56d1d51692>
+
 # コミットメッセージについて
 
 |動詞|	説明|

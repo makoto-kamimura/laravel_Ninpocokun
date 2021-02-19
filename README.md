@@ -17,6 +17,8 @@
 ![test](/README_img/204_個別日報入力画面.png) 
 個別日報入力内容確認画面
 ![test](/README_img/205_個別日報入力内容確認画面.png) 
+個別日報入力内容承認画面
+![test](/README_img/205_個別日報入力内容承認画面.png) 
 ユーザー登録・変更画面
 ![test](/README_img/207_ユーザー登録・変更画面.png) 
 ユーザー情報登録確認画面
@@ -35,8 +37,8 @@
 # Requirement
 
 * PHP
-* laravel
-* brade
+* Laravel
+* Brade
 
 # Installation
 
@@ -70,7 +72,7 @@ cscript sql_lib\sql_file_exec.vbs (データベース名) (DBユーザー名) (D
 
 * フロント担当      藤井さん		フロントエンド（HTML・CSS・JS）
 
-* バック担当        久保田さん		バックエンド（PHP・laravel・blade）
+* バック担当        久保田さん		バックエンド（PHP・Laravel・Blade）
 
 * マネジメント担当  上村    		総取り纏め（タスク管理・git管理・サポート）
 

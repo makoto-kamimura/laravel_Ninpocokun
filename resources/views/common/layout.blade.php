@@ -8,14 +8,14 @@
     <meta http-equiv="Cache-Control" content="no-store, max-age=0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/destyle.css">
+    <link rel="stylesheet" href="{{ asset('/css/destyle.css') }}">
 
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/{{$css}}">
+    <link rel="stylesheet" href="{{ asset('/css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/{{$css}}') }}">
 
-    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('/js/jquery-3.5.1.min.js') }}"></script>
     @yield('jq_plugins')
-    <script src="/js/utility.js"></script>
+    <script src="{{ asset('/js/utility.js') }}"></script>
     @yield('page_js')
 
     <title>@yield('title')</title>

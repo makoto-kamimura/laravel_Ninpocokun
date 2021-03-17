@@ -4,7 +4,7 @@
 @section('jq_plugins','')
 
 @section('page_js')
-<script src="/js/home.js"></script>
+<script src="{{ asset('/js/home.js') }}"></script>
 @endsection
 
 @section('title')

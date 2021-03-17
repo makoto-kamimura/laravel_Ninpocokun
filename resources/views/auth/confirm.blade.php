@@ -5,7 +5,7 @@
 @section('jq_plugins','')
 
 @section('page_js')
-<script src="/js/auth/confirm.js"></script>
+<script src="{{ asset('/js/auth/confirm.js') }}"></script>
 @endsection
 
 @section('title')

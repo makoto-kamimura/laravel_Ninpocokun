@@ -5,7 +5,7 @@
 @section('jq_plugins','')
 
 @section('page_js')
-<script src="/js/report/complete.js"></script>
+<script src="{{ asset('/js/report/complete.js') }}"></script>
 @endsection
 
 @section('tagu')

@@ -4,7 +4,7 @@
 @section('jq_plugins','')
 
 @section('page_js')
-<script src="/js/auth/complete.js"></script>
+<script src="{{ asset('/js/auth/complete.js') }}"></script>
 @endsection
 
 @section('tagu')

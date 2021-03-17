@@ -4,7 +4,7 @@
 @section('jq_plugins','')
 
 @section('page_js')
-<script src="/js/report/confirm.js"></script>
+<script src="{{ asset('/js/report/confirm.js') }}"></script>
 @endsection
 
 @section('tagu')

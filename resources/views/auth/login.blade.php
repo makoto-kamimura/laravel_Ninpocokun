@@ -1,11 +1,11 @@
 @extends('common.layout')
 
 @section('jq_plugins')
-<script src="/js/jquery.cookie.js"></script>
+<script src="{{ asset('/js/jquery.cookie.js') }}"></script>
 @endsection
 
 @section('page_js')
-<script src="/js/auth/login.js"></script>
+<script src="{{ asset('/js/auth/login.js') }}"></script>
 @endsection
 
 @section('body')

@@ -3,7 +3,7 @@
 @section('jq_plugins','')
 
 @section('page_js')
-<script src="/js/report/dailyreport.js"></script>
+<script src="{{ asset('/js/report/dailyreport.js') }}"></script>
 @endsection
 
 @section('title')

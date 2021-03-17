@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/css/destyle.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/{{$css}}') }}">
+    <link rel="stylesheet" href="{{ asset("/css/{$css}") }}">
 
     <script src="{{ asset('/js/jquery-3.5.1.min.js') }}"></script>
     @yield('jq_plugins')

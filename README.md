@@ -1,10 +1,8 @@
-# scratch
-
+# Ninpocokun
 日報管理システム "にんぽこくん。"
-
 創造社デザイン専門学校
-情報セキュリティ管理者資格コース一年 チーム"scratch"
-進級WS課題対応リポジトリ
+情報セキュリティ管理者資格コース一年
+チーム"scratch"
 
 # DEMO
 ログイン画面
@@ -33,13 +31,11 @@
 ![test](/README_img/219_エラー画面.png) 
 
 # Requirement
-
 * PHP
 * laravel
 * brade
 
 # Installation
-
 Laravelのプロジェクトをgit cloneしたときの手順について
 ```参考資料
 http://vdeep.net/laravel-git-clone
@@ -63,16 +59,11 @@ cscript sql_lib\sql_file_exec.vbs (データベース名) (DBユーザー名) (D
 # Author
 
 * 実務全般担当      S.M		DB・PHP・JS 及び 実務全般のフォロー
-
 * デザイン担当      Y.K		画面デザイン及びドキュメント（要件定義書)
-
 * ドキュメント担当  S.K		ドキュメント（基本設計書）
-
 * フロント担当      Y.F		フロントエンド（HTML・CSS・JS）
-
 * バック担当        Y.K     バックエンド（PHP・laravel・blade）
-
 * マネジメント担当  M.K     総取り纏め（タスク管理・git管理・サポート）
-
+* 
 # License
-"scratch" is Confidential.
+https://choosealicense.com/no-permission/
